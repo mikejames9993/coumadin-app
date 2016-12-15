@@ -1,0 +1,11 @@
+{
+	"name": "coumadin-app",
+	"description": "",
+	"version": "0.1.0",
+	"dependencies": {
+		"express": "4.14.x"
+	},
+	"scripts": {
+		"start": "node host.js 3000"
+	}
+}
