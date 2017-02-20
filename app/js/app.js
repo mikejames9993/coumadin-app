@@ -25,6 +25,7 @@ app.config(function($routeProvider) {
             //     }
             // }
         })
+<<<<<<< HEAD
         .when('/scenario', {
             templateUrl: '/views/scenarios/scenario.html',
             // data: {
@@ -114,3 +115,9 @@ app.config(function($routeProvider) {
 
 
 ;
+=======
+        .when('/minigame', {
+            templateUrl : '/views/minigames/minigame.html'
+        });
+});
+>>>>>>> 493660e01332f6f9ec9e387a37d75243912719bb
