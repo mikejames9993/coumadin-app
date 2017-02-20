@@ -10,7 +10,7 @@ app.config(function($routeProvider) {
         .when('/', {
             templateUrl : 'main.html'
         })
-        .when('/scenario', {
-            templateUrl : '/views/scenarios/scenario.html'
+        .when('/minigame', {
+            templateUrl : '/views/minigames/minigame.html'
         });
 });
