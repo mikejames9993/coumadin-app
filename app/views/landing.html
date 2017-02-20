@@ -1,0 +1,53 @@
+<div class="container-fluid coumadin-landing-container" ng-controller="LandingPageController">
+    <h1 class="row text-center">The Coumadin Game</h1>
+    <div class="row">
+        <div class="col-xs-3"><button><i class="glyphicon glyphicon-lock"></i></button></div>
+        <div class="col-xs-9 user-welcome">Welcome, {{user.username}}</div>
+    </div>
+    <div class="app-body">
+
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="minigame('diet')" >Diet</button>
+        </div>
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="minigame('oral-hygiene')" >Oral Hygiene</button>
+        </div>
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="minigame('saftey')" >Safety</button>
+        </div>
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="minigame('drug-interaction')" >Drug Interaction</button>
+        </div>
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="minigame('pt-inr-monitoring')" >PT/INR Monitoring</button>
+        </div>
+        <div class="button-row text-center">
+            <button type="button" class="btn btn-link btn-block" ng-click="logout()" >Logout</button>
+        </div>
+
+
+
+
+        <!-- <ul>
+            <li>
+                <a href="#/minigame?name=diet">Diet</a>
+            </li>
+            <li>
+                <a href="#/minigame?name=oral-hygiene">Oral Hygiene</a>
+            </li>
+            <li>
+                <a href="#/minigame?name=safety">Safety</a>
+            </li>
+            <li>
+                <a href="#/minigame?name=drug-interaction">Drug Interaction</a>
+            </li>
+            <li>
+                <a href="#/minigame?name=pt-inr-monitoring">PT/INR Monitoring</a>
+            </li>
+            <li>
+                <a href="#/login">Logout</a>
+            </li>
+        </ul> -->
+        <!-- <ng-view></ng-view> -->
+    </div>
+</div>

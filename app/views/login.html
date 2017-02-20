@@ -1,0 +1,25 @@
+<div ng-controller="LoginController">
+    <div class="app-header">
+        <h1 class="text-center">The Coumadin Game</h1>
+    </div>
+    <div class="container-fluid login-body">        
+        <div class="button-row input-group input-group-lg">
+  			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+  			<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="user.username">
+		</div>
+		<div class="button-row input-group input-group-lg">
+  			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+  			<input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1" ng-model="user.password">
+		</div>
+		<div class="button-row text-center">
+			<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="login(user)" ng-disabled="user.username.length === 0 || user.password.length === 0 ">Login</button>
+		</div>
+		<div class="button-row text-center">
+			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="signup()">Sign Up</button>
+		</div>
+		<!-- <div class="button-row text-center">
+			<button type="button" class="btn btn-link btn-block" ng-click="forgotPassword()">Forgot Password?</button>
+		</div>  -->
+
+    </div>
+</div>

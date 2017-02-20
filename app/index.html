@@ -26,7 +26,7 @@
 	    <script type="text/javascript" src="js/app.js"></script>
 	    <script type="text/javascript" src="js/root-controller.js"></script>
 	    <script type="text/javascript" src="js/login-controller.js"></script>
-
+	    <script type="text/javascript" src="js/landing-page-controller.js"></script>
 	    <script type="text/javascript" src="js/minigame-controller.js"></script>
 	    <script>
 			// Initialize Firebase
@@ -42,28 +42,11 @@
 	</head>
 	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
-			<ng-view></ng-view>
-			<div class="app-header">
+			<!-- <div class="app-header">
 				<h1 class="text-center">The Coumadin Game</h1>
-			</div>
+			</div> -->
 			<div class="app-body">
-				<ul>
-					<li>
-						<a href="#/minigame?name=diet">Diet</a>
-					</li>
-					<li>
-						<a href="#/minigame?name=oral-hygiene">Oral Hygiene</a>
-					</li>
-					<li>
-						<a href="#/minigame?name=safety">Safety</a>
-					</li>
-					<li>
-						<a href="#/minigame?name=drug-interaction">Drug Interaction</a>
-					</li>
-					<li>
-						<a href="#/minigame?name=pt-inr-monitoring">PT/INR Monitoring</a>
-					</li>
-				</ul>
+				
 				<ng-view></ng-view>
 			</div>
 		</div>
