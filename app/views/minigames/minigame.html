@@ -1,4 +1,6 @@
-<div ng-controller="MinigameController">
-	<p>{{minigame}} </p>
-	<ng-include src="'/views/minigames/' + minigame + '/' + minigame + '.html'"></ng-include>
+<div>
+	<p>{{minigame}} Minigame</p>
+	<ng-include ng-if="activeScenario" src="'/views/scenarios/' + activeScenario + '/' + activeScenario + '.html'"></ng-include>
+	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
+	<button class="btn btn-primary" ng-click="goToNextScenario()">Next</button>
 </div>

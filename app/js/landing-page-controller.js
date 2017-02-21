@@ -4,7 +4,8 @@ angular.module('CoumadinApp').controller('LandingPageController', function($scop
 	console.log('landing page controller loading');
 	$scope.minigame = function(game){
 		console.log(game);
-		$location.path("#/minigame?name="+game);
+		$location.url(game);
+		console.log('redirecting to ' + $location.url());
 		
 	}
 

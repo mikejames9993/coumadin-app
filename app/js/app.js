@@ -25,101 +25,65 @@ app.config(function($routeProvider) {
             //     }
             // }
         })
-        .when('/scenario', {
-            templateUrl: '/views/scenarios/scenario.html',
-            // data: {
-            //     permissions: {
-            //         only: ['AUTHENTICATED'],
-            //         redirectTo: '/login'
-            //     }
-            // } 
+        .when('/diet', {
+        	controller: 'MinigameController',
+            templateUrl: '/views/minigames/minigame.html',
+            resolve: {
+            	minigameConfig: function() {
+            		return {
+	            		name: 'Diet',
+		            	scenarios: ['eating']
+	            	}
+	            }
+            }
         })
-        .when('/minigame', {
-            templateUrl : '/views/minigames/minigame.html',
-            // data: {
-            //     permissions: {
-            //         only: ['AUTHENTICATED'],
-            //         redirectTo: '/login'
-            //     }
-            // }
+        .when('/oral-hygiene', {
+        	controller: 'MinigameController',
+            templateUrl: '/views/minigames/minigame.html',
+            resolve: {
+            	minigameConfig: function() {
+            		return {
+	            		name: 'Oral Hygiene',
+		            	scenarios: ['flossing', 'toothbrushing']
+		            };
+	            }
+            }
+        })
+        .when('/safety', {
+        	controller: 'MinigameController',
+            templateUrl: '/views/minigames/minigame.html',
+            resolve: {
+            	minigameConfig: function() {
+            		return {
+	            		name: 'Safety',
+		            	scenarios: ['bloody-stools', 'node-bleeds', 'cuts', 'falls']
+		            };
+	            }
+            }
+        })
+        .when('/drug-interaction', {
+        	controller: 'MinigameController',
+            templateUrl: '/views/minigames/minigame.html',
+            resolve: {
+            	minigameConfig: function() {
+            		return {
+	            		name: 'Drug Interaction',
+		            	scenarios: []
+		            };
+	            }
+            }
+        })
+        .when('/pt-inr-monitoring', {
+        	controller: 'MinigameController',
+            templateUrl: '/views/minigames/minigame.html',
+            resolve: {
+            	minigameConfig: function() {
+            		return {
+	            		name: 'PT/INR Monitoring',
+		            	scenarios: ['pt-inr-monitoring']
+		            };
+	            }
+            }
         })
         .otherwise({ redirectTo: '/' });
-})
-
-// app.run(function(PermPermissionStore, PermRoleStore, $q) {
-
-
-//     function Session(deferred) {
-//         deferred.resolve();
-//         // function checkSession() {
-//         //     console.log('checkSession');
-
-//         // }
-//         // return {
-//         // 	checkSession: checkSession
-//         // };
-//         console.log(deferred);
-//         return deferred.promise;
-//     }
-
-//     var roleConfig = {
-//         'AUTHENTICATED': $q.defer()
-//     };
-
-
-//     PermRoleStore
-//     // Or use your own function/service to validate role
-//         .defineRole(roleConfig, function(deferred) {
-//         return deferred.promise; //Session;//.checkSession();
-//     });
-//         // deferred.reject();
-
-//     setTimeout(function(deferred) { 
-//     	console.log('timeout fired');
-//         deferred.resolve(); 
-//     }, 3000);
-
-//     // var roleConfig = {
-//     //     'Admin': $q.defer(),
-//     //     'Auditor': $q.defer(),
-//     //     'QA': $q.defer(),
-//     //     'Lead': $q.defer(),
-//     //     'Clerk': $q.defer(),
-//     //     'Manager': $q.defer(),
-//     //     'Internal': $q.defer(),
-//     //     'External': $q.defer()
-//     // };
-//     // var roles = {};
-//     // _.each(roleConfig, function(deferred, roleName) {
-//     //     roles[roleName] = function() {
-//     //         return deferred.promise;
-//     //     };
-//     // });
-
-//     // PermRoleStore.defineManyRoles(roles);
-
-//     // webservices.metadata.getLoggedInUser().then(function(response) {
-
-//     //         _.each(roleConfig, function(deferred, roleName) {
-//     //             var matchingRole = _.find(response.data.assignedRoles, function(role) {
-//     //                 return role.name === roleName;
-//     //             });
-//     //             if (matchingRole) {
-//     //                 deferred.resolve();
-//     //             } else {
-//     //                 deferred.reject();
-//     //             }
-//     //         });
-//     //         angular.element('#main-tab-content').removeAttr('hidden');
-//     //         angular.element('#main-tabs').removeAttr('hidden');
-
-//     //     },
-//     //     function(response) {
-//     //         console.log("Unable to fetch role list on login: " + response.error.message);
-//     //         angular.element('#permissions-error-msg').removeAttr('hidden');
-//     //     });
-
-// });
-
-        
-;
+});
