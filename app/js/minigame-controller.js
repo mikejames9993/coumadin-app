@@ -10,6 +10,8 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	var activeScenarioIndex = -1;
 
+	console.log("user data: " + JSON.stringify($rootScope.user));
+
 	$scope.hasNextScenario = function() {
 		return activeScenarioIndex < ($scope.scenarios.length - 1);
 	};
@@ -22,8 +24,12 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			startScenario();
 		} else {
 			// go back to landing page
-			$location.url('/landing');
+			$rootScope.goToLanding();
 		}
+	};
+
+	function completeScenario() {
+		$rootScope.userData.score += $scope.activeScenario.data.scoreChange;
 	};
 
 	function startScenario() {
@@ -50,6 +56,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	};
 
 	$scope.showOutroOverlay = function() {
+		completeScenario();
 		$rootScope.showOverlay('/views/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
 	};
 

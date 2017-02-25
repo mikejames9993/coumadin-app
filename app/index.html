@@ -45,11 +45,18 @@
 	</head>
 	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
-			<!-- <div class="app-header">
-				<h1 class="text-center">The Coumadin Game</h1>
-			</div> -->
-			<div class="app-body">
-				
+			<div class="container-fluid app-header">
+				<div class="row vertical-align">
+					<div class="col-sm-4">
+						<button class="btn btn-default" ng-click="goToLanding()"><i class="fa fa-arrow-left"></i>Back</button>
+					</div>
+					<div class="col-sm-4 text-center">{{userData.score}} PTS</div>
+					<div class="col-sm-4">
+						<button class="btn btn-default pull-right disabled" ng-click=""><i class="fa fa-info"></i>Help</button>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid app-body">
 				<ng-view></ng-view>
 			</div>
 		</div>

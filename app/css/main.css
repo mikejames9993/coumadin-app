@@ -4,6 +4,13 @@
 }
 /*login page*/
 
+.app-header {
+	background-color: #666;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: white;
+}
+
 /*landing page*/
 .user-welcome {
 	margin-top: 0px;
@@ -42,4 +49,9 @@ i.fa {
 
 .score-change-bad {
 	color: #d9534f;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }

@@ -147,9 +147,14 @@ app.config(function($routeProvider) {
         .otherwise({ redirectTo: '/' });
 });
 
-app.run(function($rootScope, $uibModal) {
+app.run(function($rootScope, $location, $uibModal) {
 
     var modalInstance = null;
+
+    $rootScope.userData = {
+        name: 'Jimbo',
+        score: 1000
+    };
 
     $rootScope.showOverlay = function(templateUrl, controller, scopeData, navigation) {
         if (templateUrl) {
@@ -181,5 +186,9 @@ app.run(function($rootScope, $uibModal) {
             modalInstance.close();
             modalInstance = null;
         }
+    };
+
+    $rootScope.goToLanding = function() {
+        $location.url('/landing');
     };
 });
