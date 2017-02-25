@@ -3,9 +3,9 @@
 </div>
 <div class="modal-body" id="modal-body">
 	<p>{{scenario.data.message}}</p>
-	<p ng-if="scenario.data.outcome === 'good'" class="text-center score-change score-change-good">+{{scenario.data.scoreChange}} Points</p>
-	<p ng-if="scenario.data.outcome === 'neutral'" class="text-center score-change score-change-neutral">+{{scenario.data.scoreChange}} Points</p>
-	<p ng-if="scenario.data.outcome === 'bad'" class="text-center score-change score-change-bad">{{scenario.data.scoreChange}} Points</p>
+	<p ng-if="scenario.data.outcome === 'good'" class="text-center score-change score-change-good"><strong>+{{scenario.data.scoreChange}} Points</strong></p>
+	<p ng-if="scenario.data.outcome === 'neutral'" class="text-center score-change score-change-neutral"><strong>+{{scenario.data.scoreChange}} Points</strong></p>
+	<p ng-if="scenario.data.outcome === 'bad'" class="text-center score-change score-change-bad"><strong>{{scenario.data.scoreChange}} Points</strong></p>
 </div>
 <div class="modal-footer">
     <button class="btn btn-success" type="button" title="Retry this scenario" ng-click="retry()"><i class="fa fa-refresh"></i>Retry</button>

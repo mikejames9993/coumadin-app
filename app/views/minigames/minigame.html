@@ -1,5 +1,4 @@
 <div>
-	<p>{{minigame}} Minigame</p>
 	<ng-include ng-if="activeScenario" src="'/views/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
 	<div class="footer scenario-footer">

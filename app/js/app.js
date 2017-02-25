@@ -166,8 +166,9 @@ app.run(function($rootScope, $location, $uibModal) {
                 ariaDescribedBy: 'modal-body',
                 templateUrl: templateUrl,
                 controller: controller,
+                backdrop: false,
                 // controllerAs: '$ctrl',
-                size: 'lg',
+                size: 'fs',
                 // appendTo: parentElem,
                 resolve: {
                     data: function () {
