@@ -30,7 +30,11 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$scope.hideOverlay();
 		$scope.activeScenario = {
 			config: $scope.scenarios[activeScenarioIndex],
-			data: {}
+			data: {
+				outcome: 'good',
+				message: 'Good Choices!',
+				scoreChange: 100
+			}
 		};
 		$scope.showIntroOverlay();
 	};

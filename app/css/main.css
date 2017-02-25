@@ -14,3 +14,32 @@
 i.fa {
 	padding-right: 8px;
 }
+
+.modal-footer {
+	text-align: center;
+}
+
+.scenario-footer {
+	text-align: right;
+	padding: 15px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.score-change {
+	font-size: 24px;
+}
+
+.score-change-good {
+	color: #5cb85c;
+}
+
+.score-change-neutral {
+	color: #f0ad4e;
+}
+
+.score-change-bad {
+	color: #d9534f;
+}
