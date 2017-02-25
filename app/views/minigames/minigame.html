@@ -1,6 +1,6 @@
 <div>
 	<p>{{minigame}} Minigame</p>
-	<ng-include ng-if="activeScenario" src="'/views/scenarios/' + activeScenario + '/' + activeScenario + '.html'"></ng-include>
+	<ng-include ng-if="activeScenario" src="'/views/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
-	<button class="btn btn-primary" ng-click="goToNextScenario()">Next</button>
+	<button class="btn btn-success" ng-click="showOutroOverlay()"><i class="fa fa-check"></i>Done</button>
 </div>
