@@ -12,5 +12,12 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 			username: "",
 			password: ""
 		}
-	}
+	};
+
+	$scope.$on('$routeChangeSuccess', function(event, toState, toParams, fromState, fromParams){ 
+		$rootScope.showUserLabel = $location.path() !== '/login'; 
+		$rootScope.showBackBtn = $location.path() !== '/';
+		$rootScope.showMenuBtn = $location.path() === '/';
+	});
+	
 });

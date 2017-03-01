@@ -1,1 +1,39 @@
-<p>Eating Scenario</p>
+<div class="btn btn-primary" ng-repeat="item in (foodItems1 = (foodItems | limitTo:8))" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="foodItems1" jqyoui-draggable="{animate:true}" ng-hide="!item.name">{{item.name}}</div>
+
+<hr>
+<div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="list2" jqyoui-droppable style='height:50px;'>
+  <div class="btn btn-success" data-drag="false" data-jqyoui-options ng-model="list2" jqyoui-draggable ng-hide="!list2.title">{{list2.title}}</div>
+</div>
+
+
+
+<div style="height: 50%;">
+<div class="row">
+	<div class="col-xs-3" ng-repeat="item in (foodItems1 = (foodItems | limitTo:8))" >
+		<button class="food btn" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="foodItems1" jqyoui-draggable="{animate:true}" ng-hide="!foodItems1.name">
+			<img src="{{item.src}}"" alt="{{item.name}}" class="food-img">
+			<div class="food-label">{{item.name}}</div>
+		</button>
+	</div>
+
+	  <!-- <div class="col-xs-4"  ng-repeat="item in foodItems | limitTo:9">
+		  <div class="img-thumbnail img-responsive">
+		      <img src="{{item.src}}"" alt="{{item.name}}" style="width:100%">
+		      <div class="caption">
+		          <p>{{item.name}}</p>
+		      </div>
+		    </div>
+		  </div> -->
+	</div>  
+
+</div>
+
+
+<hr>
+<div style="height: 50%;">
+<div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="list2" jqyoui-droppable style='height:50px;'>
+  <div class="btn" data-drag="false" data-jqyoui-options ng-model="list2" jqyoui-draggable ng-hide="!list2.name">{{list2.name}}</div>
+</div>
+	
+</div>
+

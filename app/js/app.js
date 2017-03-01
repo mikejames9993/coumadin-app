@@ -4,7 +4,9 @@ var app = angular.module('CoumadinApp', [
     'ngRoute',
     'permission',
     'permission.ng',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngDragDrop',
+    'underscore'
 ]);
 
 app.config(function($routeProvider) {
@@ -52,6 +54,103 @@ app.config(function($routeProvider) {
         }
     }
 
+    var foodItems = [
+    {
+        name: 'asparagus',
+        kAmount: '',
+        src: "../images/food-graphics/asparagus.png"
+    },
+    {
+        name: 'broccoli',
+        kAmount: '',
+        src: "../images/food-graphics/broccoli.png"
+    },
+    {
+        name: 'brussel-sprouts',
+        kAmount: '',
+        src: "../images/food-graphics/brussel-sprouts.png"
+    },
+    {
+        name: 'cabbage',
+        kAmount: '',
+        src: "../images/food-graphics/cabbage.png"
+    },
+    {
+        name: 'carrots',
+        kAmount: '',
+        src: "../images/food-graphics/carrots.png"
+    },
+    {
+        name: 'celery',
+        kAmount: '',
+        src: "../images/food-graphics/celery.png"
+    },
+    {
+        name: 'chard',
+        kAmount: '',
+        src: "../images/food-graphics/chard.png"
+    },
+    {
+        name: 'collard-greens',
+        kAmount: '',
+        src: "../images/food-graphics/collard-greens.png"
+    },
+    {
+        name: 'corn',
+        kAmount: '',
+        src: "../images/food-graphics/corn.png"
+    },
+    {
+        name: 'grapes',
+        kAmount: '',
+        src: "../images/food-graphics/grapes.png"
+    },
+    {
+        name: 'green-onions',
+        kAmount: '',
+        src: "../images/food-graphics/green-onions.png"
+    },
+    {
+        name: 'kale',
+        kAmount: '',
+        src: "../images/food-graphics/kale.png"
+    },
+    {
+        name: 'liver',
+        kAmount: '',
+        src: "../images/food-graphics/liver.png"
+    },
+    {
+        name: 'mayo',
+        kAmount: '',
+        src: "../images/food-graphics/mayo.png"
+    },
+    {
+        name: 'parsley',
+        kAmount: '',
+        src: "../images/food-graphics/parsley.png"
+    },
+    {
+        name: 'peas',
+        kAmount: '',
+        src: "../images/food-graphics/peas.png"
+    },
+    {
+        name: 'potatos',
+        kAmount: '',
+        src: "../images/food-graphics/potatos.png"
+    },
+    {
+        name: 'radish',
+        kAmount: '',
+        src: "../images/food-graphics/radish.png"
+    },
+    {
+        name: 'tomatoes',
+        kAmount: '',
+        src: "../images/food-graphics/tomatoes.png"
+    }]
+
     // Set up routing
     $routeProvider
         .when('/', {
@@ -81,7 +180,8 @@ app.config(function($routeProvider) {
 	            		name: 'Diet',
 		            	scenarios: [
                             scenarios.eating
-                        ]
+                        ],
+                        foodItems: foodItems
 	            	}
 	            }
             }

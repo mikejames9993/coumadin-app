@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('MinigameController', function($scope, $rootScope, $location, minigameConfig) {
+angular.module('CoumadinApp').controller('MinigameController', function($scope, $rootScope, $location, minigameConfig, _) {
 	console.log('minigame controller loading');
 	$scope.minigame = minigameConfig.name;
 	console.log('minigame = ' + $scope.minigame);
 	$scope.scenarios = minigameConfig.scenarios;
 	console.log('scenarios: ' + JSON.stringify($scope.scenarios));
+	$scope.foodItems = _.shuffle(minigameConfig.foodItems);
+	console.log('foodItems: ' + JSON.stringify($scope.foodItems));
 	$scope.errorMessage = null;
 
 	var activeScenarioIndex = -1;
@@ -70,4 +72,10 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	} else {
 		$scope.errorMessage = 'No Scenarios Found';
 	}
+
+
+  $scope.list1 = {title: 'AngularJS - Drag Me'};
+  $scope.list2 = {};
+  $scope.foodItems1 = [];
+
 });

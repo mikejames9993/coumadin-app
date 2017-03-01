@@ -1,7 +1,33 @@
+/* game colors */
+.diet { /*green*/
+	background-color: #32cd32;
+	color: #f2f2f2;
+}
+.oral-hygiene {/*blue*/
+	background-color: #0E88F3 ;
+	color: #f2f2f2 ;
+}
+.safety {/*red*/
+	background-color: #ff5050 ;
+	color: #f2f2f2 ;
+}
+.drug-interaction {/*purple*/
+	background-color: #9966ff ;
+	color: #f2f2f2 ;
+}
+.pt-inr-monitoring {/*orange*/
+	background-color: #F3BF0E ;
+	color: #f2f2f2 ;
+}
+
 /*Shared items*/
 .button-row {
 	padding-top: 20px;
 }
+.app-body{
+	background-color: #f2f2f2;
+}
+
 /*login page*/
 
 .app-header {
@@ -11,19 +37,41 @@
 	color: white;
 }
 
+.login-btn {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.mini-game-button-container {
+	border-radius: 3px;
+	background-color: #f2f2f2;
+	padding-bottom: 15px;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+
 /*landing page*/
 .user-welcome {
 	margin-top: 0px;
 	text-align: center;
 	font-size: 24px;
+	background-color:  #f2f2f2;
 }
 
 i.fa {
 	padding-right: 8px;
 }
+i.fa.no-padding {
+	padding-right: 0px;
+}
 
 .modal-footer {
 	text-align: center;
+}
+
+.scenario-launch-btn {
+	border-radius: 3px;
+
 }
 
 /* full-screen modal */
@@ -70,4 +118,42 @@ i.fa {
 .vertical-align {
     display: flex;
     align-items: center;
+}
+
+/*food items*/
+.food {
+    border: 0;
+    border-radius: 0px;
+    max-height: 175px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    padding: 0px;
+    max-width: 175px;
+}
+.food-label {
+    background: #32cd32;
+    border-radius: 0px;
+    bottom: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 18px;
+    opacity: 0.8;
+    padding: 10px 5px;
+    position: absolute;
+    width: 100%;
+    text-transform: capitalize;
+}
+.food-list {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.food-img {
+	vertical-align: baseline;
+	margin-top: -20px;
+	width: 100%;
+}
+.food.btn {
+	margin-top: 20px;
 }
