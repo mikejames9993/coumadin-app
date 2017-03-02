@@ -73,9 +73,4 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$scope.errorMessage = 'No Scenarios Found';
 	}
 
-
-  $scope.list1 = {title: 'AngularJS - Drag Me'};
-  $scope.list2 = {};
-  $scope.foodItems1 = [];
-
 });

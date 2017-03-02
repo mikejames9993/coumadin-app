@@ -5,7 +5,6 @@ var app = angular.module('CoumadinApp', [
     'permission',
     'permission.ng',
     'ui.bootstrap',
-    'ngDragDrop',
     'underscore'
 ]);
 
@@ -58,97 +57,97 @@ app.config(function($routeProvider) {
     {
         name: 'asparagus',
         kAmount: '',
-        src: "../images/food-graphics/asparagus.png"
+        src: "images/food-graphics/asparagus.png"
     },
     {
         name: 'broccoli',
         kAmount: '',
-        src: "../images/food-graphics/broccoli.png"
+        src: "images/food-graphics/broccoli.png"
     },
     {
         name: 'brussel-sprouts',
         kAmount: '',
-        src: "../images/food-graphics/brussel-sprouts.png"
+        src: "images/food-graphics/brussel-sprouts.png"
     },
     {
         name: 'cabbage',
         kAmount: '',
-        src: "../images/food-graphics/cabbage.png"
+        src: "images/food-graphics/cabbage.png"
     },
     {
         name: 'carrots',
         kAmount: '',
-        src: "../images/food-graphics/carrots.png"
+        src: "images/food-graphics/carrots.png"
     },
     {
         name: 'celery',
         kAmount: '',
-        src: "../images/food-graphics/celery.png"
+        src: "images/food-graphics/celery.png"
     },
     {
         name: 'chard',
         kAmount: '',
-        src: "../images/food-graphics/chard.png"
+        src: "images/food-graphics/chard.png"
     },
     {
         name: 'collard-greens',
         kAmount: '',
-        src: "../images/food-graphics/collard-greens.png"
+        src: "images/food-graphics/collard-greens.png"
     },
     {
         name: 'corn',
         kAmount: '',
-        src: "../images/food-graphics/corn.png"
+        src: "images/food-graphics/corn.png"
     },
     {
         name: 'grapes',
         kAmount: '',
-        src: "../images/food-graphics/grapes.png"
+        src: "images/food-graphics/grapes.png"
     },
     {
         name: 'green-onions',
         kAmount: '',
-        src: "../images/food-graphics/green-onions.png"
+        src: "images/food-graphics/green-onions.png"
     },
     {
         name: 'kale',
         kAmount: '',
-        src: "../images/food-graphics/kale.png"
+        src: "images/food-graphics/kale.png"
     },
     {
         name: 'liver',
         kAmount: '',
-        src: "../images/food-graphics/liver.png"
+        src: "images/food-graphics/liver.png"
     },
     {
         name: 'mayo',
         kAmount: '',
-        src: "../images/food-graphics/mayo.png"
+        src: "images/food-graphics/mayo.png"
     },
     {
         name: 'parsley',
         kAmount: '',
-        src: "../images/food-graphics/parsley.png"
+        src: "images/food-graphics/parsley.png"
     },
     {
         name: 'peas',
         kAmount: '',
-        src: "../images/food-graphics/peas.png"
+        src: "images/food-graphics/peas.png"
     },
     {
         name: 'potatos',
         kAmount: '',
-        src: "../images/food-graphics/potatos.png"
+        src: "images/food-graphics/potatos.png"
     },
     {
         name: 'radish',
         kAmount: '',
-        src: "../images/food-graphics/radish.png"
+        src: "images/food-graphics/radish.png"
     },
     {
         name: 'tomatoes',
         kAmount: '',
-        src: "../images/food-graphics/tomatoes.png"
+        src: "images/food-graphics/tomatoes.png"
     }]
 
     // Set up routing
