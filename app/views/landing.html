@@ -1,25 +1,35 @@
 <div class="container-fluid coumadin-landing-container" ng-controller="LandingPageController">
-    <!-- <h1 class="row text-center">The Coumadin Game</h1> -->
-    <!-- <div class="row">
-        <div class="col-xs-3"><button><i class="glyphicon glyphicon-lock"></i></button></div>
-        <div class="col-xs-9 user-welcome">Welcome, {{user.username}}</div>
-    </div> -->
     <div class="app-body">
-        <div class="mini-game-button-container col-xs-12 col-sm-8 col-sm-offset-2">
-            <div class="button-row text-center ">
-                <button type="button" class="btn diet btn-lg btn-block scenario-launch-btn" ng-click="minigame('diet')" >Diet</button>
+        <div class="mini-game-launch-wrapper" >
+            <div class="mini-game-launch-container col-xs-6 col-lg-4 text-center " ng-click="minigame('diet')">
+                <div class="mini-game-launch-inner diet-bg">
+                    <img src="images/food-graphics/food-icon.png" width="200" height="200" class="img-responsive mini-game-launch-img">
+                    <h3>Diet</h3>
+                </div>
             </div>
-            <div class="button-row text-center ">
-                <button type="button" class="btn oral-hygiene btn-lg btn-block scenario-launch-btn" ng-click="minigame('oral-hygiene')" >Oral Hygiene</button>
+            <div class="mini-game-launch-container col-xs-6 col-lg-4 text-center " ng-click="minigame('safety')">
+                <div class="mini-game-launch-inner safety-bg">
+                    <img src="images/placeholder-example.gif" width="200" height="200" class="img-responsive mini-game-launch-img">
+                    <h3>Safety</h3>
+                </div>
             </div>
-            <div class="button-row text-center ">
-                <button type="button" class="btn safety btn-lg btn-block scenario-launch-btn" ng-click="minigame('safety')" >Safety</button>
+             <div class="mini-game-launch-container col-xs-6 col-lg-4 text-center " ng-click="minigame('drug-interaction')">
+                <div class="mini-game-launch-inner drug-interaction-bg">
+                    <img src="images/placeholder-example.gif" width="200" height="200" class="img-responsive mini-game-launch-img">
+                    <h3>Drug Interaction</h3>
+                </div>
             </div>
-            <div class="button-row text-center ">
-                <button type="button" class="btn drug-interaction btn-lg btn-block scenario-launch-btn" ng-click="minigame('drug-interaction')" >Drug Interaction</button>
+            <div class="mini-game-launch-container col-xs-6 col-lg-4 text-center" ng-click="minigame('oral-hygiene')">
+                <div class="mini-game-launch-inner oral-hygiene-bg">
+                    <img src="images/placeholder-example.gif" width="200" height="200" class="img-responsive mini-game-launch-img">
+                    <h3>Oral Hygine</h3>
+                </div>
             </div>
-            <div class="button-row text-center ">
-                <button type="button" class="btn pt-inr-monitoring btn-lg btn-block scenario-launch-btn" ng-click="minigame('pt-inr-monitoring')" >PT/INR Monitoring</button>
+            <div class="mini-game-launch-container col-xs-6 col-lg-4 text-center " ng-click="minigame('pt-inr-monitoring')">
+                <div class="mini-game-launch-inner pt-inr-monitoring-bg">
+                    <img src="images/placeholder-example.gif" width="200" height="200" class="img-responsive mini-game-launch-img">
+                    <h3>PT/INR Monitoring</h3>
+                </div>
             </div>
         </div>
     </div>

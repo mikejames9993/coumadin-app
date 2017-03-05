@@ -46,9 +46,9 @@ angular.module('CoumadinApp').controller('EatingController', function($scope, $r
 	}
 
 	$timeout(function() {
-		console.log('foods: ' + angular.element('.food').length);
-		angular.element('#buffet-region .food').on('dragstart', onDragStartBuffet);
-		angular.element('#plate-region .food').on('dragstart', onDragStartPlate);
+		console.log('foods: ' + angular.element('.food-card').length);
+		angular.element('#buffet-region .food-card').on('dragstart', onDragStartBuffet);
+		angular.element('#plate-region .food-card').on('dragstart', onDragStartPlate);
 
 		angular.element('#plate-region, #buffet-region').on('dragover', onDragOver);
 
@@ -70,7 +70,7 @@ angular.module('CoumadinApp').controller('EatingController', function($scope, $r
 			}
 
 			$timeout(function() {
-				angular.element('.food[data-name="' + food.name + '"]').on('dragstart', onDragStartCallback);
+				angular.element('.food-card[data-name="' + food.name + '"]').on('dragstart', onDragStartCallback);
 			});
 		}
 	}
