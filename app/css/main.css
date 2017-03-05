@@ -75,7 +75,7 @@ i.fa.no-padding {
 }
 .title-header h1{
 	font-weight: bold;
-	color: #6894af;
+	color: #405c70;
 }
 
 .login-btn {
@@ -92,15 +92,14 @@ i.fa.no-padding {
 	margin-bottom: 20px;
 }
 .mini-game-launch-inner {
-	padding-top: 10px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	padding-bottom: 7px
+	padding: 7px;
 }
 .mini-game-launch-container img {
 	display: inline-block;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: rgba(247,244,237,1);
 }
 
 /* full-screen modal */
