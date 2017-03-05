@@ -10,14 +10,14 @@ angular.module('CoumadinApp').controller('EatingController', function($scope, $r
 
 	function onDragStartBuffet(event) {
 		console.log('startDragFoodFromBuffet');
-		var name = angular.element(event.target).data('name');
-		draggedFood = _.find($scope.buffetFoods, { name: name });
+		var foodId = angular.element(event.target).data('id');
+		draggedFood = _.find($scope.buffetFoods, { id: foodId });
 	}
 
 	function onDragStartPlate(event) {
 		console.log('startDragFoodFromPlate');
-		var name = angular.element(event.target).data('name');
-		draggedFood = _.find($scope.selectedFoods, { name: name });
+		var foodId = angular.element(event.target).data('id');
+		draggedFood = _.find($scope.selectedFoods, { id: foodId });
 	}
 
 	function onDragOver(event) {
@@ -64,13 +64,13 @@ angular.module('CoumadinApp').controller('EatingController', function($scope, $r
 
 			// remove food from source array
 			for (var i = 0; i < sourceArray.length; i++) {
-				if (sourceArray[i].name === food.name) {
+				if (sourceArray[i].id === food.id) {
 					sourceArray.splice(i, 1);
 				}
 			}
 
 			$timeout(function() {
-				angular.element('.food-card[data-name="' + food.name + '"]').on('dragstart', onDragStartCallback);
+				angular.element('.food-card[data-id="' + food.id + '"]').on('dragstart', onDragStartCallback);
 			});
 		}
 	}

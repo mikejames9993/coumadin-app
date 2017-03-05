@@ -12,97 +12,116 @@ app.config(function($routeProvider) {
 
     var foodItems = [
     {
-        name: 'asparagus',
+        id: 'asparagus',
+        name: 'Asparagus',
         kAmount: '',
         src: "images/food-graphics/asparagus.png"
     },
     {
-        name: 'broccoli',
+        id: 'broccoli',
+        name: 'Broccoli',
         kAmount: '',
         src: "images/food-graphics/broccoli.png"
     },
     {
-        name: 'brussel-sprouts',
+        id: 'brussels-sprouts',
+        name: 'Brussels Sprouts',
         kAmount: '',
-        src: "images/food-graphics/brussel-sprouts.png"
+        src: "images/food-graphics/brussels-sprouts.png"
     },
     {
-        name: 'cabbage',
+        id: 'cabbage',
+        name: 'Cabbage',
         kAmount: '',
         src: "images/food-graphics/cabbage.png"
     },
     {
-        name: 'carrots',
+        id: 'carrots',
+        name: 'Carrots',
         kAmount: '',
         src: "images/food-graphics/carrots.png"
     },
     {
-        name: 'celery',
+        id: 'celery',
+        name: 'Celery',
         kAmount: '',
         src: "images/food-graphics/celery.png"
     },
     {
-        name: 'chard',
+        id: 'chard',
+        name: 'Chard',
         kAmount: '',
         src: "images/food-graphics/chard.png"
     },
     {
-        name: 'collard-greens',
+        id: 'collard-greens',
+        name: 'Collard Greens',
         kAmount: '',
         src: "images/food-graphics/collard-greens.png"
     },
     {
-        name: 'corn',
+        id: 'corn',
+        name: 'Corn',
         kAmount: '',
         src: "images/food-graphics/corn.png"
     },
     {
-        name: 'grapes',
+        id: 'grapes',
+        name: 'Grapes',
         kAmount: '',
         src: "images/food-graphics/grapes.png"
     },
     {
-        name: 'green-onions',
+        id: 'green-onions',
+        name: 'Green Onions',
         kAmount: '',
         src: "images/food-graphics/green-onions.png"
     },
     {
-        name: 'kale',
+        id: 'kale',
+        name: 'Kale',
         kAmount: '',
         src: "images/food-graphics/kale.png"
     },
     {
-        name: 'liver',
+        id: 'liver',
+        name: 'Liver',
         kAmount: '',
         src: "images/food-graphics/liver.png"
     },
     {
-        name: 'mayo',
+        id: 'mayo',
+        name: 'Mayo',
         kAmount: '',
         src: "images/food-graphics/mayo.png"
     },
     {
-        name: 'parsley',
+        id: 'parsley',
+        name: 'Parsley',
         kAmount: '',
         src: "images/food-graphics/parsley.png"
     },
     {
-        name: 'peas',
+        id: 'peas',
+        name: 'Peas',
         kAmount: '',
         src: "images/food-graphics/peas.png"
     },
     {
-        name: 'potatos',
+        id: 'potatoes',
+        name: 'Potatoes',
         kAmount: '',
-        src: "images/food-graphics/potatos.png"
+        src: "images/food-graphics/potatoes.png"
     },
     {
-        name: 'radish',
+        id: 'radishes',
+        name: 'Radishes',
         kAmount: '',
         src: "images/food-graphics/radish.png"
     },
     {
-        name: 'tomatoes',
+        id: 'tomatoes',
+        name: 'Tomatoes',
         kAmount: '',
         src: "images/food-graphics/tomatoes.png"
     }];

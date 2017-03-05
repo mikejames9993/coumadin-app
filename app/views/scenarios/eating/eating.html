@@ -3,8 +3,8 @@
 	<div id="buffet-region" class="top-half-wrapper row">
 		<div class="row content-fluid">
 			<div class="col-xs-3 col-sm-4 food-item-wrapper" ng-repeat="food in buffetFoods" >
-				<div class="food-card" draggable="true" data-name="{{food.name}}">
-					<img src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-name="{{food.name}}">
+				<div class="food-card" draggable="true" data-id="{{food.id}}">
+					<img src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
 					<div class="food-label">{{food.name}}</div>
 				</div>
 			</div>
@@ -13,8 +13,8 @@
 	<div id="plate-region" class="bottom-half-wrapper row eating-plate">
 		<div class="row content-fluid">
 			<div class="col-xs-3 col-sm-4 food-item-wrapper" ng-repeat="food in selectedFoods">
-				<div class="food-card" draggable="true" data-name="{{food.name}}">
-					<img src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-name="{{food.name}}">
+				<div class="food-card" draggable="true" data-id="{{food.id}}">
+					<img src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
 					<div class="food-label">{{food.name}}</div>
 				</div>
 			</div>
