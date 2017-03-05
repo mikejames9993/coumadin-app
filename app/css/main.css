@@ -1,56 +1,46 @@
 /* game colors */
-.diet { /*green*/
-	background-color: #32cd32;
+.diet {
+	color: #1b8c76;
+}
+.diet-bg {
+	background-color: #1b8c76;
 	color: #f2f2f2;
 }
-.oral-hygiene {/*blue*/
-	background-color: #0E88F3 ;
+.oral-hygiene {
+	color: #6abab8;
+}
+.oral-hygiene-bg {
+	background-color: #6abab8;
 	color: #f2f2f2 ;
 }
-.safety {/*red*/
-	background-color: #ff5050 ;
+.safety {
+	color: #db584d;
+}
+.safety-bg {
+	background-color: #db584d;
 	color: #f2f2f2 ;
 }
-.drug-interaction {/*purple*/
-	background-color: #9966ff ;
+.drug-interaction {
+	color: #ef9233;
+}
+.drug-interaction-bg {
+	background-color: #ef9233;
 	color: #f2f2f2 ;
 }
-.pt-inr-monitoring {/*orange*/
-	background-color: #F3BF0E ;
+.pt-inr-monitoring {
+	color: #ddc02f;
+}
+.pt-inr-monitoring-bg {
+	background-color: #ddc02f;
 	color: #f2f2f2 ;
 }
+
 
 /*Shared items*/
-.button-row {
-	padding-top: 20px;
-}
 .app-body{
-	background-color: #f2f2f2;
+	background-color: #f7f4ed;
 }
 
-/*login page*/
-
-.app-header {
-	background-color: #666;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	color: white;
-}
-
-.login-btn {
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-.mini-game-button-container {
-	border-radius: 3px;
-	background-color: #f2f2f2;
-	padding-bottom: 15px;
-	margin-bottom: 25px;
-	margin-top: 25px;
-}
-
-/*landing page*/
 .user-welcome {
 	margin-top: 0px;
 	text-align: center;
@@ -68,10 +58,49 @@ i.fa.no-padding {
 .modal-footer {
 	text-align: center;
 }
+.ca-btn-success{
+	color: #f2f2f2;
+    background-color: #405c70;
+    border-color: #405c70;
 
-.scenario-launch-btn {
-	border-radius: 3px;
+	}
 
+/*login page*/
+
+.app-header {
+	background-color: #405c70;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: white;
+}
+.title-header h1{
+	font-weight: bold;
+	color: #6894af;
+}
+
+.login-btn {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.login-body div {
+	padding-top: 20px;
+}
+
+/*landing page*/
+.mini-game-launch-container, .mini-game-launch-wrapper{
+	margin-bottom: 20px;
+}
+.mini-game-launch-inner {
+	padding-top: 10px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding-bottom: 7px
+}
+.mini-game-launch-container img {
+	display: inline-block;
+	border-radius: 50%;
+	background-color: #fff;
 }
 
 /* full-screen modal */
@@ -120,46 +149,53 @@ i.fa.no-padding {
     align-items: center;
 }
 
-/*food items*/
-.food {
+/* minigames */
+.mini-game-wrapper{
+	margin-top: -20px;
+}
+.top-half-wrapper {
+	padding: 15px;
+}
+.bottom-half-wrapper {
+	margin-top: 25px;
+	padding: 15px;
+}
+h3.mini-game-title {
+	margin-bottom: 0px;
+	margin-top: 5px;
+	text-align: center;
+}
+
+/******* Diet *********/
+.food-item-wrapper {
     border: 0;
     border-radius: 0px;
     max-height: 175px;
-    margin-bottom: 1px;
-    margin-left: 1px;
-    padding: 0px;
     max-width: 175px;
 }
+.food-card {
+	margin-top: 20px;
+	position: relative;
+	padding: 0px;
+}
+.food-icon {
+	vertical-align: baseline;
+	width: 100%;
+}
 .food-label {
-    background: #32cd32;
-    border-radius: 0px;
-    bottom: 0;
-    color: #fff;
-    font-size: 15px;
-    font-weight: normal;
+    color: #405c70;
+    
+    font-weight: bold;
     line-height: 18px;
     opacity: 0.8;
     padding: 10px 5px;
     position: absolute;
     width: 100%;
     text-transform: capitalize;
-}
-.food-list {
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.food-img {
-	vertical-align: baseline;
-	margin-top: -20px;
-	width: 100%;
-}
-.food.btn {
-	margin-top: 20px;
-	position: relative;
+    text-align: center;
+    padding: 0px;
 }
 
-/* minigames */
-.eating-div {
-	height: 50%;
+.eating-plate {
+	
 }
