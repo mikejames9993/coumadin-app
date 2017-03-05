@@ -163,3 +163,11 @@ i.fa.no-padding {
 .eating-div {
 	height: 50%;
 }
+
+#buffet-region, #plate-region {
+	min-height: 200px;
+}
+
+hr {
+	border-color: #ccc;
+}

@@ -10,49 +10,6 @@ var app = angular.module('CoumadinApp', [
 
 app.config(function($routeProvider) {
 
-    var scenarios = {
-        eating: {
-            id: 'eating',
-            name: 'Eating',
-            instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!'
-        },
-        flossing: {
-            id: 'flossing',
-            name: 'Flossing',
-            instructions: 'Choose a type of floss to use. But be careful not to pick one that could cause bleeding!'
-        },
-        toothbrushing: {
-            id: 'toothbrushing',
-            name: 'Toothbushing',
-            instructions: 'Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!'
-        },
-        bloodyStools: {
-            id: 'bloody-stools',
-            name: 'Bloody Stools',
-            instructions: 'N/A'
-        },
-        nodeBleeds: {
-            id: 'node-bleeds',
-            name: 'Nose Bleeds',
-            instructions: 'N/A'
-        },
-        cuts: {
-            id: 'cuts',
-            name: 'Cuts',
-            instructions: 'N/A'
-        },
-        falls: {
-            id: 'falls',
-            name: 'Falls',
-            instructions: 'N/A'
-        },
-        ptInrMonitoring: {
-            id: 'pt-inr-monitoring',
-            name: 'PT/INR Monitoring',
-            instructions: 'N/A'
-        }
-    }
-
     var foodItems = [
     {
         name: 'asparagus',
@@ -148,7 +105,51 @@ app.config(function($routeProvider) {
         name: 'tomatoes',
         kAmount: '',
         src: "images/food-graphics/tomatoes.png"
-    }]
+    }];
+
+    var scenarios = {
+        eating: {
+            id: 'eating',
+            name: 'Eating',
+            instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
+            foodItems: foodItems
+        },
+        flossing: {
+            id: 'flossing',
+            name: 'Flossing',
+            instructions: 'Choose a type of floss to use. But be careful not to pick one that could cause bleeding!'
+        },
+        toothbrushing: {
+            id: 'toothbrushing',
+            name: 'Toothbushing',
+            instructions: 'Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!'
+        },
+        bloodyStools: {
+            id: 'bloody-stools',
+            name: 'Bloody Stools',
+            instructions: 'N/A'
+        },
+        nodeBleeds: {
+            id: 'node-bleeds',
+            name: 'Nose Bleeds',
+            instructions: 'N/A'
+        },
+        cuts: {
+            id: 'cuts',
+            name: 'Cuts',
+            instructions: 'N/A'
+        },
+        falls: {
+            id: 'falls',
+            name: 'Falls',
+            instructions: 'N/A'
+        },
+        ptInrMonitoring: {
+            id: 'pt-inr-monitoring',
+            name: 'PT/INR Monitoring',
+            instructions: 'N/A'
+        }
+    };
 
     // Set up routing
     $routeProvider
@@ -179,8 +180,7 @@ app.config(function($routeProvider) {
 	            		name: 'Diet',
 		            	scenarios: [
                             scenarios.eating
-                        ],
-                        foodItems: foodItems
+                        ]
 	            	}
 	            }
             }

@@ -1,20 +1,23 @@
-<div class="eating-div">
-	<div class="row">
-		<div class="col-xs-3" ng-repeat="item in foodItems | limitTo:8" >
-			<div class="food btn">
-				<img src={{item.src}} alt="{{item.name}}" class="food-img">
-				<div class="food-label">{{item.name}}</div>
+<div ng-controller="EatingController">
+	<div id="buffet-region" class="eating-div">
+		<div class="row">
+			<div class="col-xs-3" ng-repeat="food in buffetFoods" >
+				<div class="food btn" draggable="true" data-name="{{food.name}}">
+					<img src="{{food.src}}" alt="{{food.name}}" class="food-img" data-name="{{food.name}}">
+					<div class="food-label">{{food.name}}</div>
+				</div>
+			</div>
+		</div>  
+	</div>
+	<hr>
+	<div id="plate-region" class="eating-div" style="background-color: #ccc; height: 400px;">
+		<div class="row">
+			<div class="col-xs-3" ng-repeat="food in selectedFoods">
+				<div class="food btn" draggable="true" data-name="{{food.name}}">
+					<img src="{{food.src}}" alt="{{food.name}}" class="food-img" data-name="{{food.name}}">
+					<div class="food-label">{{food.name}}</div>
+				</div>
 			</div>
 		</div>
-	</div>  
-</div>
-<hr>
-<div class="eating-div">
-	<div>
-		
 	</div>
 </div>
-
-
-
-
