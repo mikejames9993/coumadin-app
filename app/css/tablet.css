@@ -1,1 +1,11 @@
 /* larger screen styling  */
+
+
+/* landscape tablet */
+@media only screen and (min-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    #plate-region {
+        margin-top: 30px;
+        padding-left: 160px;
+        padding-right: 160px;
+    }
+}

@@ -37,14 +37,18 @@
 
 
 /*Shared items*/
+body { /* resetting the background color - offsets the issue in .app-body*/
+	background-color: #f7f4ed!important;
+}
+
 .app-body{
-	background-color: #f7f4ed;
 	position: absolute;
 	top: 50px;
 	left: 0;
 	right: 0;
 	bottom: 0;
 }
+
 
 .user-welcome {
 	margin-top: 0px;
@@ -67,8 +71,7 @@ i.fa.no-padding {
 	color: #f2f2f2;
     background-color: #405c70;
     border-color: #405c70;
-
-	}
+}
 
 /*login page*/
 
@@ -97,6 +100,8 @@ i.fa.no-padding {
 /*landing page*/
 .mini-game-launch-container, .mini-game-launch-wrapper{
 	margin-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 .mini-game-launch-inner {
 	border-radius: 10px;
@@ -107,6 +112,9 @@ i.fa.no-padding {
 	display: inline-block;
 	border-radius: 50%;
 	background-color: rgba(247,244,237,1);
+}
+.mini-game-launch-inner h3 {
+	font-size: 5.5vw;
 }
 
 /* full-screen modal */
@@ -161,10 +169,8 @@ i.fa.no-padding {
 	height: 100%;
 }
 .top-half-wrapper {
-	/*padding: 15px;*/
 }
 .bottom-half-wrapper {
-	/*margin-top: 25px;*/
 	padding: 15px;
 }
 h3.mini-game-title {
@@ -194,11 +200,8 @@ h3.mini-game-title {
     color: #405c70;
     font-weight: bold;
     line-height: 18px;
-    /*opacity: 0.8;*/
-    /*padding: 10px 5px;*/
     position: absolute;
     width: 100%;
-    /*text-transform: capitalize;*/
     text-align: center;
     padding: 0px;
 }
@@ -206,6 +209,10 @@ h3.mini-game-title {
 #buffet-region, #plate-region {
 	height: 50%;
 }
+/*#plate-region {
+	padding-left: 50px;
+	padding-right: 50px;
+}*/
 
 .eating-plate {
 	background-image: url('/images/food-graphics/plate-setting.png');
