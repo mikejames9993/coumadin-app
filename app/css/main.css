@@ -39,6 +39,11 @@
 /*Shared items*/
 .app-body{
 	background-color: #f7f4ed;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .user-welcome {
@@ -72,7 +77,9 @@ i.fa.no-padding {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	color: white;
+	height: 50px;
 }
+
 .title-header h1{
 	font-weight: bold;
 	color: #405c70;
@@ -120,11 +127,12 @@ i.fa.no-padding {
 
 .scenario-footer {
 	text-align: right;
-	padding: 15px;
+	padding: 10px;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	height: 60px;
 }
 
 .score-change {
@@ -149,14 +157,14 @@ i.fa.no-padding {
 }
 
 /* minigames */
-.mini-game-wrapper{
-	margin-top: -20px;
+.minigame-wrapper{
+	height: 100%;
 }
 .top-half-wrapper {
-	padding: 15px;
+	/*padding: 15px;*/
 }
 .bottom-half-wrapper {
-	margin-top: 25px;
+	/*margin-top: 25px;*/
 	padding: 15px;
 }
 h3.mini-game-title {
@@ -173,7 +181,8 @@ h3.mini-game-title {
     max-width: 175px;
 }
 .food-card {
-	margin-top: 20px;
+	margin-top: 5px;
+	margin-bottom: 20px;
 	position: relative;
 	padding: 0px;
 }
@@ -183,23 +192,33 @@ h3.mini-game-title {
 }
 .food-label {
     color: #405c70;
-    
     font-weight: bold;
     line-height: 18px;
-    opacity: 0.8;
-    padding: 10px 5px;
+    /*opacity: 0.8;*/
+    /*padding: 10px 5px;*/
     position: absolute;
     width: 100%;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     text-align: center;
     padding: 0px;
 }
 
 #buffet-region, #plate-region {
-	min-height: 200px;
+	height: 50%;
 }
 
 .eating-plate {
 	background-image: url('/images/food-graphics/plate-setting.png');
-	background-size: cover;
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.scenario-outer-wrapper {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 60px;
 }

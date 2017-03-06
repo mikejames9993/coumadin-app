@@ -53,7 +53,7 @@
 			firebase.initializeApp(config);
 		</script>
 	</head>
-	<body ng-app="CoumadinApp" class="app-body">
+	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
 			<div class="container-fluid app-header">
 				<div class="row vertical-align">
@@ -67,13 +67,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid user-header" ng-if="showUserLabel">
+			<!-- <div class="container-fluid user-header" ng-if="showUserLabel">
 				<div class="row text-right">
 					<label>Welcome, {{user.username}}</label> 
 					<button type="button" class="btn btn-link" ng-click="logout()" ><i class="fa fa-sign-out"></i></button>
 				</div>
-			</div>
-			<div class="container-fluid app-body">
+			</div> -->
+			<div class="app-body">
 				<ng-view></ng-view>
 			</div>
 		</div>

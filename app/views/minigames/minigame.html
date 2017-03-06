@@ -1,5 +1,5 @@
-<div>
-	<ng-include ng-if="activeScenario" src="'/views/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
+<div class="minigame-wrapper">
+	<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/views/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
 	<div class="footer scenario-footer">
 		<button class="btn ca-btn-success align-right" ng-click="showOutroOverlay()"><i class="fa fa-check"></i>Done</button>
