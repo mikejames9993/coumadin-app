@@ -27,8 +27,8 @@
 	    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
 	    <!-- App Styles -->
-    	<link rel="stylesheet" href="css/main.css">
     	<link rel="stylesheet" href="css/yeti.bootswatch.min.css">
+    	<link rel="stylesheet" href="css/main.css">
     	<link rel="stylesheet" media="screen and (min-width : 768px)" href="css/tablet.css">
 
 
@@ -36,6 +36,7 @@
 	    <script type="text/javascript" src="js/app.js"></script>
 	    <script type="text/javascript" src="js/root-controller.js"></script>
 	    <script type="text/javascript" src="js/login-controller.js"></script>
+	    <script type="text/javascript" src="js/register-controller.js"></script>
 	    <script type="text/javascript" src="js/landing-page-controller.js"></script>
 	    <script type="text/javascript" src="js/minigame-controller.js"></script>
 	    <script type="text/javascript" src="js/scenario-intro-controller.js"></script>
@@ -59,7 +60,7 @@
 				<div class="row vertical-align">
 					<div class="col-xs-4">
 						<button ng-if="showBackBtn && showUserLabel" class="btn btn-default" ng-click="goToLanding()"><i class="fa fa-arrow-left no-padding"></i></button>
-						<button ng-if="showMenuBtn" class="btn btn-default" ng-click="toggleMenu()"><i class="fa fa-bars no-padding"></i></button>
+						<button ng-if="showMenuBtn" class="btn btn-default" ng-click="logout()"><i class="fa fa-sign-out no-padding"></i></button>
 					</div>
 					<div class="col-xs-4 text-center">{{userData.score}} PTS</div>
 					<div class="col-xs-4">
@@ -67,12 +68,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="container-fluid user-header" ng-if="showUserLabel">
-				<div class="row text-right">
-					<label>Welcome, {{user.username}}</label> 
-					<button type="button" class="btn btn-link" ng-click="logout()" ><i class="fa fa-sign-out"></i></button>
-				</div>
-			</div> -->
+			<h5 id="view-info" class="text-center"><em>{{viewInfo}}</em></h5>
+			
 			<div class="app-body">
 				<ng-view></ng-view>
 			</div>

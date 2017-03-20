@@ -5,9 +5,6 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	$scope.minigame = minigameConfig.name;
 	console.log('minigame = ' + $scope.minigame);
 	$scope.scenarios = minigameConfig.scenarios;
-	// console.log('scenarios: ' + JSON.stringify($scope.scenarios));
-	// $scope.foodItems = _.shuffle(minigameConfig.foodItems);
-	// console.log('foodItems: ' + JSON.stringify($scope.foodItems));
 	$scope.errorMessage = null;
 
 	var activeScenarioIndex = -1;

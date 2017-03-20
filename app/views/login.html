@@ -1,25 +1,23 @@
 <div ng-controller="LoginController">
     <div class="title-header">
-        <h1 class="text-center">The Coumadin Game</h1>
+        <h1 class="text-center">{{appName}}</h1>
     </div>
-    <div class="container-fluid login-body col-xs-12 col-sm-8 col-sm-offset-2">        
-        <div class="button-row input-group input-group-lg">
-  			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-  			<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="user.username">
-		</div>
-		<div class="button-row input-group input-group-lg">
-  			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-  			<input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1" ng-model="user.password">
-		</div>
-		<div class="button-row text-center login-btn">
-			<button type="button" class="btn ca-btn-success btn-lg btn-block" ng-click="login(user)" ng-disabled="user.username.length === 0 || user.password.length === 0 ">Login</button>
-		</div>
-		<div class="button-row text-center login-btn">
-			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="signup()">Sign Up</button>
-		</div>
-		<!-- <div class="button-row text-center">
-			<button type="button" class="btn btn-link btn-block" ng-click="forgotPassword()">Forgot Password?</button>
-		</div>  -->
-
+    <div class="container-fluid login-body col-xs-12 col-sm-8 col-sm-offset-2">
+    	<form name="loginForm" ng-submit="login()">
+	        <div class="button-row input-group input-group-lg">
+	  			<span class="input-group-addon" id="login-email"><i class="glyphicon glyphicon-user"></i></span>
+	  			<input type="email" class="form-control" placeholder="Email" aria-describedby="login-email" ng-model="user.email" required>
+			</div>
+			<div class="button-row input-group input-group-lg">
+	  			<span class="input-group-addon" id="login-password"><i class="glyphicon glyphicon-lock"></i></span>
+	  			<input type="password" class="form-control" placeholder="Password" aria-describedby="login-password" ng-model="user.password" required>
+			</div>
+			<div class="button-row text-center login-btn">
+				<button type="submit" class="btn ca-btn-success btn-lg btn-block">Login</button>
+			</div>
+			<div class="button-row text-center login-btn">
+				<button type="button" class="btn btn-default btn-lg btn-block" ng-click="register()">Register</button>
+			</div>
+		</form>  
     </div>
 </div>

@@ -1,16 +1,20 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('LoginController', function($scope, $routeParams, $location) {
+angular.module('CoumadinApp').controller('LoginController', function($rootScope, $scope, $routeParams, $location) {
 	console.log('scenario controller loading');
+
+	$rootScope.viewInfo = "";
+	
 	$scope.scenario = $routeParams.name;
 	$scope.login = function(user){
 		console.log(user);
-		if (user.username === ""|| user.password === "") {
-			alert('please fill in both username and password');
-		} else {
-			$location.path("/");
-		}
-	}
+		$location.path("/");
+	
+	};
+
+	$scope.register = function(){
+		$location.path("/register");
+	};
 
 });
 

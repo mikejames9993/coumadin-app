@@ -173,7 +173,7 @@ app.config(function($routeProvider) {
     // Set up routing
     $routeProvider
         .when('/', {
-            templateUrl: '/views/landing.html',
+            templateUrl: '/views/landing.html'
             // data: {
             //     permissions: {
             //         only: ['AUTHENTICATED'],
@@ -182,7 +182,16 @@ app.config(function($routeProvider) {
             // }
         })
         .when('/login', {
-            templateUrl: '/views/login.html',
+            templateUrl: '/views/login.html'
+            // data: {
+            //     permissions: {
+            //         except: ['AUTHENTICATED'],
+            //         redirectTo: '/'
+            //     }
+            // }
+        })
+        .when('/register', {
+            templateUrl: '/views/register.html'
             // data: {
             //     permissions: {
             //         except: ['AUTHENTICATED'],

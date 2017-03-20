@@ -38,7 +38,7 @@
 
 /*Shared items*/
 body { /* resetting the background color - offsets the issue in .app-body*/
-	background-color: #f7f4ed!important;
+	background-color: #f7f4ed;
 }
 
 .app-body{
@@ -67,10 +67,13 @@ i.fa.no-padding {
 .modal-footer {
 	text-align: center;
 }
-.ca-btn-success{
+.ca-btn-success {
 	color: #f2f2f2;
     background-color: #405c70;
     border-color: #405c70;
+}
+#view-info {
+	margin: 2px;
 }
 
 /*login page*/
@@ -97,11 +100,45 @@ i.fa.no-padding {
 	padding-top: 20px;
 }
 
+/* Registration Form */
+/*.registration-form .form-control {
+	border-radius: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 40px;
+	padding: 10px 20px;
+	font-size: 18px;
+	line-height: 1.2;
+}*/
+
+.registration-form .form-control {
+	border: none;
+	border-bottom: 1px solid #808080;
+	margin-bottom: 5px;
+	height: 40px;
+	padding: 10px;
+	font-size: 18px;
+	line-height: 1.2;
+	background-color: transparent;
+	box-shadow: none;
+	padding: 5px;
+}
+
+.btn-group.radio-button, .registration-form.radio-button {
+	padding-top: 0px;
+	margin-top: 10px
+}
+
+.registration-form button {
+	margin-top: 20px;
+}
+
 /*landing page*/
-.mini-game-launch-container, .mini-game-launch-wrapper{
+.mini-game-launch-wrapper {
+	margin-top: 50px;
+}
+.mini-game-launch-container {
 	margin-bottom: 20px;
-	padding-left: 15px;
-	padding-right: 15px;
 }
 .mini-game-launch-inner {
 	border-radius: 10px;
@@ -180,11 +217,15 @@ h3.mini-game-title {
 }
 
 /******* Diet *********/
+.eating-wrapper {
+	height: 100%;
+}
 .food-item-wrapper {
     border: 0;
     border-radius: 0px;
     max-height: 175px;
     max-width: 175px;
+    padding: 0px;
 }
 .food-card {
 	margin-top: 5px;
@@ -206,13 +247,13 @@ h3.mini-game-title {
     padding: 0px;
 }
 
-#buffet-region, #plate-region {
+#buffet-region, #plate-region{
 	height: 50%;
 }
-/*#plate-region {
-	padding-left: 50px;
-	padding-right: 50px;
-}*/
+#plate-region {
+	padding: 10px 15px;
+	margin: 20px;
+}
 
 .eating-plate {
 	background-image: url('/images/food-graphics/plate-setting.png');

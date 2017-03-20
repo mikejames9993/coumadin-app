@@ -1,0 +1,44 @@
+<div ng-controller="RegisterController" class="registration-wrapper" >
+    <div class="title-header">
+        <h1 class="text-center">{{appName}}</h1>
+    </div>
+    <div class="container-fluid register-body col-xs-12 col-sm-8 col-sm-offset-2">  
+	    <form name="registrationForm" ng-submit="register()">
+			<div class="form registration-form">
+	  			<input type="text" class="form-control" placeholder="First Name" aria-describedby="first-name-input" ng-model="newUser.firstName" required>
+	  			<input type="text" class="form-control" placeholder="Last Name" aria-describedby="last-name-input" ng-model="newUser.lastName" required>
+	  			<input type="email" class="form-control" placeholder="Email" aria-describedby="email-input" ng-model="newUser.email" required>
+	  			<input type="number" class="form-control" placeholder="Age" aria-describedby="age-input" ng-model="newUser.age" required>
+				<div data-toggle="buttons" class="radio-button">
+	                <div class="btn-group btn-group-justified radio-button">
+	                    <label class="btn btn-default" ng-class="(newUser.sex == 'male' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="sex" id="sex" value="male" class="sr-only" ng-model="newUser.sex"required>Male
+	                    </label>
+	                    <label class="btn btn-default" ng-class="(newUser.sex == 'female' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="sex" id="sex" value="female" class="sr-only" ng-model="newUser.sex" required>Female
+	                    </label>
+	                </div>
+                </div>
+				<input type="text" class="form-control" placeholder="Occupation" aria-describedby="occupation-input" ng-model="newUser.occupation" required>
+				<div data-toggle="buttons" class="radio-button btn-block">
+	                <div class="btn-group btn-group-justified radio-button">
+	                    <label class="btn btn-default" ng-class="(newUser.maritalStatus == 'Single' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="maritalStatus" id="maritalStatus" value="Single" class="sr-only" ng-model="newUser.maritalStatus" required>Single
+	                    </label>
+	                    <label class="btn btn-default" ng-class="(newUser.maritalStatus == 'Married' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="maritalStatus" id="maritalStatus" value="Married" class="sr-only" ng-model="newUser.maritalStatus" required>Married
+	                    </label>
+	                    <label class="btn btn-default" ng-class="(newUser.maritalStatus == 'Divorced' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="maritalStatus" id="maritalStatus" value="Divorced" class="sr-only" ng-model="newUser.maritalStatus" required>Divorced
+	                    </label>
+	                    <label class="btn btn-default" ng-class="(newUser.maritalStatus == 'Widowed' ? 'btn-success ' : 'btn-default')">
+	                        <input type="radio" name="maritalStatus" id="maritalStatus" value="Widowed" class="sr-only" ng-model="newUser.maritalStatus" required>Widowed
+	                    </label>
+	                </div>
+                </div>
+				<input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1" ng-model="newUser.password" required>
+				<button type="submit" class="btn ca-btn-success btn-md btn-block">Submit Registration</button>
+	  		</div>
+		</form>
+    </div>
+</div>

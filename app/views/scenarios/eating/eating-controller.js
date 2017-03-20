@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('EatingController', function($scope, $rootScope, $timeout, _) {
+angular.module('CoumadinApp').controller('EatingController', function($rootScope, $scope, $timeout, _) {
 	console.log('eating controller loading');
+	$rootScope.viewInfo = "Drag the items down to the plate";
 
 	$scope.buffetFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), 8);
 	$scope.selectedFoods = [];

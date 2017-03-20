@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('LandingPageController', function($scope, $routeParams, $location) {
+angular.module('CoumadinApp').controller('LandingPageController', function($rootScope, $scope, $routeParams, $location) {
 	console.log('landing page controller loading');
+
+	$rootScope.viewInfo = "Select a mini game";
 	$scope.minigame = function(game){
 		console.log(game);
 		$location.url(game);
