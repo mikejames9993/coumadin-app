@@ -9,6 +9,36 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 
 	var draggedFood = null;
 
+	$scope.activeScenario.data.scoreChange = 0;
+
+	function calculateScore() {
+		var numHighKSelections = 0;
+		var numMediumKSelections = 0;
+		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+			var food = $scope.selectedFoods[i];
+			switch (food.kLevel) {
+				case 1:
+					numHighKSelections++;
+					break;
+				case 2:
+					numMediumKSelections++;
+					break;
+			}
+		}
+
+		// Selections are ok if:
+		//  - number of high-k foods is 1 and number of medium-k foods is <= 2
+		//  - number of high-k foods is 0 and number of medium-k foods is <= 3
+		var scoreChange;
+		if ((numHighKSelections === 1 && numMediumKSelections <= 2) || (numHighKSelections === 0 && numMediumKSelections <= 3)) {
+			scoreChange = 200;
+		} else {
+			scoreChange = -200;
+		}
+		$scope.activeScenario.data.scoreChange = scoreChange;
+		$scope.activeScenario.data.outcome = scoreChange < 0 ? 'bad' : 'good';
+	}
+
 	function onDragStartBuffet(event) {
 		console.log('startDragFoodFromBuffet');
 		var foodId = angular.element(event.target).data('id');
@@ -33,6 +63,7 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			draggedFood = null;
 			console.log('dropFoodOnPlate');
 			event.preventDefault();
+			calculateScore();
 		});
 	}
 
@@ -43,6 +74,7 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			draggedFood = null;
 			console.log('dropFoodOnBuffet');
 			event.preventDefault();
+			calculateScore();
 		});
 	}
 
