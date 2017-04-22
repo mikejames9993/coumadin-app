@@ -280,7 +280,7 @@ app.run(function($rootScope, $location, $uibModal) {
 
     $rootScope.userData = {
         name: 'Jimbo',
-        score: 1000
+        score: 0
     };
 
     $rootScope.showOverlay = function(templateUrl, controller, scopeData, navigation) {
