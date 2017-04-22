@@ -26,19 +26,21 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			angular.element('#plate-region').on('drop', onPlateDrop);
 			angular.element('#buffet-region').on('drop', onBuffetDrop);
 		}, 0);
+
+		calculateScore();
 	}
 
 	function calculateScore() {
-		var numHighKSelections = 0;
-		var numMediumKSelections = 0;
+		var highKSelections = [];
+		var mediumKSelections = [];
 		for (var i = 0; i < $scope.selectedFoods.length; i++) {
 			var food = $scope.selectedFoods[i];
 			switch (food.kLevel) {
 				case 1:
-					numHighKSelections++;
+					highKSelections.push(food);
 					break;
 				case 2:
-					numMediumKSelections++;
+					mediumKSelections.push(food);
 					break;
 			}
 		}
@@ -47,13 +49,36 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 		//  - number of high-k foods is 1 and number of medium-k foods is <= 2
 		//  - number of high-k foods is 0 and number of medium-k foods is <= 3
 		var scoreChange;
-		if ((numHighKSelections === 1 && numMediumKSelections <= 2) || (numHighKSelections === 0 && numMediumKSelections <= 3)) {
-			scoreChange = 200;
+		var outcome;
+		var message = '';
+		if ($scope.selectedFoods.length > 0) {
+			if ((highKSelections.length === 1 && mediumKSelections.length <= 2) || (highKSelections.length === 0 && mediumKSelections.length <= 3)) {
+				scoreChange = 200;
+				outcome = 'good';
+				message = 'Good choices! You selected ' + getFoodCountLabel($scope.selectedFoods.length) + ' and you are safely below the Vitamin K limit.';
+			} else {
+				scoreChange = -200;
+				outcome = 'bad';
+				if (highKSelections.length > 0 && mediumKSelections.length > 0) {
+					message = 'You selected ' + getFoodCountLabel(highKSelections.length) + ' with high Vitamin K and ' + mediumKSelections.length + ' with medium Vitamin K levels. This could result in unsafe levels of Vitamin K in your system!';
+				} else if (highKSelections.length > 0) {
+					message = 'You selected ' + getFoodCountLabel(highKSelections.length) + ' with high Vitamin K. This could result in unsafe levels of Vitamin K in your system!';
+				} else if (mediumKSelections.length > 0) {
+					message = 'You selected ' + getFoodCountLabel(mediumKSelections.length) + ' with medium Vitamin K levels. This could result in unsafe levels of Vitamin K in your system!';
+				}
+			}
 		} else {
-			scoreChange = -200;
+			scoreChange = 0;
+			outcome = 'good';
+			message = 'You did not select any foods.';
 		}
 		$scope.activeScenario.data.scoreChange = scoreChange;
-		$scope.activeScenario.data.outcome = scoreChange < 0 ? 'bad' : 'good';
+		$scope.activeScenario.data.outcome = outcome;
+		$scope.activeScenario.data.message = message;
+	}
+
+	function getFoodCountLabel(numFoods) {
+		return numFoods + ' ' + (numFoods === 1 ? 'food' : 'foods');
 	}
 
 	function onDragStartBuffet(event) {

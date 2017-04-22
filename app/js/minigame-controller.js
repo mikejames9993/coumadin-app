@@ -37,7 +37,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			config: $scope.scenarios[activeScenarioIndex],
 			data: {
 				outcome: 'good',
-				message: 'Good Choices!',
+				message: '',
 				scoreChange: 0
 			}
 		};
