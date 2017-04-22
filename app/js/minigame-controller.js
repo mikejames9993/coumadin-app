@@ -20,7 +20,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		if ($scope.hasNextScenario()) {
 			// transition to the next scenario
 			activeScenarioIndex++;
-			initScenario();
+			startScenario();
 		} else {
 			// go back to landing page
 			$rootScope.goToLanding();
@@ -33,24 +33,25 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	function startScenario() {
 		$scope.hideOverlay();
-		$scope.showIntroOverlay();
-	}
-
-	function initScenario() {
 		$scope.activeScenario = {
 			config: $scope.scenarios[activeScenarioIndex],
 			data: {
 				outcome: 'good',
 				message: 'Good Choices!',
-				scoreChange: 100
+				scoreChange: 0
 			}
 		};
+		$scope.showIntroOverlay();
+	}
+
+	function restartScenario() {
 		startScenario();
+		$rootScope.$broadcast('minigame:scenario:restart');
 	}
 
 	var navigation = {
 		start: $scope.hideOverlay,
-		retry: startScenario,
+		retry: restartScenario,
 		next: $scope.goToNextScenario
 	};
 

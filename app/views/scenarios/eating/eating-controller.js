@@ -4,12 +4,29 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 	console.log('eating controller loading');
 	$rootScope.viewInfo = "Drag the items down to the plate";
 
-	$scope.buffetFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), 8);
+	$scope.buffetFoods = [];
 	$scope.selectedFoods = [];
 
 	var draggedFood = null;
 
-	$scope.activeScenario.data.scoreChange = 0;
+	$rootScope.$on('minigame:scenario:restart', initScenario);
+
+	initScenario();
+
+	function initScenario() {
+		$scope.activeScenario.data.scoreChange = 0;
+		$scope.buffetFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), 8);
+		$scope.selectedFoods = [];
+
+		$timeout(function() {
+			console.log('foods: ' + angular.element('.food-card').length);
+			angular.element('#buffet-region .food-card').on('dragstart', onDragStartBuffet);
+			angular.element('#plate-region .food-card').on('dragstart', onDragStartPlate);
+			angular.element('#plate-region, #buffet-region').on('dragover', onDragOver);
+			angular.element('#plate-region').on('drop', onPlateDrop);
+			angular.element('#buffet-region').on('drop', onBuffetDrop);
+		}, 0);
+	}
 
 	function calculateScore() {
 		var numHighKSelections = 0;
@@ -43,12 +60,14 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 		console.log('startDragFoodFromBuffet');
 		var foodId = angular.element(event.target).data('id');
 		draggedFood = _.find($scope.buffetFoods, { id: foodId });
+		console.log("DRAGGEDFOOD = " + draggedFood.id);
 	}
 
 	function onDragStartPlate(event) {
 		console.log('startDragFoodFromPlate');
 		var foodId = angular.element(event.target).data('id');
 		draggedFood = _.find($scope.selectedFoods, { id: foodId });
+		console.log("DRAGGEDFOOD = " + draggedFood.id);
 	}
 
 	function onDragOver(event) {
@@ -61,6 +80,7 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			// alert("ondrop");
 			transferFood(draggedFood, $scope.buffetFoods, $scope.selectedFoods, onDragStartPlate);
 			draggedFood = null;
+			console.log("DRAGGEDFOOD = null");
 			console.log('dropFoodOnPlate');
 			event.preventDefault();
 			calculateScore();
@@ -72,23 +92,12 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			// alert("ondrop");
 			transferFood(draggedFood, $scope.selectedFoods, $scope.buffetFoods, onDragStartBuffet);
 			draggedFood = null;
+			console.log("DRAGGEDFOOD = null");
 			console.log('dropFoodOnBuffet');
 			event.preventDefault();
 			calculateScore();
 		});
 	}
-
-	$timeout(function() {
-		console.log('foods: ' + angular.element('.food-card').length);
-		angular.element('#buffet-region .food-card').on('dragstart', onDragStartBuffet);
-		angular.element('#plate-region .food-card').on('dragstart', onDragStartPlate);
-
-		angular.element('#plate-region, #buffet-region').on('dragover', onDragOver);
-
-		angular.element('#plate-region').on('drop', onPlateDrop);
-
-		angular.element('#buffet-region').on('drop', onBuffetDrop);
-	}, 0);
 
 	function transferFood(food, sourceArray, targetArray, onDragStartCallback) {
 		if (food && !_.contains(targetArray, food)) {
