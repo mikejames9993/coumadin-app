@@ -147,8 +147,21 @@ i.fa.no-padding {
 	border-radius: 7px;
 	padding: 5px 15px;
 }
-.landing-page-table .glyphicon{
+.info-table{
+	border: none;
+}
+.info-table .glyphicon{
 	color: #696969;
+}
+.info-detail .btn-div{
+	padding: 15px;
+	text-align: center;
+}
+#app-info-modal-body {
+	background-color: #fff;
+	border-radius: 7px;
+	margin: 15px;
+	color: #333
 }
 /*mini-game-launch page*/
 .mini-game-launch-wrapper {

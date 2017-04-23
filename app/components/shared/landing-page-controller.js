@@ -17,12 +17,9 @@ angular.module('CoumadinApp').controller('LandingPageController', function($root
 		$scope.selectedItem = null;
 	}
 
-	$rootScope.viewInfo = configData.helpText;
 
-	$scope.foo = 'bar';
-	$scope.helpText = configData.helpText;
-	$scope.info = configData.info;
-	$rootScope.viewInfo = "null";
+	$scope.info = $rootScope.information;
+	$rootScope.viewInfo = configData.helpText;
 
 });
 

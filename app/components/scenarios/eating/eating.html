@@ -2,8 +2,15 @@
 	<!-- <h3 class="mini-game-title">Diet Game</h3> -->
 	<div id="buffet-region" class="top-half-wrapper row">
 		<div class="col-xs-3 col-sm-4 food-item-wrapper" ng-repeat="food in buffetFoods" >
-			<div class="food-card" draggable="true" data-id="{{food.id}}" ng-click="foodItemClick(food)">
-				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
+			<div class="food-card dropdown-toggle" draggable="true" data-id="{{food.id}}">
+				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}" >
+
+				<button type="button" ng-click="foodItemClick(food)" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false">
+    
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+
+
 				<!-- <div class="food-label">{{food.name}}</div> -->
 			</div>
 		</div>  
@@ -35,4 +42,17 @@
 			</div>
 		</div>
 	</div>
+</div>
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
 </div>
