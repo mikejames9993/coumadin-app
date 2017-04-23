@@ -22,7 +22,7 @@ angular.module('CoumadinApp').controller('LandingPageController', function($root
 	$scope.foo = 'bar';
 	$scope.helpText = configData.helpText;
 	$scope.info = configData.info;
-	$rootScope.viewInfo = "null";
+	$rootScope.viewInfo = null;
 
 });
 
