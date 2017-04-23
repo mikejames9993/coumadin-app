@@ -2,12 +2,15 @@
 
 angular.module('CoumadinApp').controller('EatingController', function($rootScope, $scope, $timeout, _) {
 	console.log('eating controller loading');
-	$rootScope.viewInfo = "Drag the items down to the plate";
+	$rootScope.viewInfo = 'These food items contain varying amounts of Vitamin K. ' +
+		'Make your dinner plate by dragging and dropping the food item on your plate. ' +
+		'You can tap the food icon to display the name and for more information about the food';
 
 	$scope.buffetFoods = [];
 	$scope.selectedFoods = [];
 
 	var draggedFood = null;
+	var expandedFood = null;
 
 	$rootScope.$on('minigame:scenario:restart', initScenario);
 
@@ -15,20 +18,49 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 
 	function initScenario() {
 		$scope.activeScenario.data.scoreChange = 0;
-		$scope.buffetFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), 8);
+		$scope.buffetFoods = [];
 		$scope.selectedFoods = [];
+
+		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), 8);
+		for (var i = 0; i < gameFoods.length; i++) {
+			$scope.buffetFoods.push(_.extend({}, gameFoods[i], { expanded: false }));
+		}
 
 		$timeout(function() {
 			console.log('foods: ' + angular.element('.food-card').length);
 			angular.element('#buffet-region .food-card').on('dragstart', onDragStartBuffet);
 			angular.element('#plate-region .food-card').on('dragstart', onDragStartPlate);
-			angular.element('#plate-region, #buffet-region').on('dragover', onDragOver);
-			angular.element('#plate-region').on('drop', onPlateDrop);
-			angular.element('#buffet-region').on('drop', onBuffetDrop);
 		}, 0);
+
+		draggedFood = null;
+		expandedFood = null;
 
 		calculateScore();
 	}
+
+	$timeout(function() {
+		angular.element('#plate-region, #buffet-region').on('dragover', onDragOver);
+		angular.element('#plate-region').on('drop', onPlateDrop);
+		angular.element('#buffet-region').on('drop', onBuffetDrop);
+		// angular.element('html').on('mousedown', function() {
+		// 	$scope.$apply(function() {
+		// 		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+		// 			$scope.selectedFoods[i].expanded = false;
+		// 		}
+		// 		for (var k = 0; k < $scope.buffetFoods.length; k++) {
+		// 			$scope.buffetFoods[k].expanded = false;
+		// 		}
+		// 	});
+		// });
+	}, 0);
+
+	$scope.expandFood = function(food) {
+		food.expanded = true;
+	};
+
+	$scope.collapseFood = function(food) {
+		food.expanded = false;
+	};
 
 	function calculateScore() {
 		var highKSelections = [];

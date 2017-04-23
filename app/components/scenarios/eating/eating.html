@@ -2,16 +2,13 @@
 	<!-- <h3 class="mini-game-title">Diet Game</h3> -->
 	<div id="buffet-region" class="top-half-wrapper row">
 		<div class="col-xs-3 col-sm-4 food-item-wrapper" ng-repeat="food in buffetFoods" >
-			<div class="food-card dropdown-toggle" draggable="true" data-id="{{food.id}}">
-				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}" >
-
-				<button type="button" ng-click="foodItemClick(food)" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false">
-    
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-
-
+			<div class="food-card" draggable="true" data-id="{{food.id}}" ng-click="expandFood(food)" uib-popover-template="food-detail.html" popover-placement="bottom">
+				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
 				<!-- <div class="food-label">{{food.name}}</div> -->
+			</div>
+			<div class="food-card-expand" ng-if="food.expanded" ng-click="collapseFood(food)">
+				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive">
+				<div class="food-label">{{food.name}}</div>
 			</div>
 		</div>  
 	</div>
@@ -36,15 +33,19 @@
 	<div class="spacer-5-percent"></div>
 	<div id="plate-region" class="bottom-half-wrapper row eating-plate">
 		<div class="col-xs-3 col-sm-4 food-item-wrapper" ng-repeat="food in selectedFoods">
-			<div class="food-card" draggable="true" data-id="{{food.id}}">
+			<div class="food-card" draggable="true" data-id="{{food.id}}" ng-click="expandFood(food)" >
 				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
 				<!-- <div class="food-label">{{food.name}}</div> -->
+			</div>
+			<div class="food-card-expand" ng-if="food.expanded" ng-click="collapseFood(food)">
+				<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive">
+				<div class="food-label">{{food.name}}</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Single button -->
-<div class="btn-group">
+<!-- <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Action <span class="caret"></span>
   </button>
@@ -55,4 +56,4 @@
     <li role="separator" class="divider"></li>
     <li><a href="#">Separated link</a></li>
   </ul>
-</div>
+</div> -->

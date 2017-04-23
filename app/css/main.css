@@ -267,6 +267,21 @@ h3.mini-game-title {
 	vertical-align: baseline;
 	width: 100%;
 }
+.food-card-expand {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: -30px;
+    box-shadow: 0px 0px 20px 10px #666;
+    background-color: white;
+    border-radius: 15px;
+    z-index: 10;
+}
+/*.food-card-expand .food-icon {
+	margin: -20px;
+}*/
 .food-label {
     color: #405c70;
     font-weight: bold;
@@ -275,6 +290,7 @@ h3.mini-game-title {
     width: 100%;
     text-align: center;
     padding: 0px;
+    bottom: 15px;
 }
 
 #buffet-region, #plate-region{
