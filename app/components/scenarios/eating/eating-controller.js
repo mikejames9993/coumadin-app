@@ -141,4 +141,9 @@ angular.module('CoumadinApp').controller('EatingController', function($rootScope
 			});
 		}
 	}
+
+	$scope.foodItemClick = function(e) {
+		console.log(e);
+		alert(e);
+	}
 });

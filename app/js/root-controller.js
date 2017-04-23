@@ -19,6 +19,10 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 		}
 	};
 
+	$rootScope.showInfo = function() {
+		$rootScope.showOverlay('/components/shared/app-info.html', 'AppInfoController', $rootScope.information, null);
+	};
+
 	$scope.$on('$routeChangeSuccess', function(event, toState, toParams, fromState, fromParams){ 
 		$rootScope.showUserLabel = $location.path() !== '/login'; 
 		$rootScope.showBackBtn = $location.path() !== '/';

@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center" id="modal-title">Warfarin Information</h3>
+</div>
+<div class="modal-body" id="app-info-modal-body">
+
+	<div ng-if="!selectedItem">
+	    <table class="table table-striped info-table">
+		    <tr ng-repeat="item in info" ng-class="rowClass(item)" ng-click="showInfo(item)">
+		        <td>{{ item.title }} <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span></td>
+		    </tr>    
+		</table>
+		<small>**University of Maryland Medical Center Anticoagulation Clinic</small>
+	</div>
+
+	<div ng-if="selectedItem">
+	    <div ng-include="'./components/shared/info-detail.html'"></div>
+	</div>
+
+</div>
+
+<div class="modal-footer">
+    <button ng-if="!selectedItem" class="btn btn-success" type="button" ng-click="close()"><i class="fa fa-check"></i>Done!</button>
+    <button ng-if="selectedItem" class="btn btn-success" type="button" ng-click="back()"><i class="glyphicon glyphicon-arrow-left"> </i> Back</button>
+</div>
