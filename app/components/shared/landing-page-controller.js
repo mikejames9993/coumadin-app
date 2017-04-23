@@ -17,9 +17,9 @@ angular.module('CoumadinApp').controller('LandingPageController', function($root
 		$scope.selectedItem = null;
 	}
 
-
 	$scope.info = $rootScope.information;
 	$rootScope.viewInfo = configData.helpText;
+
 
 });
 
