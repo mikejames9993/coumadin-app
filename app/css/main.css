@@ -34,6 +34,13 @@
 	background-color: #ddc02f;
 	color: #f2f2f2 ;
 }
+.info {
+	color: rgba(221, 47, 134, 0.62);
+}
+.info-bg {
+	background-color: rgba(221, 47, 134, 0.62);
+	color: #f2f2f2 ;
+}
 
 
 /*Shared items*/
@@ -133,7 +140,17 @@ i.fa.no-padding {
 	margin-top: 20px;
 }
 
-/*landing page*/
+/*landing page and info detail */
+.landing-page-wrapper {
+	margin-top: 50px;
+	background-color: #fff;
+	border-radius: 7px;
+	padding: 5px 15px;
+}
+.landing-page-table .glyphicon{
+	color: #696969;
+}
+/*mini-game-launch page*/
 .mini-game-launch-wrapper {
 	margin-top: 50px;
 }
@@ -269,4 +286,9 @@ h3.mini-game-title {
 	left: 0;
 	right: 0;
 	bottom: 60px;
+}
+
+/*Info*/
+#info-wrapper {
+	padding: 40px;
 }

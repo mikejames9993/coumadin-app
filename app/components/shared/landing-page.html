@@ -1,0 +1,21 @@
+<div class="landing-page-wrapper col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">
+    
+<div ng-if="!selectedItem">
+    <table class="table table-striped table-responsive landing-page-table">
+    <tr ng-click="playMiniGames()"><td><strong>Play the Mini-Games!</strong><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></td></tr>
+    <tr ng-repeat="item in info" ng-class="rowClass(item)" ng-click="showInfo(item)">
+        <td>{{ item.title }} <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></td>
+    </tr>    
+</table>
+<p><small>**University of Maryland Medical Center Anticoagulation Clinic</small></p>
+</div>
+
+
+<div ng-if="selectedItem">
+    <div ng-include="'./components/shared/info-detail.html'"></div>
+</div>
+
+</div>
+
+
+

@@ -11,6 +11,8 @@
 	    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
  		<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 	    <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+	    <!-- <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script> -->
+	    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 	    <!-- <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script> -->
 	    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 	    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -18,6 +20,8 @@
 	    <script type="text/javascript" src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
 		<script type="text/javascript" src="bower_components/angular-permission/dist/angular-permission.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-permission/dist/angular-permission-ng.min.js"></script>
+		<script type='text/javascript' src="bower_components/angular-media-queries/match-media.js"></script>
+		<script type='text/javascript' src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
 		<script type="text/javascript" src="lib/dragdroptouch/DragDropTouch.js"></script>
 
@@ -35,23 +39,24 @@
 	    <!-- App Scripts -->
 	    <script type="text/javascript" src="js/app.js"></script>
 	    <script type="text/javascript" src="js/root-controller.js"></script>
-	    <script type="text/javascript" src="js/login-controller.js"></script>
-	    <script type="text/javascript" src="js/register-controller.js"></script>
-	    <script type="text/javascript" src="js/landing-page-controller.js"></script>
-	    <script type="text/javascript" src="js/minigame-controller.js"></script>
-	    <script type="text/javascript" src="js/scenario-intro-controller.js"></script>
-	    <script type="text/javascript" src="js/scenario-outro-controller.js"></script>
-	    <script type="text/javascript" src="views/scenarios/eating/eating-controller.js"></script>
+	    <script type="text/javascript" src="components/user/login-controller.js"></script>
+	    <script type="text/javascript" src="components/user/register-controller.js"></script>
+	    <script type="text/javascript" src="components/shared/landing-page-controller.js"></script>
+	    <script type="text/javascript" src="components/shared/minigame-launch-controller.js"></script>
+	    <script type="text/javascript" src="components/minigames/minigame-controller.js"></script>
+	    <script type="text/javascript" src="components/scenarios/scenario-intro-controller.js"></script>
+	    <script type="text/javascript" src="components/scenarios/scenario-outro-controller.js"></script>
+	    <script type="text/javascript" src="components/scenarios/eating/eating-controller.js"></script>
 	    <script>
-			// Initialize Firebase
-			var config = {
-				apiKey: "AIzaSyD3VsYhCty9nGNsA8NcrU23q1AQnMZbk0Y",
-				authDomain: "coumadin-app.firebaseapp.com",
-				databaseURL: "https://coumadin-app.firebaseio.com",
-				storageBucket: "coumadin-app.appspot.com",
-				messagingSenderId: "106208400674"
-			};
-			firebase.initializeApp(config);
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyC-a5UI8FXispw21H_Sug17hEThnBA3Lrs",
+		    authDomain: "coumadin-deb91.firebaseapp.com",
+		    databaseURL: "https://coumadin-deb91.firebaseio.com",
+		    storageBucket: "coumadin-deb91.appspot.com",
+		    messagingSenderId: "453939552506"
+		  };
+		  firebase.initializeApp(config);
 		</script>
 	</head>
 	<body ng-app="CoumadinApp">

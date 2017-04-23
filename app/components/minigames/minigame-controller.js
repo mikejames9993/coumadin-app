@@ -29,7 +29,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	function completeScenario() {
 		$rootScope.userData.score += $scope.activeScenario.data.scoreChange;
-	};
+	}
 
 	function startScenario() {
 		$scope.hideOverlay();
@@ -37,26 +37,31 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			config: $scope.scenarios[activeScenarioIndex],
 			data: {
 				outcome: 'good',
-				message: 'Good Choices!',
-				scoreChange: 100
+				message: '',
+				scoreChange: 0
 			}
 		};
 		$scope.showIntroOverlay();
-	};
+	}
+
+	function restartScenario() {
+		startScenario();
+		$rootScope.$broadcast('minigame:scenario:restart');
+	}
 
 	var navigation = {
 		start: $scope.hideOverlay,
-		retry: startScenario,
+		retry: restartScenario,
 		next: $scope.goToNextScenario
 	};
 
 	$scope.showIntroOverlay = function() {
-		$rootScope.showOverlay('/views/scenarios/scenario-intro.html', 'ScenarioIntroController', $scope.activeScenario, navigation);
+		$rootScope.showOverlay('/components/scenarios/scenario-intro.html', 'ScenarioIntroController', $scope.activeScenario, navigation);
 	};
 
 	$scope.showOutroOverlay = function() {
 		completeScenario();
-		$rootScope.showOverlay('/views/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+		$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
 	};
 
 	$scope.hideOverlay = function() {

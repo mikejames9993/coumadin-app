@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('LandingPageController', function($rootScope, $scope, $routeParams, $location) {
+angular.module('CoumadinApp').controller('MiniGameLaunchController', function($rootScope, $scope, $routeParams, $location) {
 	console.log('landing page controller loading');
 
 	$rootScope.viewInfo = "Select a mini game";
@@ -12,4 +12,3 @@ angular.module('CoumadinApp').controller('LandingPageController', function($root
 	}
 
 });
-
