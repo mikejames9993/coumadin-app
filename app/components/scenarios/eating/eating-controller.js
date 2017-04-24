@@ -2,9 +2,11 @@
 
 angular.module('CoumadinApp').controller('EatingController', function($rootScope, $scope, $timeout, _) {
 	console.log('eating controller loading');
-	$rootScope.viewInfo = 'These food items contain varying amounts of Vitamin K. ' +
-		'Make your dinner plate by dragging and dropping the food item on your plate. ' +
-		'You can tap the food icon to display the name and for more information about the food';
+	// $rootScope.viewInfo = 'These food items contain varying amounts of Vitamin K. ' +
+	// 	'Make your dinner plate by dragging and dropping the food item on your plate. ' +
+	// 	'You can tap the food icon to display the name and for more information about the food';
+	// $rootScope.viewInfo = minigameConfig.helpText;
+	$rootScope.viewInfo = "Drag Food Items on to Plate"
 
 	$scope.buffetFoods = [];
 	$scope.selectedFoods = [];

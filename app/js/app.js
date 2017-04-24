@@ -133,43 +133,87 @@ app.config(function($routeProvider) {
             id: 'eating',
             name: 'Eating',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
-            instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
+            //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food."
+                }, {
+                    title: "Additional Help",
+                    text: "Click on the food items to see additional information."
+                }
+            ],    
             foodItems: foodItems
         },
         flossing: {
             id: 'flossing',
             name: 'Flossing',
-            instructions: 'Choose a type of floss to use. But be careful not to pick one that could cause bleeding!'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "Choose a type of floss to use. But be careful not to pick one that could cause bleeding!"
+                }
+            ]
         },
         toothbrushing: {
             id: 'toothbrushing',
             name: 'Toothbushing',
-            instructions: 'Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!"
+                }
+            ]
         },
         bloodyStools: {
             id: 'bloody-stools',
             name: 'Bloody Stools',
-            instructions: 'N/A'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "N/A"
+                }
+            ]
         },
         nodeBleeds: {
             id: 'node-bleeds',
             name: 'Nose Bleeds',
-            instructions: 'N/A'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "N/A"
+                }
+            ]
         },
         cuts: {
             id: 'cuts',
             name: 'Cuts',
-            instructions: 'N/A'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "N/A"
+                }
+            ]
         },
         falls: {
             id: 'falls',
             name: 'Falls',
-            instructions: 'N/A'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "N/A"
+                }
+            ]
         },
         ptInrMonitoring: {
             id: 'pt-inr-monitoring',
             name: 'PT/INR Monitoring',
-            instructions: 'N/A'
+            instructions: [
+                {
+                    title: "Game Instructions", 
+                    text: "N/A"
+                }
+            ]
         }
     };
 
@@ -223,6 +267,7 @@ app.config(function($routeProvider) {
             	minigameConfig: function() {
             		return {
 	            		name: 'Diet',
+                        helpText: 'Drag food item to plate.',
 		            	scenarios: [
                             scenarios.eating
                         ]
@@ -230,21 +275,21 @@ app.config(function($routeProvider) {
 	            }
             }
         })
-        .when('/oral-hygiene', {
-        	controller: 'MinigameController',
-            templateUrl: '/components/minigames/minigame.html',
-            resolve: {
-            	minigameConfig: function() {
-            		return {
-	            		name: 'Oral Hygiene',
-		            	scenarios: [
-                            scenarios.flossing,
-                            scenarios.toothbrushing
-                        ]
-		            };
-	            }
-            }
-        })
+        // .when('/oral-hygiene', {
+        // 	controller: 'MinigameController',
+        //     templateUrl: '/components/minigames/minigame.html',
+        //     resolve: {
+        //     	minigameConfig: function() {
+        //     		return {
+	       //      		name: 'Oral Hygiene',
+		      //       	scenarios: [
+        //                     scenarios.flossing,
+        //                     scenarios.toothbrushing
+        //                 ]
+		      //       };
+	       //      }
+        //     }
+        // })
         .when('/safety', {
         	controller: 'MinigameController',
             templateUrl: '/components/minigames/minigame.html',
@@ -256,7 +301,9 @@ app.config(function($routeProvider) {
                             scenarios.bloodyStools,
                             scenarios.nodeBleeds,
                             scenarios.cuts,
-                            scenarios.falls
+                            scenarios.falls,
+                            scenarios.flossing,
+                            scenarios.toothbrushing
                         ]
 		            };
 	            }
