@@ -297,19 +297,25 @@ h3.mini-game-title {
     bottom: 6px;
 }
 
+
+#buffet-region {
+	padding: 30px 0 0 0;
+}
 #buffet-region, #plate-region{
 	height: 50%;
 }
-#plate-region {
+/*#plate-region {
 	padding: 10px 15px;
 	margin: 20px;
-}
+}*/
 
 .eating-plate {
 	background-image: url('/images/food-graphics/plate-setting.png');
 	background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 10px 15px;
+	margin: 20px;
 }
 
 .scenario-outer-wrapper {
