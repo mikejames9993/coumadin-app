@@ -201,13 +201,17 @@ i.fa.no-padding {
 }
 
 .scenario-footer {
-	text-align: right;
+	/*text-align: right;*/
 	padding: 10px;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	height: 60px;
+}
+
+.scenario-footer #scenario-done-btn {
+	float: right;
 }
 
 .score-change {
