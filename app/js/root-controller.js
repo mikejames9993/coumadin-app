@@ -24,9 +24,11 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 	};
 
 	$scope.$on('$routeChangeSuccess', function(event, toState, toParams, fromState, fromParams){ 
+
 		$rootScope.showUserLabel = $location.path() !== '/login'; 
 		$rootScope.showBackBtn = $location.path() !== '/';
 		$rootScope.showMenuBtn = $location.path() === '/';
+		$rootScope.showInfoBtn = $location.path() !== '/';
 	});
 
 	// Using dynamic method `on`, which will set the variables initially and then update the variable on window resize

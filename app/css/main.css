@@ -6,13 +6,13 @@
 	background-color: #1b8c76;
 	color: #f2f2f2;
 }
-.oral-hygiene {
+/*.oral-hygiene {
 	color: #6abab8;
 }
 .oral-hygiene-bg {
 	background-color: #6abab8;
 	color: #f2f2f2 ;
-}
+}*/
 .safety {
 	color: #db584d;
 }
@@ -34,6 +34,20 @@
 	background-color: #ddc02f;
 	color: #f2f2f2 ;
 }
+/*.drug-interaction {
+	color: #ef9233;
+}
+.drug-interaction-bg {
+	background-color: #ef9233;
+	color: #f2f2f2 ;
+}
+.pt-inr-monitoring {
+	color: #ddc02f;
+}
+.pt-inr-monitoring-bg {
+	background-color: #ddc02f;
+	color: #f2f2f2 ;
+}*/
 .info {
 	color: rgba(221, 47, 134, 0.62);
 }
