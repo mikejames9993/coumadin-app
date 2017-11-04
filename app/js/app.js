@@ -129,9 +129,9 @@ app.config(function($routeProvider) {
     }];
 
     var scenarios = {
-        eating: {
-            id: 'eating',
-            name: 'Eating',
+        diet: {
+            id: 'diet',
+            name: 'Diet',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
             instructions: [
@@ -269,7 +269,7 @@ app.config(function($routeProvider) {
 	            		name: 'Diet',
                         helpText: 'Drag food item to plate.',
 		            	scenarios: [
-                            scenarios.eating
+                            scenarios.diet
                         ]
 	            	}
 	            }

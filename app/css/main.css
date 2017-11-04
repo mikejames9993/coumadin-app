@@ -281,9 +281,15 @@ h3.mini-game-title {
 	position: relative;
 	padding: 5px;
 }
-.food-icon {
+/*.food-icon {
 	vertical-align: baseline;
 	width: 100%;
+}*/
+.food-icon {
+    vertical-align: baseline;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .food-card-expand {
     position: absolute;
@@ -344,4 +350,43 @@ h3.mini-game-title {
 /*Info*/
 #info-wrapper {
 	padding: 40px;
+}
+
+.quarter-height {
+	height: 25%;
+	/*border: 1px solid red;*/
+}
+
+.half-height {
+	height: 50%;
+}
+
+.full-height {
+	height: 100%;
+}
+
+.instructions {
+	/*margin: -10px -40px;*/
+    /*background-color: lightblue;*/
+    /*border-radius: 15px;*/
+    /*margin: 15px;*/
+    padding: 5px;
+    text-align: center;
+}
+
+.diet-center-plate {
+	background-image: url('/images/food-graphics/plate.png');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin: 0 -50px;
+}
+
+.btn.diet-submit {
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 5px;
 }
