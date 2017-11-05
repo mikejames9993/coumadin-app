@@ -57,6 +57,8 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		}, 100);
 
 		draggedFood = null;
+
+		customizeScenarioStatus();
 	}
 
 	function resumeScenario(priorStatus) {
@@ -65,10 +67,13 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		if (priorStatus.outcome === 'good') {
 			selectChallenge();
 			_.each($scope.selectedFoods, function(selectedFood) {
-				var index = _.findIndex($scope.buffetFoods, { id: selectedFood.id });
-				$scope.buffetFoods[index] = null;
+				if (selectedFood) {
+					var index = _.findIndex($scope.buffetFoods, { id: selectedFood.id });
+					$scope.buffetFoods[index] = null;
+				}
 			});
 			clearSelectedFoods();
+			customizeScenarioStatus(0, 0);
 		}
 	}
 
@@ -87,6 +92,18 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		angular.element('.plate-drop-zone').on('drop', onPlateDrop);
 		angular.element('.buffet-drop-zone').on('drop', onBuffetDrop);
 	}, 0);
+
+	function customizeScenarioStatus(numRightChoices, numWrongChoices) {
+		numRightChoices = numRightChoices || 0;
+		numWrongChoices = numWrongChoices || 0;
+		$scope.activeScenario.status.custom = {
+			selectedFoods: $scope.selectedFoods,
+			numRightChoices: numRightChoices,
+			numWrongChoices: numWrongChoices,
+			pointsPerRightChoice: POINTS_PER_RIGHT_CHOICE,
+			pointsPerWrongChoice: POINTS_PER_WRONG_CHOICE
+		};
+	}
 
 	function calculateScore() {
 		var highKSelections = [];
