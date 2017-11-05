@@ -13,12 +13,12 @@ var app = angular.module('CoumadinApp', [
 app.config(function($routeProvider) {
 
     var foodItems = [
-    {
-        id: 'asparagus',
-        name: 'Asparagus',
-        kLevel: 2,
-        src: "images/food-graphics/asparagus.png"
-    },
+    // {
+    //     id: 'asparagus',
+    //     name: 'Asparagus',
+    //     kLevel: 2,
+    //     src: "images/food-graphics/asparagus.png"
+    // },
     {
         id: 'broccoli',
         name: 'Broccoli',
@@ -31,12 +31,12 @@ app.config(function($routeProvider) {
         kLevel: 1,
         src: "images/food-graphics/brussels-sprouts.png"
     },
-    {
-        id: 'cabbage',
-        name: 'Cabbage',
-        kLevel: 2,
-        src: "images/food-graphics/cabbage.png"
-    },
+    // {
+    //     id: 'cabbage',
+    //     name: 'Cabbage',
+    //     kLevel: 2,
+    //     src: "images/food-graphics/cabbage.png"
+    // },
     {
         id: 'carrots',
         name: 'Carrots',
