@@ -4,7 +4,7 @@ angular.module('CoumadinApp').controller('ScenarioOutroController', function($sc
 	$scope.scenario = data;
 
 	$scope.retry = function() {
-		navigation.retry();
+		navigation.resume();
 	};
 
 	$scope.next = function() {

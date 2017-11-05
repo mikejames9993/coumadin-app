@@ -28,14 +28,14 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	};
 
 	function completeScenario() {
-		$rootScope.userData.score += $scope.activeScenario.data.scoreChange;
+		$rootScope.userData.score += $scope.activeScenario.status.scoreChange;
 	}
 
 	function startScenario() {
 		$scope.hideOverlay();
 		$scope.activeScenario = {
 			config: $scope.scenarios[activeScenarioIndex],
-			data: {
+			status: {
 				outcome: 'good',
 				message: '',
 				scoreChange: 0
@@ -44,13 +44,22 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$scope.showIntroOverlay();
 	}
 
+	function resumeScenario() {
+		console.log('triggering scenario resume');
+		var priorStatus = $scope.activeScenario.status;
+		startScenario();
+		$rootScope.$broadcast('minigame:scenario:resume', priorStatus);
+	}
+
 	function restartScenario() {
+		console.log('triggering scenario restart');
 		startScenario();
 		$rootScope.$broadcast('minigame:scenario:restart');
 	}
 
 	var navigation = {
 		start: $scope.hideOverlay,
+		resume: resumeScenario,
 		retry: restartScenario,
 		next: $scope.goToNextScenario
 	};

@@ -2,10 +2,11 @@
     <h3 class="modal-title text-center" id="modal-title">Results</h3>
 </div>
 <div class="modal-body" id="modal-body">
-	<p>{{scenario.data.message}}</p>
+	<!-- <p>{{scenario.data.message}}</p>
 	<p ng-if="scenario.data.outcome === 'good'" class="text-center score-change score-change-good"><strong>+{{scenario.data.scoreChange}} Points</strong></p>
 	<p ng-if="scenario.data.outcome === 'neutral'" class="text-center score-change score-change-neutral"><strong>+{{scenario.data.scoreChange}} Points</strong></p>
-	<p ng-if="scenario.data.outcome === 'bad'" class="text-center score-change score-change-bad"><strong>{{scenario.data.scoreChange}} Points</strong></p>
+	<p ng-if="scenario.data.outcome === 'bad'" class="text-center score-change score-change-bad"><strong>{{scenario.data.scoreChange}} Points</strong></p> -->
+	<ng-include src="'/components/scenarios/' + scenario.config.id + '/' + scenario.status.outcome + '-result.html'"></ng-include>
 </div>
 <div class="modal-footer">
     <button class="btn btn-success" type="button" title="Retry this scenario" ng-click="retry()"><i class="fa fa-refresh"></i>Retry</button>

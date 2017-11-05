@@ -8,6 +8,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 
 	$scope.buffetFoods = [];
 	$scope.selectedFoods = [];
+	$scope.activeChallenge = null;
 
 	for (var i = 0; i < NUM_GAME_FOODS; i++) {
 		$scope.buffetFoods.push(null);
@@ -16,21 +17,67 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		$scope.selectedFoods.push(null);
 	}
 
+	var challenges = [{
+		highK: 1,
+		lowK: 1
+	}, {
+		highK: 2,
+		lowK: 0
+	}, {
+		highK: 0,
+		lowK: 2
+	}];
+
 	var draggedFood = null;
+
+	$rootScope.$on('minigame:scenario:restart', initScenario);
+	$rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
+		resumeScenario(priorStatus);
+	});
 
 	initScenario();
 
 	function initScenario() {
+		// Select foods at random
 		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), NUM_GAME_FOODS);
 		for (var i = 0; i < gameFoods.length; i++) {
 			$scope.buffetFoods[i] = _.extend({}, gameFoods[i], { expanded: false });
 		}
+
+		// Select a random challenge scenario
+		selectChallenge();
+		clearSelectedFoods();
 
 		$timeout(function() {
 			console.log('foods: ' + angular.element('.food-card').length);
 			angular.element('.buffet-drop-zone .food-card').on('dragstart', onDragStartBuffet);
 			angular.element('.plate-drop-zone .food-card').on('dragstart', onDragStartPlate);
 		}, 100);
+
+		draggedFood = null;
+	}
+
+	function resumeScenario(priorStatus) {
+		console.log('resuming after ' + priorStatus.outcome + ' outcome');
+		// If player was successful, pick a new challenge and remove prior selected items from play
+		if (priorStatus.outcome === 'good') {
+			selectChallenge();
+			_.each($scope.selectedFoods, function(selectedFood) {
+				var index = _.findIndex($scope.buffetFoods, { id: selectedFood.id });
+				$scope.buffetFoods[index] = null;
+			});
+			clearSelectedFoods();
+		}
+	}
+
+	function selectChallenge() {
+		$scope.activeChallenge = _.shuffle(challenges)[0];
+	}
+
+	function clearSelectedFoods() {
+		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+			$scope.selectedFoods[i] = null;
+		}
 	}
 
 	$timeout(function() {
@@ -40,7 +87,36 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	}, 0);
 
 	function calculateScore() {
+		var highKSelections = [];
+		var lowKSelections = [];
+		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+			var food = $scope.selectedFoods[i];
+			if (food) {
+				switch (food.kLevel) {
+					case 1:
+						highKSelections.push(food);
+						break;
+					case 3:
+						lowKSelections.push(food);
+						break;
+				}
+			}
+		}
 
+		var numWrongChoices = Math.abs($scope.activeChallenge.highK - highKSelections.length);// + Math.abs($scope.activeChallenge.lowK - lowKSelections.length);
+		var numRightChoices = (highKSelections.length + lowKSelections.length) - numWrongChoices;
+
+		var scoreChange = (numWrongChoices * -100) + (numRightChoices * 100);
+		var outcome = 'good';
+		if (numWrongChoices > 0) {
+			outcome = 'bad';
+		}
+
+		console.log('high k choices: ' + highKSelections.length + '/' + $scope.activeChallenge.highK + ', low k choices: ' + lowKSelections.length + '/' + $scope.activeChallenge.lowK);
+		console.log('num wrong choices: ' + numWrongChoices + ', num right choices: ' + numRightChoices);
+		console.log('outcome: ' + outcome);
+		$scope.activeScenario.status.scoreChange = scoreChange;
+		$scope.activeScenario.status.outcome = outcome;
 	}
 
 	function onDragStartBuffet(event) {
