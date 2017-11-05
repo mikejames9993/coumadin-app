@@ -137,7 +137,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	}
 
 	function onPlateDrop(event) {
-		if (canSelectMoreFoods()) {
+		if (canSelectMoreFoods() && !_.contains($scope.selectedFoods, draggedFood)) {
 			$scope.$apply(function() {
 				// alert("ondrop");
 				var targetIndex = _.findIndex($scope.selectedFoods, function(selectedFood) {
@@ -161,25 +161,27 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	}
 
 	function onBuffetDrop(event) {
-		$scope.$apply(function() {
-			// alert("ondrop");
-			var foodIndex = angular.element(event.target).data('location-id');
+		if (!_.contains($scope.buffetFoods, draggedFood)) {
+			$scope.$apply(function() {
+				// alert("ondrop");
+				var foodIndex = angular.element(event.target).data('location-id');
 
-			if (foodIndex !== null && foodIndex !== undefined) {
+				if (foodIndex !== null && foodIndex !== undefined) {
 
-				var sourceIndex = _.findIndex($scope.selectedFoods, { id: draggedFood.id });
-				$scope.selectedFoods[sourceIndex] = null;
+					var sourceIndex = _.findIndex($scope.selectedFoods, { id: draggedFood.id });
+					$scope.selectedFoods[sourceIndex] = null;
 
-				$scope.buffetFoods[foodIndex] = draggedFood;
+					$scope.buffetFoods[foodIndex] = draggedFood;
 
-				transferFood(draggedFood, $scope.selectedFoods, $scope.buffetFoods, onDragStartBuffet);
-				draggedFood = null;
-			}
+					transferFood(draggedFood, $scope.selectedFoods, $scope.buffetFoods, onDragStartBuffet);
+					draggedFood = null;
+				}
 
-			console.log('dropFoodOnBuffet');
-			event.preventDefault();
-			calculateScore();
-		});
+				console.log('dropFoodOnBuffet');
+				event.preventDefault();
+				calculateScore();
+			});
+		}
 	}
 
 	function transferFood(food, sourceArray, targetArray, onDragStartCallback) {
