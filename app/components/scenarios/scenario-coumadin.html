@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h2 class="modal-title text-center" id="modal-title">Coumadin Information</h2>
+</div>
+<div class="modal-body" id="modal-body">
+	<div ng-repeat="info in scenario.config.coumadinInfo">
+		<h3 ng-if="info.title">{{info.title}}</h3>
+		<p>{{info.text}}</p>
+		</br>
+	</div>
+	
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="skip()"><i class="fa fa-check"></i>Skip</button>
+    <button class="btn btn-success" type="button" ng-click="showRules()"><i class="fa fa-arrow-right"></i>Play</button>
+</div>

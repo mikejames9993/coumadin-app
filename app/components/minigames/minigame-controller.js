@@ -20,7 +20,8 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		if ($scope.hasNextScenario()) {
 			// transition to the next scenario
 			activeScenarioIndex++;
-			startScenario();
+			refreshScenario();
+			showCoumadinOverlay();
 		} else {
 			// go back to landing page
 			$rootScope.goToLanding();
@@ -31,8 +32,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$rootScope.userData.score += $scope.activeScenario.status.scoreChange;
 	}
 
-	function startScenario() {
-		$scope.hideOverlay();
+	function refreshScenario() {
 		$scope.activeScenario = {
 			config: $scope.scenarios[activeScenarioIndex],
 			status: {
@@ -41,41 +41,54 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 				scoreChange: 0
 			}
 		};
-		$scope.showIntroOverlay();
 	}
 
 	function resumeScenario() {
 		console.log('triggering scenario resume');
 		var priorStatus = $scope.activeScenario.status;
-		startScenario();
+		$scope.hideOverlay();
+		// refreshScenario();
 		$rootScope.$broadcast('minigame:scenario:resume', priorStatus);
 	}
 
 	function restartScenario() {
 		console.log('triggering scenario restart');
-		startScenario();
+		$scope.hideOverlay();
+		refreshScenario();
 		$rootScope.$broadcast('minigame:scenario:restart');
 	}
 
-	var navigation = {
-		start: $scope.hideOverlay,
-		resume: resumeScenario,
-		retry: restartScenario,
-		next: $scope.goToNextScenario
-	};
+	function showRulesOverlay() {
+		$rootScope.hideOverlay();
+		$rootScope.showOverlay('/components/scenarios/scenario-rules.html', 'ScenarioRulesController', $scope.activeScenario, navigation);
+	}
 
-	$scope.showIntroOverlay = function() {
-		$rootScope.showOverlay('/components/scenarios/scenario-intro.html', 'ScenarioIntroController', $scope.activeScenario, navigation);
-	};
+	function showCoumadinOverlay() {
+		$rootScope.hideOverlay();
+		$rootScope.showOverlay('/components/scenarios/scenario-coumadin.html', 'ScenarioCoumadinController', $scope.activeScenario, navigation);
+	}
 
-	$scope.showOutroOverlay = function() {
+	function showOutroOverlay() {
 		completeScenario();
 		$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+	}
+
+	function hideOverlay() {
+		$rootScope.hideOverlay();
+	}
+
+	var navigation = {
+		showCoumadinInfo: showCoumadinOverlay, // show coumadin info
+		showRules: showRulesOverlay, // show rules
+		start: $scope.hideOverlay, // show game
+		resume: resumeScenario, // show game and pick up at previous point
+		retry: restartScenario, // show game and start over
+		next: $scope.goToNextScenario // go to landing page
 	};
 
-	$scope.hideOverlay = function() {
-		$rootScope.hideOverlay();
-	};
+	$scope.showOutro = showOutroOverlay;
+	$scope.showRules = showRulesOverlay;
+	// $scope.showInfo = showInfoOverlay;
 
 	// Initialize the first scenario
 	if ($scope.hasNextScenario()) {

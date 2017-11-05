@@ -2,7 +2,8 @@
 	<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/components/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
 	<div class="footer scenario-footer">
-		<button id="scenario-help-btn" class="btn ca-btn-success" ng-click="showIntroOverlay()"><i class="fa fa-question"></i>Help</button>
-		<button id="scenario-done-btn" class="btn ca-btn-success" ng-click="showOutroOverlay()"><i class="fa fa-check"></i>Done</button>
+		<button id="scenario-help-btn" class="btn ca-btn-success" ng-click="goToNextScenario()"><i class="fa fa-arrow-left"></i>Back</button>
+		<button id="scenario-done-btn" class="btn ca-btn-success" ng-click="showOutro()"><i class="fa fa-check"></i>Tap here to submit when done</button>
+		<button id="scenario-help-btn" class="btn ca-btn-success" ng-click=""><i class="fa fa-i"></i>More Info</button>
 	</div>
 </div>

@@ -131,19 +131,33 @@ app.config(function($routeProvider) {
     var scenarios = {
         diet: {
             id: 'diet',
-            name: 'Diet',
+            name: 'Diet - Vitamin K Foods',
             motto: 'Eat Right, Eat Safely',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
-            instructions: [
+            coumadinInfo: [
                 {
-                    title: "Game Instructions", 
-                    text: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food."
+                    title: "How does what I eat influence blood clotting?", 
+                    text: "When you are on Coumadin, watch what you eat and drink since the diet can affect how Coumadin works in your body."
                 }, {
-                    title: "Additional Help",
-                    text: "Click on the food items to see additional information."
+                    text: "Remember that Vitamin K is essential to the clotting process in your body. But too much Vitamin K in your diet can lower the effect of Coumadin and make your blood thick."
+                }, {
+                    text: "Some foods grown on the ground, especially some vegetables, can contain high levels of Vitamin K."
+                }, {
+                    text: "You are advised to eat a normal, balanced diet. Try to eat the same amount of Vitamin K each week."
                 }
-            ],    
+            ],
+            rules: [{
+                text: 'Ten pictures of foods are shown. Some have high levels of Vitamin K and some have low levels of Vitamin K.'
+            }, {
+                text: 'You can earn 100 points for each item placed correctly the first time. You will lose 100 points for each wrong placement.'
+            }, {
+                text: 'Replay the game until all items are placed correctly.'
+            }, {
+                text: 'A proficiency badge will be awarded once all 10 foods are correctly placed.'
+            }, {
+                text: 'Click More Info on any screen to learn more about Coumadin.'
+            }],
             foodItems: foodItems
         },
         flossing: {
@@ -214,7 +228,7 @@ app.config(function($routeProvider) {
         },
         ptInrMonitoring: {
             id: 'pt-inr-monitoring',
-            name: 'PT/INR Monitoring',
+            name: 'Blood Clotting Testing',
             motto: '',
             instructions: [
                 {
@@ -335,7 +349,7 @@ app.config(function($routeProvider) {
             resolve: {
             	minigameConfig: function() {
             		return {
-	            		name: 'PT/INR Monitoring',
+	            		name: 'Blood Clotting Testing',
 		            	scenarios: [
                             scenarios.ptInrMonitoring
                         ]
