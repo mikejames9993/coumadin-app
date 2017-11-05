@@ -390,3 +390,7 @@ h3.mini-game-title {
     right: 0;
     margin: 5px;
 }
+
+.result-list {
+	list-style: none;
+}

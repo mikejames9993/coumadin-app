@@ -2,6 +2,8 @@
 
 var NUM_GAME_FOODS = 10;
 var NUM_SELECTED_FOODS = 2;
+var POINTS_PER_RIGHT_CHOICE = 100;
+var POINTS_PER_WRONG_CHOICE = -100;
 
 angular.module('CoumadinApp').controller('DietController', function($rootScope, $scope, $timeout, _) {
 	console.log('diet controller loading');
@@ -106,7 +108,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		var numWrongChoices = Math.abs($scope.activeChallenge.highK - highKSelections.length);// + Math.abs($scope.activeChallenge.lowK - lowKSelections.length);
 		var numRightChoices = (highKSelections.length + lowKSelections.length) - numWrongChoices;
 
-		var scoreChange = (numWrongChoices * -100) + (numRightChoices * 100);
+		var scoreChange = (numWrongChoices * POINTS_PER_WRONG_CHOICE) + (numRightChoices * POINTS_PER_RIGHT_CHOICE);
 		var outcome = 'good';
 		if (numWrongChoices > 0) {
 			outcome = 'bad';
@@ -117,22 +119,29 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		console.log('outcome: ' + outcome);
 		$scope.activeScenario.status.scoreChange = scoreChange;
 		$scope.activeScenario.status.outcome = outcome;
+		$scope.activeScenario.status.custom = {
+			selectedFoods: $scope.selectedFoods,
+			numWrongChoices: numWrongChoices,
+			numRightChoices: numRightChoices,
+			pointsPerRightChoice: POINTS_PER_RIGHT_CHOICE,
+			pointsPerWrongChoice: POINTS_PER_WRONG_CHOICE
+		};
 	}
 
 	function onDragStartBuffet(event) {
-		console.log('startDragFoodFromBuffet');
+		// console.log('startDragFoodFromBuffet');
 		var foodId = angular.element(event.target).data('id');
 		draggedFood = _.find($scope.buffetFoods, { id: foodId });
 	}
 
 	function onDragStartPlate(event) {
-		console.log('startDragFoodFromPlate');
+		// console.log('startDragFoodFromPlate');
 		var foodId = angular.element(event.target).data('id');
 		draggedFood = _.find($scope.selectedFoods, { id: foodId });
 	}
 
 	function onDragOver(event) {
-		console.log('foodEnterPlate');
+		// console.log('foodEnterPlate');
 		event.preventDefault();
 	}
 
@@ -153,7 +162,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 					draggedFood = null;
 				}
 				
-				console.log('dropFoodOnPlate');
+				// console.log('dropFoodOnPlate');
 				event.preventDefault();
 				calculateScore();
 			});
@@ -177,7 +186,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 					draggedFood = null;
 				}
 
-				console.log('dropFoodOnBuffet');
+				// console.log('dropFoodOnBuffet');
 				event.preventDefault();
 				calculateScore();
 			});

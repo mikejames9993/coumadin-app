@@ -1,5 +1,6 @@
-<h1>Eat Right, Eat Safely</h1>
-<p class="score-change-good">Reward Points: {{scenario.status.scoreChange}}</p>
+<h4 class="score-change-good text-center">Reward Points: {{scenario.status.scoreChange}}</h4>
 <p>Your Reward Points is <span class="score-change-good">{{scenario.status.scoreChange}}</span> because you placed the 2 items correctly for +100 points each.</p>
-<img class="results-diet-icon">
+<ul class="result-list">
+	<li ng-repeat="selection in scenario.status.custom.selectedFoods"><i class="fa fa-check score-change-good">&nbsp;{{selection.name}}</i></li>
+</ul>
 <p>Good choices! You made the right selection for high or low Vitamin K food items but there are more items to place.</p>

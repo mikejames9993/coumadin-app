@@ -132,6 +132,7 @@ app.config(function($routeProvider) {
         diet: {
             id: 'diet',
             name: 'Diet',
+            motto: 'Eat Right, Eat Safely',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
             instructions: [
@@ -148,6 +149,7 @@ app.config(function($routeProvider) {
         flossing: {
             id: 'flossing',
             name: 'Flossing',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -158,6 +160,7 @@ app.config(function($routeProvider) {
         toothbrushing: {
             id: 'toothbrushing',
             name: 'Toothbushing',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -168,6 +171,7 @@ app.config(function($routeProvider) {
         bloodyStools: {
             id: 'bloody-stools',
             name: 'Bloody Stools',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -178,6 +182,7 @@ app.config(function($routeProvider) {
         nodeBleeds: {
             id: 'node-bleeds',
             name: 'Nose Bleeds',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -188,6 +193,7 @@ app.config(function($routeProvider) {
         cuts: {
             id: 'cuts',
             name: 'Cuts',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -198,6 +204,7 @@ app.config(function($routeProvider) {
         falls: {
             id: 'falls',
             name: 'Falls',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -208,6 +215,7 @@ app.config(function($routeProvider) {
         ptInrMonitoring: {
             id: 'pt-inr-monitoring',
             name: 'PT/INR Monitoring',
+            motto: '',
             instructions: [
                 {
                     title: "Game Instructions", 
