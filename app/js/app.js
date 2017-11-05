@@ -393,7 +393,7 @@ app.run(function($rootScope, $location, $uibModal) {
             // $rootScope.overlay.template = template;
             // $rootScope.overlay.visible = true;
             modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: templateUrl,

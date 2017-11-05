@@ -203,13 +203,13 @@ i.fa.no-padding {
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	color: white;
 }
 
 .modal-dialog.modal-fs .modal-content {
 	border-radius: 0;
 	border: 0;
-	background-color: rgba(50, 50, 50, .9);
+	/*background-color: rgba(50, 50, 50, .9);*/
+	/*color: black;*/
 	box-shadow: none;
 	height: 100%;
 }
@@ -393,4 +393,8 @@ h3.mini-game-title {
 
 .result-list {
 	list-style: none;
+}
+
+.btn {
+	border-radius: 8px;
 }

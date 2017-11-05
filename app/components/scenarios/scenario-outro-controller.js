@@ -3,7 +3,7 @@
 angular.module('CoumadinApp').controller('ScenarioOutroController', function($scope, data, navigation) {
 	$scope.scenario = data;
 
-	$scope.retry = function() {
+	$scope.resume = function() {
 		navigation.resume();
 	};
 

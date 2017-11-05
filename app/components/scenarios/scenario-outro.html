@@ -9,6 +9,6 @@
 	<ng-include src="'/components/scenarios/' + scenario.config.id + '/' + scenario.status.outcome + '-result.html'"></ng-include>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success" type="button" title="Retry this scenario" ng-click="retry()"><i class="fa fa-refresh"></i>Retry</button>
-    <button class="btn btn-success" type="button" title="Go to the next scenario" ng-click="next()"><i class="fa fa-arrow-right"></i>Next</button>
+    <button class="btn btn-success" type="button" title="Retry this scenario" ng-click="resume()"><i class="fa fa-refresh"></i>Refresh and Replay</button>
+    <button class="btn btn-success" type="button" title="Go to the next scenario" ng-click="next()"><i class="fa fa-arrow-right"></i>Save Points and Exit</button>
 </div>
