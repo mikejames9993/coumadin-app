@@ -3,7 +3,7 @@
 	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
 	<div class="footer scenario-footer">
 		<button id="scenario-help-btn" class="btn ca-btn-success" ng-click="showRules()"><i class="fa fa-arrow-left"></i>Back</button>
-		<button id="scenario-done-btn" class="btn ca-btn-success" ng-click="showOutro()"><i class="fa fa-check"></i>Submit</button>
+		<button id="scenario-done-btn" class="btn ca-btn-success" ng-click="showOutro()" ng-disabled="!activeScenario.status.canSubmit"><i class="fa fa-check"></i>Submit</button>
 		<button id="scenario-help-btn" class="btn ca-btn-success" ng-click=""><i class="fa fa-info"></i>More Info</button>
 	</div>
 </div>

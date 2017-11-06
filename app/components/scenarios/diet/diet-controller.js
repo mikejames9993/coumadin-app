@@ -142,6 +142,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		console.log('high k choices: ' + highKSelections.length + '/' + $scope.activeChallenge.highK + ', low k choices: ' + lowKSelections.length + '/' + $scope.activeChallenge.lowK);
 		console.log('num wrong choices: ' + numWrongChoices + ', num right choices: ' + numRightChoices);
 		console.log('outcome: ' + outcome);
+		$scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
 		$scope.activeScenario.status.scoreChange = scoreChange;
 		$scope.activeScenario.status.outcome = outcome;
 		$scope.activeScenario.status.custom = {
@@ -155,9 +156,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		var numRemainingFoods = (_.filter($scope.buffetFoods, function(food) {
 			return food !== null && food !== undefined;
 		}) || []).length;
-		if ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0) {
-			$scope.activeScenario.status.complete = true;
-		}
+		$scope.activeScenario.status.complete = ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0);
 	}
 
 	function onDragStartBuffet(event) {

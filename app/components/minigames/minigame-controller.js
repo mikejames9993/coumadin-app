@@ -37,6 +37,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			config: $scope.scenarios[activeScenarioIndex],
 			status: {
 				complete: false,
+				canSubmit: false,
 				outcome: 'good',
 				message: '',
 				scoreChange: 0
