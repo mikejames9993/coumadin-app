@@ -211,7 +211,7 @@ i.fa.no-padding {
 	/*background-color: rgba(50, 50, 50, .9);*/
 	/*color: black;*/
 	box-shadow: none;
-	height: 100%;
+	min-height: 100%;
 }
 
 .scenario-footer {
