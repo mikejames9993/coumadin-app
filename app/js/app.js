@@ -131,7 +131,7 @@ app.config(function($routeProvider) {
     var scenarios = {
         diet: {
             id: 'diet',
-            name: 'Diet - Vitamin K Foods',
+            name: 'Diet',
             motto: 'Eat Right, Eat Safely',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
@@ -158,6 +158,14 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Click More Info on any screen to learn more about Coumadin.'
             }],
+            trophyText: [{
+                text: 'You made the right selection of all 10 low and high Vitamin K foods.'
+            }, {
+                text: 'You have earned a Proficiency Badge which will display at the right corner of the screen the next time you play the game.'
+            }, {
+                text: 'Remember, you can still enjoy Vitamin K food items but not in excess.'
+            }],
+            trophyImage: 'images/badges/diet.png',
             foodItems: foodItems
         },
         flossing: {
