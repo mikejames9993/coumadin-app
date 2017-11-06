@@ -47,8 +47,8 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		}
 
 		// Select a random challenge scenario
-		selectChallenge();
 		clearSelectedFoods();
+		selectChallenge();
 
 		$timeout(function() {
 			console.log('foods: ' + angular.element('.food-card').length);
@@ -65,7 +65,6 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		console.log('resuming after ' + priorStatus.outcome + ' outcome');
 		// If player was successful, pick a new challenge and remove prior selected items from play
 		if (priorStatus.outcome === 'good') {
-			selectChallenge();
 			_.each($scope.selectedFoods, function(selectedFood) {
 				if (selectedFood) {
 					var index = _.findIndex($scope.buffetFoods, { id: selectedFood.id });
@@ -73,12 +72,21 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 				}
 			});
 			clearSelectedFoods();
+			selectChallenge();
 			customizeScenarioStatus(0, 0);
 		}
 	}
 
 	function selectChallenge() {
-		$scope.activeChallenge = _.shuffle(challenges)[0];
+		var remainingHighKFoods = _.where($scope.buffetFoods, { kLevel: 1 });
+		var remainingLowKFoods = _.where($scope.buffetFoods, { kLevel: 3 });
+
+		var availableChallenges = _.filter(challenges, function(challenge) {
+			return challenge.highK <= remainingHighKFoods.length && challenge.lowK <= remainingLowKFoods.length;
+		});
+		console.log("remaining k foods: high=" + remainingHighKFoods.length + ", low=" + remainingLowKFoods.length + ", challenges available:" + availableChallenges.length);
+
+		$scope.activeChallenge = _.shuffle(availableChallenges)[0];
 	}
 
 	function clearSelectedFoods() {
