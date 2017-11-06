@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h2 class="modal-title text-center" id="modal-title">Congratulations!</h2>
+</div>
+<div class="modal-body" id="modal-body">
+	<img class="scenario-badge img-responsive" src="{{scenario.config.trophyImage}}" alt="{{scenario.config.name}} Proficiency Badge">
+	<hr class="modal-separator">
+	<div ng-repeat="info in scenario.config.trophyText">
+		<h3 ng-if="info.title">{{info.title}}</h3>
+		<p>{{info.text}}</p>
+		</br>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="playAgain()"><i class="fa fa-rotate-left"></i>Play Again</button>
+    <button class="btn btn-success" type="button" ng-click="playMoreGames()"><i class="fa fa-arrow-right"></i>Play More Games</button>
+</div>

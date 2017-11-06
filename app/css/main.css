@@ -398,3 +398,11 @@ h3.mini-game-title {
 .btn {
 	border-radius: 8px;
 }
+
+img.scenario-badge {
+	margin: 0 auto;
+}
+
+hr.modal-separator {
+	border-color: e5e5e5;
+}

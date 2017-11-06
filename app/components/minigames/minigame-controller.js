@@ -36,6 +36,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$scope.activeScenario = {
 			config: $scope.scenarios[activeScenarioIndex],
 			status: {
+				complete: false,
 				outcome: 'good',
 				message: '',
 				scoreChange: 0
@@ -70,7 +71,12 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	function showOutroOverlay() {
 		completeScenario();
-		$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+		$rootScope.hideOverlay();
+		if ($scope.activeScenario.status.complete) {
+			$rootScope.showOverlay('/components/scenarios/scenario-trophy.html', 'ScenarioTrophyController', $scope.activeScenario, navigation);
+		} else {
+			$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+		}
 	}
 
 	function hideOverlay() {

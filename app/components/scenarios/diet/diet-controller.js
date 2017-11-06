@@ -143,6 +143,13 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 			pointsPerRightChoice: POINTS_PER_RIGHT_CHOICE,
 			pointsPerWrongChoice: POINTS_PER_WRONG_CHOICE
 		};
+
+		var numRemainingFoods = (_.filter($scope.buffetFoods, function(food) {
+			return food !== null && food !== undefined;
+		}) || []).length;
+		if ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0) {
+			$scope.activeScenario.status.complete = true;
+		}
 	}
 
 	function onDragStartBuffet(event) {
