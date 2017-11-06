@@ -365,13 +365,21 @@ h3.mini-game-title {
 	height: 100%;
 }
 
-.instructions {
-	/*margin: -10px -40px;*/
-    /*background-color: lightblue;*/
-    /*border-radius: 15px;*/
-    /*margin: 15px;*/
+.diet-instructions {
     padding: 5px;
     text-align: center;
+    position: absolute;
+    left: -30px;
+    right: -30px;
+}
+
+.diet-scenario-instructions {
+	padding: 5px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+    left: -30px;
+    right: -30px;
 }
 
 .diet-center-plate {
@@ -381,7 +389,7 @@ h3.mini-game-title {
     background-repeat: no-repeat;
     background-color: #ccc;
     border-radius: 20px;
-    margin: 0 -50px;
+    margin: 0 -60px;
 }
 
 .btn.diet-submit {
@@ -411,4 +419,9 @@ hr.modal-separator {
     float: left;
     border: 2px solid #ccc;
     border-radius: 50px;
+}
+
+.diet-center-plate .row.first-row {
+    display: flex;
+    align-items: flex-end;
 }
