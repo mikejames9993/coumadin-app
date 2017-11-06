@@ -133,6 +133,7 @@ app.config(function($routeProvider) {
             id: 'diet',
             name: 'Diet',
             motto: 'Eat Right, Eat Safely',
+            icon: 'images/food-graphics/food-icon.png',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
             coumadinInfo: [
@@ -172,6 +173,7 @@ app.config(function($routeProvider) {
             id: 'flossing',
             name: 'Flossing',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -183,6 +185,7 @@ app.config(function($routeProvider) {
             id: 'toothbrushing',
             name: 'Toothbushing',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -194,6 +197,7 @@ app.config(function($routeProvider) {
             id: 'bloody-stools',
             name: 'Bloody Stools',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -205,6 +209,7 @@ app.config(function($routeProvider) {
             id: 'node-bleeds',
             name: 'Nose Bleeds',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -216,6 +221,7 @@ app.config(function($routeProvider) {
             id: 'cuts',
             name: 'Cuts',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -227,6 +233,7 @@ app.config(function($routeProvider) {
             id: 'falls',
             name: 'Falls',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 
@@ -238,6 +245,7 @@ app.config(function($routeProvider) {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
             motto: '',
+            icon: 'images/placeholder-example.gif',
             instructions: [
                 {
                     title: "Game Instructions", 

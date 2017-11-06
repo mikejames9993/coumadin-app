@@ -406,3 +406,9 @@ img.scenario-badge {
 hr.modal-separator {
 	border-color: e5e5e5;
 }
+
+.scenario-header-icon {
+    float: left;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+}
