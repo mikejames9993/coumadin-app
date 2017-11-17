@@ -57,7 +57,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="diet-scenario-instructions">Drag and drop {{activeChallenge.highK}} high and {{activeChallenge.lowK}} low Vitamin K foods on this plate.</div>
+					<div ng-if="activeChallenge.highK > 0 && activeChallenge.lowK > 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.highK}} high and {{activeChallenge.lowK}} low Vitamin K foods on this plate.</div>
+					<div ng-if="activeChallenge.highK === 0 && activeChallenge.lowK > 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.lowK}} low Vitamin K foods on this plate.</div>
+					<div ng-if="activeChallenge.highK > 0 && activeChallenge.lowK === 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.highK}} high Vitamin K foods on this plate.</div>
 					<!-- <button type="button" class="btn btn-submit diet-submit">Submit</button> -->
 				</div>
 			</div>
