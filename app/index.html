@@ -77,7 +77,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 id="view-info" class="text-center"><em>{{viewInfo}}</em></h5>
+			<h5 ng-if="viewInfo !== null && viewInfo !== undefined && viewInfo.length > 0" id="view-info" class="text-center"><em>{{viewInfo}}</em></h5>
 			
 			<div class="app-body">
 				<ng-view></ng-view>

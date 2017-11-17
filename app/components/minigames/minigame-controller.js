@@ -6,6 +6,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	console.log('minigame = ' + $scope.minigame);
 	$scope.scenarios = minigameConfig.scenarios;
 	$scope.errorMessage = null;
+	$rootScope.viewInfo = null;
 
 	var activeScenarioIndex = -1;
 
