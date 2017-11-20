@@ -188,6 +188,7 @@ i.fa.no-padding {
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	padding: 7px;
+	text-align: center;
 }
 .mini-game-launch-container img {
 	display: inline-block;
@@ -196,6 +197,10 @@ i.fa.no-padding {
 }
 .mini-game-launch-inner h3 {
 	font-size: 5.5vw;
+}
+.mini-game-launch-label {
+	padding: 5px;
+    border-bottom: 5px solid #aaa;
 }
 
 /* full-screen modal */

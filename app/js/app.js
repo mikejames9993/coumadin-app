@@ -258,8 +258,8 @@ app.config(function($routeProvider) {
     // Set up routing
     $routeProvider
         .when('/', {
-            templateUrl: '/components/shared/landing-page.html',
-            controller: 'LandingPageController',
+            templateUrl: '/components/shared/landing.html',
+            controller: 'LandingController',
             resolve: {
                 configData: function(){
                     return {
@@ -269,8 +269,8 @@ app.config(function($routeProvider) {
             }
         })
         .when('/launch', {
-            templateUrl: '/components/shared/minigame-launch.html',
-            controller: 'MiniGameLaunchController'
+            templateUrl: '/components/shared/landing.html',
+            controller: 'LandingController'
         })
         .when('/login', {
             templateUrl: '/components/user/login.html',
