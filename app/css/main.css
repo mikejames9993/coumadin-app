@@ -179,10 +179,12 @@ i.fa.no-padding {
 }
 /*mini-game-launch page*/
 .mini-game-launch-wrapper {
-	margin-top: 50px;
+	cursor: pointer;
 }
 .mini-game-launch-container {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .mini-game-launch-inner {
 	border-radius: 10px;
