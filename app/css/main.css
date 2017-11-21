@@ -88,11 +88,11 @@ i.fa.no-padding {
 .modal-footer {
 	text-align: center;
 }
-.ca-btn-success {
+/*.ca-btn-success {
 	color: #f2f2f2;
     background-color: #405c70;
     border-color: #405c70;
-}
+}*/
 #view-info {
 	margin: 2px;
 }
@@ -415,6 +415,7 @@ h3.mini-game-title {
 
 .btn {
 	border-radius: 8px;
+	white-space: normal;
 }
 
 img.scenario-badge {

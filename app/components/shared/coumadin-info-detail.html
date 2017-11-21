@@ -6,13 +6,19 @@
 	<p><strong>**Your doctor or clinic are the best people to call if you have questions about Coumadin or have any problems with it.</strong></p>
 </div>
 <div class="modal-footer">
-	<button ng-if="hasPrevItem()" type="button" class="btn btn-success pull-left" ng-click="prevItem()">
-		<i class="fa fa-arrow-left"></i>Previous Topic
-	</button>
-	<button type="button" class="btn btn-success" ng-click="showList()">
-		<i class="fa fa-arrow-left"></i>Back to List
-	</button>
-	<button ng-if="hasNextItem()" type="button" class="btn btn-success pull-right" ng-click="nextItem()">
-		<i class="fa fa-arrow-right"></i>Next Topic
-	</button>
+	<div class="col-xs-4">
+		<button ng-if="hasPrevItem()" type="button" class="btn btn-success pull-left" ng-click="prevItem()">
+			<i class="fa fa-arrow-left"></i>Previous Topic
+		</button>
+	</div>
+	<div class="col-xs-4">
+		<button type="button" class="btn btn-success" ng-click="showList()">
+			<i class="fa fa-arrow-up"></i>Back to List
+		</button>
+	</div>
+	<div class="col-xs-4">
+		<button ng-if="hasNextItem()" type="button" class="btn btn-success pull-right" ng-click="nextItem()">
+			<i class="fa fa-arrow-right"></i>Next Topic
+		</button>
+	</div>
 </div>
