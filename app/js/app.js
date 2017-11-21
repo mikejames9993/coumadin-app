@@ -174,84 +174,105 @@ app.config(function($routeProvider) {
             name: 'Flossing',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "Choose a type of floss to use. But be careful not to pick one that could cause bleeding!"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         toothbrushing: {
             id: 'toothbrushing',
             name: 'Toothbushing',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         bloodyStools: {
             id: 'bloody-stools',
             name: 'Bloody Stools',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "N/A"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         nodeBleeds: {
             id: 'node-bleeds',
             name: 'Nose Bleeds',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "N/A"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         cuts: {
             id: 'cuts',
             name: 'Cuts',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "N/A"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         falls: {
             id: 'falls',
             name: 'Falls',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "N/A"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         },
         ptInrMonitoring: {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
             motto: '',
             icon: 'images/placeholder-example.gif',
-            instructions: [
+            coumadinInfo: [],
+            rules: [
                 {
                     title: "Game Instructions", 
                     text: "N/A"
                 }
-            ]
+            ],
+            trophyText: [],
+            trophyImage: ''
         }
     };
 
