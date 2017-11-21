@@ -1,0 +1,18 @@
+<div class="modal-header">
+	<h2 class="text-center">{{ currentItem.title }}</h2>
+</div>
+<div class="modal-body">
+	<p ng-repeat="t in currentItem.text">{{t}}</p>
+	<p><strong>**Your doctor or clinic are the best people to call if you have questions about Coumadin or have any problems with it.</strong></p>
+</div>
+<div class="modal-footer">
+	<button ng-if="hasPrevItem()" type="button" class="btn btn-success pull-left" ng-click="prevItem()">
+		<i class="fa fa-arrow-left"></i>Previous Topic
+	</button>
+	<button type="button" class="btn btn-success" ng-click="showList()">
+		<i class="fa fa-arrow-left"></i>Back to List
+	</button>
+	<button ng-if="hasNextItem()" type="button" class="btn btn-success pull-right" ng-click="nextItem()">
+		<i class="fa fa-arrow-right"></i>Next Topic
+	</button>
+</div>

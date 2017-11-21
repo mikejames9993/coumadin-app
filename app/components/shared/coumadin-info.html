@@ -1,0 +1,16 @@
+<div ng-if="!currentItem">
+	<div class="modal-header">
+		<h2 class="text-center">Warfarin (Coumadin&#174;) Patient Education</h2>
+	</div>
+	<div class="modal-body">
+		<p>Select a link for more information about a specific topic on Coumadin.</p>
+	    <ul class="coumadin-info-list">
+	    	<li ng-repeat="info in information" ng-click="selectInfo(info)">{{info.title}}</li>
+	    </ul>
+	</div>
+	<div class="modal-footer">
+	    <button type="button" class="btn btn-success" ng-click="close()">Skip and go back to previous screen</button>
+	</div>
+</div>
+
+<div ng-if="currentItem" ng-include="'/components/shared/coumadin-info-detail.html'"></div>

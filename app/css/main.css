@@ -433,3 +433,10 @@ hr.modal-separator {
     display: flex;
     align-items: flex-end;
 }
+
+.coumadin-info-list li {
+	list-style: none;
+    padding: 5px 0;
+    cursor: pointer;
+    color: blue;
+}
