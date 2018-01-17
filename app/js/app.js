@@ -133,7 +133,7 @@ app.config(function($routeProvider) {
             id: 'diet',
             name: 'Diet',
             motto: 'Eat Right, Eat Safely',
-            icon: 'images/food-graphics/food-icon.png',
+            icon: 'images/scenarios/diet.png',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
             coumadinInfo: [
@@ -263,7 +263,7 @@ app.config(function($routeProvider) {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
             motto: '',
-            icon: 'images/placeholder-example.gif',
+            icon: 'images/scenarios/ptinr.png',
             coumadinInfo: [],
             rules: [
                 {
@@ -349,25 +349,25 @@ app.config(function($routeProvider) {
 	       //      }
         //     }
         // })
-        .when('/safety', {
-        	controller: 'MinigameController',
-            templateUrl: '/components/minigames/minigame.html',
-            resolve: {
-            	minigameConfig: function() {
-            		return {
-	            		name: 'Safety',
-		            	scenarios: [
-                            scenarios.bloodyStools,
-                            scenarios.nodeBleeds,
-                            scenarios.cuts,
-                            scenarios.falls,
-                            scenarios.flossing,
-                            scenarios.toothbrushing
-                        ]
-		            };
-	            }
-            }
-        })
+        // .when('/safety', {
+        // 	controller: 'MinigameController',
+        //     templateUrl: '/components/minigames/minigame.html',
+        //     resolve: {
+        //     	minigameConfig: function() {
+        //     		return {
+	       //      		name: 'Safety',
+		      //       	scenarios: [
+        //                     scenarios.bloodyStools,
+        //                     scenarios.nodeBleeds,
+        //                     scenarios.cuts,
+        //                     scenarios.falls,
+        //                     scenarios.flossing,
+        //                     scenarios.toothbrushing
+        //                 ]
+		      //       };
+	       //      }
+        //     }
+        // })
         .when('/drug-interaction', {
         	controller: 'MinigameController',
             templateUrl: '/components/minigames/minigame.html',
