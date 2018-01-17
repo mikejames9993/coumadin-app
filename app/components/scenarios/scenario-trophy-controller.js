@@ -4,7 +4,7 @@ angular.module('CoumadinApp').controller('ScenarioTrophyController', function($s
 	$scope.scenario = data;
 
 	$scope.playAgain = function() {
-		navigation.restart();
+		navigation.retry();
 	};
 
 	$scope.playMoreGames = function() {
