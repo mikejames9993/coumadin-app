@@ -12,6 +12,42 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	$scope.selectedFoods = [];
 	$scope.activeChallenge = null;
 
+	// $scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
+
+	// override testSubmit with a custom condition check
+	$scope.activeScenario.testSubmit = function() {
+		var selectedCount = 0;
+		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+			if ($scope.selectedFoods[i]) {
+				selectedCount++;
+			}
+		}
+		if (selectedCount === 1) {
+			return 'Please add 1 more item to the plate before you can submit';
+		}
+		if (selectedCount === 0) {
+			return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit';
+		}
+		return null;
+	};
+	// override footerReset to perform custom reset when footer reset button is clicked
+	$scope.activeScenario.footerReset = function() {
+		for (var i = 0; i < $scope.selectedFoods.length; i++) {
+			var selectedFood = $scope.selectedFoods[i];
+			if (selectedFood) {
+				for (var k = 0; k < $scope.buffetFoods.length; k++) {
+					var buffetFood = $scope.buffetFoods[k];
+					if (!buffetFood) {
+						$scope.buffetFoods[k] = selectedFood;
+						$scope.selectedFoods[i] = null;
+						transferFood(selectedFood, onDragStartBuffet);
+						break;
+					}
+				}
+			}
+		}
+	};
+
 	for (var i = 0; i < NUM_GAME_FOODS; i++) {
 		$scope.buffetFoods.push(null);
 	}
@@ -142,7 +178,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		console.log('high k choices: ' + highKSelections.length + '/' + $scope.activeChallenge.highK + ', low k choices: ' + lowKSelections.length + '/' + $scope.activeChallenge.lowK);
 		console.log('num wrong choices: ' + numWrongChoices + ', num right choices: ' + numRightChoices);
 		console.log('outcome: ' + outcome);
-		$scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
+		// $scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
 		$scope.activeScenario.status.scoreChange = scoreChange;
 		$scope.activeScenario.status.outcome = outcome;
 		$scope.activeScenario.status.custom = {
@@ -177,7 +213,12 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	}
 
 	function onPlateDrop(event) {
-		if (canSelectMoreFoods() && !_.contains($scope.selectedFoods, draggedFood)) {
+		if (!canSelectMoreFoods()) {
+			console.log('no more');
+			$scope.$apply(function() {
+				$rootScope.showAlert('You cannot put more than ' + NUM_SELECTED_FOODS + ' items on the plate');
+			});
+		} else if (!_.contains($scope.selectedFoods, draggedFood)) {
 			$scope.$apply(function() {
 				// alert("ondrop");
 				var targetIndex = _.findIndex($scope.selectedFoods, function(selectedFood) {
@@ -189,7 +230,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 
 					$scope.selectedFoods[targetIndex] = draggedFood;
 
-					transferFood(draggedFood, $scope.buffetFoods, $scope.selectedFoods, onDragStartPlate);
+					transferFood(draggedFood, onDragStartPlate);
 					draggedFood = null;
 				}
 				
@@ -213,7 +254,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 
 					$scope.buffetFoods[foodIndex] = draggedFood;
 
-					transferFood(draggedFood, $scope.selectedFoods, $scope.buffetFoods, onDragStartBuffet);
+					transferFood(draggedFood, onDragStartBuffet);
 					draggedFood = null;
 				}
 
@@ -224,22 +265,10 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		}
 	}
 
-	function transferFood(food, sourceArray, targetArray, onDragStartCallback) {
-		// if (food && !_.contains(targetArray, food)) {
-			// add food to target array
-			// targetArray.push(food);
-
-			// // remove food from source array
-			// for (var i = 0; i < sourceArray.length; i++) {
-			// 	if (sourceArray[i].id === food.id) {
-			// 		sourceArray.splice(i, 1);
-			// 	}
-			// }
-
-			$timeout(function() {
-				angular.element('.food-card[data-id="' + food.id + '"]').on('dragstart', onDragStartCallback);
-			}, 0);
-		// }
+	function transferFood(food, onDragStartCallback) {
+		$timeout(function() {
+			angular.element('.food-card[data-id="' + food.id + '"]').on('dragstart', onDragStartCallback);
+		}, 0);
 	}
 
 	function canSelectMoreFoods() {

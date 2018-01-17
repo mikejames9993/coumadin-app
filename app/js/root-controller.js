@@ -4,6 +4,7 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 	console.log('root controller loading');
 
 	$rootScope.viewInfo = "";
+	$rootScope.alertMessage = null;
 
 	$rootScope.appName = "Warfarin Hero";
 	$rootScope.user = {
@@ -22,6 +23,15 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 	$rootScope.showInfo = function() {
 		$rootScope.showOverlay('/components/shared/app-info.html', 'AppInfoController', $rootScope.information, null);
 	};
+
+	$rootScope.showAlert = function(message) {
+		console.log('showing alery');
+		$rootScope.alertMessage = message;
+	};
+
+	$rootScope.hideAlert = function() {
+		$rootScope.alertMessage = null;
+	}
 
 	$scope.$on('$routeChangeSuccess', function(event, toState, toParams, fromState, fromParams){ 
 

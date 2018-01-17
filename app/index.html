@@ -65,6 +65,7 @@
 	</head>
 	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
+			<ng-include ng-if="alertMessage" src="'components/shared/alert-banner.html'"></ng-include>
 			<div class="container-fluid app-header">
 				<div class="row vertical-align">
 					<div class="col-xs-4">

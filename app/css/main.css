@@ -443,3 +443,23 @@ hr.modal-separator {
     cursor: pointer;
     color: blue;
 }
+
+#alert-banner {
+	background-color: #8d6;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 150;
+	padding: 20px 30px;
+	font-size: 16pt;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  65% { opacity: 100; }
+  95% { opacity: 0; }
+}

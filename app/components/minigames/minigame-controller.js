@@ -38,10 +38,16 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			config: $scope.scenarios[activeScenarioIndex],
 			status: {
 				complete: false,
-				canSubmit: false,
 				outcome: 'good',
 				message: '',
 				scoreChange: 0
+			},
+			testSubmit: function() {
+				// return null (no error) by default
+				return null;
+			},
+			footerReset: function() {
+				// do nothing by default
 			}
 		};
 	}
@@ -72,12 +78,19 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	}
 
 	function showOutroOverlay() {
-		completeScenario();
-		$rootScope.hideOverlay();
-		if ($scope.activeScenario.status.complete) {
-			$rootScope.showOverlay('/components/scenarios/scenario-trophy.html', 'ScenarioTrophyController', $scope.activeScenario, navigation);
+		var submitErrorMessage = $scope.activeScenario.testSubmit();
+		console.log('submit err = ' + submitErrorMessage);
+		if (submitErrorMessage) {
+			$rootScope.showAlert(submitErrorMessage);
 		} else {
-			$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+			$rootScope.hideAlert(submitErrorMessage);
+			completeScenario();
+			$rootScope.hideOverlay();
+			if ($scope.activeScenario.status.complete) {
+				$rootScope.showOverlay('/components/scenarios/scenario-trophy.html', 'ScenarioTrophyController', $scope.activeScenario, navigation);
+			} else {
+				$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
+			}
 		}
 	}
 
