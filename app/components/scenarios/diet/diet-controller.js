@@ -12,42 +12,6 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	$scope.selectedFoods = [];
 	$scope.activeChallenge = null;
 
-	// $scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
-
-	// override testSubmit with a custom condition check
-	$scope.activeScenario.testSubmit = function() {
-		var selectedCount = 0;
-		for (var i = 0; i < $scope.selectedFoods.length; i++) {
-			if ($scope.selectedFoods[i]) {
-				selectedCount++;
-			}
-		}
-		if (selectedCount === 1) {
-			return 'Please add 1 more item to the plate before you can submit';
-		}
-		if (selectedCount === 0) {
-			return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit';
-		}
-		return null;
-	};
-	// override footerReset to perform custom reset when footer reset button is clicked
-	$scope.activeScenario.footerReset = function() {
-		for (var i = 0; i < $scope.selectedFoods.length; i++) {
-			var selectedFood = $scope.selectedFoods[i];
-			if (selectedFood) {
-				for (var k = 0; k < $scope.buffetFoods.length; k++) {
-					var buffetFood = $scope.buffetFoods[k];
-					if (!buffetFood) {
-						$scope.buffetFoods[k] = selectedFood;
-						$scope.selectedFoods[i] = null;
-						transferFood(selectedFood, onDragStartBuffet);
-						break;
-					}
-				}
-			}
-		}
-	};
-
 	for (var i = 0; i < NUM_GAME_FOODS; i++) {
 		$scope.buffetFoods.push(null);
 	}
@@ -76,6 +40,40 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	initScenario();
 
 	function initScenario() {
+		// override testSubmit with a custom condition check
+		$scope.activeScenario.testSubmit = function() {
+			var selectedCount = 0;
+			for (var i = 0; i < $scope.selectedFoods.length; i++) {
+				if ($scope.selectedFoods[i]) {
+					selectedCount++;
+				}
+			}
+			if (selectedCount === 1) {
+				return 'Please add 1 more item to the plate before you can submit';
+			}
+			if (selectedCount === 0) {
+				return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit';
+			}
+			return null;
+		};
+		// override footerReset to perform custom reset when footer reset button is clicked
+		$scope.activeScenario.footerReset = function() {
+			for (var i = 0; i < $scope.selectedFoods.length; i++) {
+				var selectedFood = $scope.selectedFoods[i];
+				if (selectedFood) {
+					for (var k = 0; k < $scope.buffetFoods.length; k++) {
+						var buffetFood = $scope.buffetFoods[k];
+						if (!buffetFood) {
+							$scope.buffetFoods[k] = selectedFood;
+							$scope.selectedFoods[i] = null;
+							transferFood(selectedFood, onDragStartBuffet);
+							break;
+						}
+					}
+				}
+			}
+		};
+	
 		// Select foods at random
 		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), NUM_GAME_FOODS);
 		for (var i = 0; i < gameFoods.length; i++) {
