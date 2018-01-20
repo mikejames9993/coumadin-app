@@ -62,15 +62,6 @@ body { /* resetting the background color - offsets the issue in .app-body*/
 	background-color: #f7f4ed;
 }
 
-.app-body{
-	position: absolute;
-	top: 50px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-
 .user-welcome {
 	margin-top: 0px;
 	text-align: center;
@@ -100,11 +91,11 @@ i.fa.no-padding {
 /*login page*/
 
 .app-header {
-	background-color: #405c70;
+	background-color: white;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	color: white;
 	height: 50px;
+	border-bottom: 1px solid #bbb;
 }
 
 .title-header h1{
@@ -165,8 +156,6 @@ i.fa.no-padding {
 	color: #30a0ff;
 }
 body,p,h1,h2,h3,h4,h5,h6 {
-	/*font-size: 14pt;*/
-	/*font-size: 16px;*/
 	font-family: arial black;
 }
 body {
@@ -248,11 +237,6 @@ body {
 	height: 60px;
 }
 
-.scenario-footer .center-button {
-	padding-left: 0;
-	padding-right: 0;
-}
-
 .scenario-footer #scenario-done-btn {
 	float: right;
 }
@@ -279,7 +263,14 @@ body {
 }
 
 /* minigames */
-.minigame-wrapper{
+.minigame-outer-wrapper {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.minigame-inner-wrapper {
 	height: 100%;
 }
 .top-half-wrapper {
@@ -437,8 +428,10 @@ h3.mini-game-title {
 }
 
 .btn {
-	border-radius: 8px;
 	white-space: normal;
+	background-color: white;
+	color: blue;
+	border-color: #589;
 }
 
 img.scenario-badge {

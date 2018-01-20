@@ -462,6 +462,7 @@ app.run(function($rootScope, $location, $uibModal) {
     }
 
     $rootScope.goToLanding = function() {
+        $rootScope.hideOverlay();
         $location.url('/landing');
     };
 });

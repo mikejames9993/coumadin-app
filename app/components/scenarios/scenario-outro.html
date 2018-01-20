@@ -1,3 +1,4 @@
+<ng-include src="'components/shared/app-header.html'"></ng-include>
 <div class="modal-header">
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h2 class="modal-title text-center" id="modal-title">{{scenario.config.motto}}</h2>
@@ -12,11 +13,5 @@
 <div class="modal-footer">
 	<div class="col-xs-4">
     	<button class="btn btn-success pull-left" type="button" title="Retry this scenario" ng-click="resume()"><i class="fa fa-refresh"></i>Refresh and Replay</button>
-    </div>
-    <div class="col-xs-4 text-center">
-    	<button class="btn btn-success" type="button" title="More Info" ng-click="showCoumadinInfoOverlay()"><i class="fa fa-info"></i>More Info</button>
-    </div>
-    <div class="col-xs-4">
-    	<button class="btn btn-success pull-right" type="button" title="Go to the next scenario" ng-click="next()"><i class="fa fa-arrow-right"></i>Save Points and Exit</button>
     </div>
 </div>

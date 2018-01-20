@@ -22,7 +22,6 @@
 		<script type="text/javascript" src="bower_components/angular-permission/dist/angular-permission-ng.min.js"></script>
 		<script type='text/javascript' src="bower_components/angular-media-queries/match-media.js"></script>
 		<script type='text/javascript' src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-
 		<script type="text/javascript" src="lib/dragdroptouch/DragDropTouch.js"></script>
 
 	    <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
@@ -66,18 +65,6 @@
 	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
 			<ng-include ng-if="alertMessage" src="'components/shared/alert-banner.html'"></ng-include>
-			<div class="container-fluid app-header">
-				<div class="row vertical-align">
-					<div class="col-xs-4">
-						<button ng-if="showBackBtn && showUserLabel" class="btn btn-default" ng-click="goToLanding()"><i class="fa fa-arrow-left no-padding"></i></button>
-						<button ng-if="showMenuBtn" class="btn btn-default" ng-click="logout()"><i class="fa fa-sign-out no-padding"></i></button>
-					</div>
-					<div class="col-xs-4 text-center">{{userData.score}} PTS</div>
-					<div class="col-xs-4">
-						<button ng-if="showInfoBtn" class="btn btn-default pull-right" ng-click="showInfo()"><i class="fa fa-info no-padding"></i></button>
-					</div>
-				</div>
-			</div>
 			<h5 ng-if="viewInfo !== null && viewInfo !== undefined && viewInfo.length > 0" id="view-info" class="text-center"><em>{{viewInfo}}</em></h5>
 			
 			<div class="app-body">

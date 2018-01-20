@@ -1,18 +1,18 @@
-<div class="minigame-wrapper">
-	<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/components/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
-	<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
-	<div class="row footer scenario-footer">
-		<div class="col-xs-3">
-			<button class="btn btn-success pull-left" ng-click="showRules()">Back</button>
-		</div>
-		<div class="col-xs-3 text-center center-button">
-			<button class="btn btn-success" ng-click="showCoumadinInfoOverlay()">More Info</button>
-		</div>
-		<div class="col-xs-3 text-center center-button">
-			<button class="btn btn-success" ng-click="activeScenario.footerReset()">Clear Plate</button>
-		</div>
-		<div class="col-xs-3">
-			<button class="btn btn-success pull-right" ng-click="showOutro()">Submit</button>
+<ng-include src="'components/shared/app-header.html'"></ng-include>
+<div class="minigame-outer-wrapper">
+	<div class="minigame-inner-wrapper">
+		<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/components/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
+		<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
+		<div class="row footer scenario-footer">
+			<div class="col-xs-4">
+				<button class="btn pull-left" ng-click="showRules()">Back</button>
+			</div>
+			<div class="col-xs-4 text-center">
+				<button class="btn" ng-click="activeScenario.footerReset()">Clear Plate</button>
+			</div>
+			<div class="col-xs-4">
+				<button class="btn pull-right" ng-click="showOutro()">Submit</button>
+			</div>
 		</div>
 	</div>
 </div>
