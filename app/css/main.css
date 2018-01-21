@@ -159,7 +159,7 @@ body,p,h1,h2,h3,h4,h5,h6 {
 	font-family: arial black;
 }
 body {
-	font-size: 12pt;
+	font-size: 16pt;
 }
 .info-table{
 	border: none;
@@ -487,9 +487,9 @@ hr.modal-separator {
 #message-container .message.information {
 }
 
-.blink {
+/*.blink {
   animation: blinker 1s linear infinite;
-}
+}*/
 
 @keyframes blinker {  
   65% { opacity: 100; }
