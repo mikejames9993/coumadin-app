@@ -4,7 +4,7 @@
     <h2 class="modal-title text-center" id="modal-title">Congratulations!</h2>
 </div>
 <div class="modal-body" id="modal-body">
-	<img class="scenario-badge img-responsive" src="{{scenario.config.trophyImage}}" alt="{{scenario.config.name}} Proficiency Badge">
+	<img class="scenario-badge img-responsive" ng-src="{{scenario.config.trophyImage}}" alt="{{scenario.config.name}} Proficiency Badge">
 	<hr class="modal-separator">
 	<div ng-repeat="info in scenario.config.trophyText">
 		<h3 ng-if="info.title">{{info.title}}</h3>
@@ -13,10 +13,7 @@
 	</div>
 </div>
 <div class="modal-footer">
-	<div class="col-xs-6">
-    	<button class="btn pull-left" type="button" ng-click="playAgain()"><i class="fa fa-rotate-left"></i>Play Again</button>
-    </div>
-    <div class="col-xs-6">
-    	<button class="btn pull-right" type="button" ng-click="playMoreGames()"><i class="fa fa-arrow-right"></i>Play More Games</button>
+	<div class="col-xs-12	">
+    	<button class="btn" type="button" ng-click="playAgain()">Tap Here to Play This Game Again</button>
     </div>
 </div>

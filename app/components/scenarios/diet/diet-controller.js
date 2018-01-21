@@ -49,10 +49,10 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 				}
 			}
 			if (selectedCount === 1) {
-				return 'Please add 1 more item to the plate before you can submit';
+				return 'Please add 1 more item to the plate before you can submit.';
 			}
 			if (selectedCount === 0) {
-				return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit';
+				return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit.';
 			}
 			return null;
 		};
