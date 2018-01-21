@@ -10,7 +10,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	var activeScenarioIndex = -1;
 
-	console.log("user data: " + JSON.stringify($rootScope.user));
+	// console.log("user data: " + JSON.stringify($rootScope.user));
 
 	$scope.hasNextScenario = function() {
 		return activeScenarioIndex < ($scope.scenarios.length - 1);
@@ -112,7 +112,6 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 
 	$scope.showOutro = showOutroOverlay;
 	$scope.showRules = showRulesOverlay;
-	// $scope.showInfo = showInfoOverlay;
 
 	// Initialize the first scenario
 	if ($scope.hasNextScenario()) {

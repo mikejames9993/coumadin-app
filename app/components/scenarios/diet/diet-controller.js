@@ -29,8 +29,16 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		highK: 0,
 		lowK: 2
 	}];
+	var singleItemChallenges = [{
+		highK: 1,
+		lowK: 0
+	}, {
+		highK: 0,
+		lowK: 1
+	}];
 
 	var draggedFood = null;
+	var singleItemRules = false;
 
 	$rootScope.$on('minigame:scenario:restart', initScenario);
 	$rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
@@ -42,17 +50,14 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	function initScenario() {
 		// override testSubmit with a custom condition check
 		$scope.activeScenario.testSubmit = function() {
-			var selectedCount = 0;
-			for (var i = 0; i < $scope.selectedFoods.length; i++) {
-				if ($scope.selectedFoods[i]) {
-					selectedCount++;
+			var numSelectedFoods = countSelectedFoods();
+			var targetSelectedFoods = singleItemRules ? 1 : NUM_SELECTED_FOODS;
+			if (numSelectedFoods < targetSelectedFoods) {
+				if (numSelectedFoods === 0) {
+					return 'Please drag and drop ' + targetSelectedFoods + ' Vitamin K foods on the plate before you can submit.';
+				} else {
+					return 'Please add 1 more item to the plate before you can submit.';
 				}
-			}
-			if (selectedCount === 1) {
-				return 'Please add 1 more item to the plate before you can submit.';
-			}
-			if (selectedCount === 0) {
-				return 'Please drag and drop ' + NUM_SELECTED_FOODS + ' Vitamin K foods on the plate before you can submit.';
 			}
 			return null;
 		};
@@ -81,8 +86,10 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		}
 
 		// Select a random challenge scenario
+		singleItemRules = false;
 		clearSelectedFoods();
 		selectChallenge();
+		displayInstructions();
 
 		$timeout(function() {
 			console.log('foods: ' + angular.element('.food-card').length);
@@ -105,30 +112,43 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 					$scope.buffetFoods[index] = null;
 				}
 			});
+			var remainingFoods = getRemainingFoods();
+			if (remainingFoods.length <= NUM_SELECTED_FOODS) {
+				console.log('entering SINGLE ITEM RULES mode');
+				singleItemRules = true;
+			}
 			clearSelectedFoods();
 			selectChallenge();
 			customizeScenarioStatus(0, 0);
 		}
+		displayInstructions();
 	}
 
 	function selectChallenge() {
 		var remainingHighKFoods = _.where($scope.buffetFoods, { kLevel: 1 });
 		var remainingLowKFoods = _.where($scope.buffetFoods, { kLevel: 3 });
 
-		var availableChallenges = _.filter(challenges, function(challenge) {
+		var challengeSet = challenges;
+		if (singleItemRules) {
+			challengeSet = singleItemChallenges;
+		}
+
+		var availableChallenges = _.filter(challengeSet, function(challenge) {
 			return challenge.highK <= remainingHighKFoods.length && challenge.lowK <= remainingLowKFoods.length;
 		});
 		// console.log("remaining k foods: high=" + remainingHighKFoods.length + ", low=" + remainingLowKFoods.length + ", challenges available:" + availableChallenges.length);
 
 		$scope.activeChallenge = _.shuffle(availableChallenges)[0];
+	}
 
+	function displayInstructions() {
 		var challengeInstructions = '';
-		if ($scope.activeChallenge.highK > 0 && $scope.activeChallenge.lowK) {
+		if ($scope.activeChallenge.highK > 0 && $scope.activeChallenge.lowK > 0) {
 			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high and ' + $scope.activeChallenge.lowK + ' low Vitamin K foods on the plate.';
 		} else if ($scope.activeChallenge.highK === 0 && $scope.activeChallenge.lowK > 0) {
-			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.lowK + ' low Vitamin K foods on the plate.';
+			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.lowK + ' low Vitamin K food(s) on the plate.';
 		} else {
-			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high Vitamin K foods on the plate.';
+			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high Vitamin K food(s) on the plate.';
 		}
 		console.log('instructions: ' + challengeInstructions);
 
@@ -203,10 +223,50 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 			pointsPerWrongChoice: POINTS_PER_WRONG_CHOICE
 		};
 
-		var numRemainingFoods = (_.filter($scope.buffetFoods, function(food) {
-			return food !== null && food !== undefined;
-		}) || []).length;
-		$scope.activeScenario.status.complete = ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0);
+		var remainingFoods = getRemainingFoods();
+		var numRemainingFoods = remainingFoods.length;
+
+
+
+		/// DEBUG
+		var numLow = 0;
+		var numHigh = 0;
+		_.each($scope.buffetFoods, function(food) {
+			if (food !== null && food !== undefined) {
+				if (food.kLevel === 1) {
+					numHigh++;
+				} else {
+					numLow++;
+				}
+			}
+		});
+		console.log('remaining: low=' + numLow + ', high=' + numHigh);
+		/// END DEBUG
+
+
+
+		var firstKLevel = null;
+		var multipleKLevels = false;
+		if ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods <= NUM_SELECTED_FOODS) {
+			// Special rules for when there are only 1 or 2 foods left
+			_.each(remainingFoods, function(remainingFood) {
+				if (firstKLevel === null) {
+					firstKLevel = remainingFood.kLevel;
+				}
+				if (remainingFood.kLevel !== firstKLevel) {
+					multipleKLevels = true;
+				}
+			});
+			// If both remaining foods are the same K type, we're done
+			if (!multipleKLevels) {
+				$scope.activeScenario.status.scoreChange += (numRemainingFoods * POINTS_PER_RIGHT_CHOICE);
+				$scope.activeScenario.status.complete = true;
+			} else {
+				$scope.activeScenario.status.complete = false;
+			}
+		} else {
+			$scope.activeScenario.status.complete = ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0);
+		}
 	}
 
 	function onDragStartBuffet(event) {
@@ -231,7 +291,7 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 			$scope.$apply(function() {
 				$rootScope.showMessage({
 					type: 'warning',
-					text: 'You cannot put more than ' + NUM_SELECTED_FOODS + ' items on the plate'
+					text: 'You cannot put more than ' + (singleItemRules ? 1 : NUM_SELECTED_FOODS) + ' items on the plate.'
 				});
 			});
 		} else if (!_.contains($scope.selectedFoods, draggedFood)) {
@@ -288,12 +348,24 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 	}
 
 	function canSelectMoreFoods() {
-		var canSelectMore = false;
+		var numSelectedFoods = countSelectedFoods();
+		var maxSelectedFoods = singleItemRules ? 1 : NUM_SELECTED_FOODS;
+		return numSelectedFoods < maxSelectedFoods;
+	}
+
+	function countSelectedFoods() {
+		var numSelectedFoods = 0;
 		_.each($scope.selectedFoods, function(selectedFood) {
-			if (!selectedFood) {
-				canSelectMore = true;
+			if (selectedFood) {
+				numSelectedFoods++;
 			}
 		});
-		return canSelectMore;
+		return numSelectedFoods;
+	}
+
+	function getRemainingFoods() {
+		return _.filter($scope.buffetFoods, function(food) {
+			return food !== null && food !== undefined;
+		}) || [];
 	}
 });

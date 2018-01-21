@@ -479,7 +479,7 @@ hr.modal-separator {
 	position: relative;
 	width: 100%;
 	z-index: 150;
-	padding: 20px 30px;
+	padding: 10px;
 	font-size: 16pt;
 }
 #message-container .message.warning {
