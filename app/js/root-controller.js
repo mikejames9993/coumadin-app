@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('RootController', function($rootScope, $scope, $location, screenSize) {
+angular.module('CoumadinApp').controller('RootController', function($rootScope, $scope, $location, screenSize, _) {
 	console.log('root controller loading');
 
 	$rootScope.viewInfo = "";
-	$rootScope.alertMessage = null;
+	$rootScope.bannerMessages = [];
 
-	$rootScope.appName = "Warfarin Hero";
+	$rootScope.appName = "Coumadin Hero";
 	$rootScope.user = {
 		email: "",
 		password: ""
@@ -17,21 +17,32 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 		$rootScope.user = {
 			email: "",
 			password: ""
-		}
+		};
 	};
 
 	$rootScope.showInfo = function() {
 		$rootScope.showOverlay('/components/shared/app-info.html', 'AppInfoController', $rootScope.information, null);
 	};
 
-	$rootScope.showAlert = function(message) {
-		console.log('showing alery');
-		$rootScope.alertMessage = message;
+	$rootScope.showMessage = function(message) {
+		var index = _.findIndex($rootScope.bannerMessages, { type: message.type });
+		if (index !== -1) {
+			$rootScope.bannerMessages[index] = message;
+		} else {
+			$rootScope.bannerMessages.push(message);
+		}
 	};
 
-	$rootScope.hideAlert = function() {
-		$rootScope.alertMessage = null;
-	}
+	$rootScope.hideMessage = function(type) {
+		if (type !== null && type !== undefined) {
+			var index = _.findIndex($rootScope.bannerMessages, { type: type });
+			if (index !== -1) {
+				$rootScope.bannerMessages.splice(index, 1);
+			}
+		} else {
+			$rootScope.bannerMessages = [];
+		}
+	};
 
 	$scope.$on('$routeChangeSuccess', function(event, toState, toParams, fromState, fromParams){ 
 

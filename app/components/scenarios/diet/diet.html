@@ -42,7 +42,6 @@
 		<div class="col-xs-4 full-height">
 			<div class="container-fluid full-height">
 				<div class="diet-center-plate full-height plate-drop-zone">
-					<div class="diet-instructions">Test your knowledge of high and low Vitamin K foods.</div>
 					<div class="row first-row half-height">
 						<div class="col-xs-8 col-xs-offset-2">
 							<div ng-if="selectedFoods[0]" class="food-card" draggable="true" data-id="{{selectedFoods[0].id}}" ng-click="expandFood(selectedFoods[0])" >
@@ -57,10 +56,6 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="activeChallenge.highK > 0 && activeChallenge.lowK > 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.highK}} high and {{activeChallenge.lowK}} low Vitamin K foods on this plate.</div>
-					<div ng-if="activeChallenge.highK === 0 && activeChallenge.lowK > 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.lowK}} low Vitamin K foods on this plate.</div>
-					<div ng-if="activeChallenge.highK > 0 && activeChallenge.lowK === 0" class="diet-scenario-instructions">Drag and drop {{activeChallenge.highK}} high Vitamin K foods on this plate.</div>
-					<!-- <button type="button" class="btn btn-submit diet-submit">Submit</button> -->
 				</div>
 			</div>
 		</div>

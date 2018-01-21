@@ -1,0 +1,12 @@
+<div ng-repeat="message in bannerMessages">
+	<div ng-if="message.type === 'warning'" class="message-wrapper">
+		<div class="message warning blink" ng-click="hideMessage(message.type)">
+			<strong>{{message.text}} Tap to Cancel.</strong>
+		</div>
+	</div>
+	<div ng-if="message.type === 'info'" class="message-wrapper">
+		<div class="message info blink" ng-click="hideMessage(message.type)">
+			<strong>{{message.text}} Tap to Cancel.</strong>
+		</div>
+	</div>
+</div>

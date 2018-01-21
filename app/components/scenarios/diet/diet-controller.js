@@ -118,9 +118,25 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 		var availableChallenges = _.filter(challenges, function(challenge) {
 			return challenge.highK <= remainingHighKFoods.length && challenge.lowK <= remainingLowKFoods.length;
 		});
-		console.log("remaining k foods: high=" + remainingHighKFoods.length + ", low=" + remainingLowKFoods.length + ", challenges available:" + availableChallenges.length);
+		// console.log("remaining k foods: high=" + remainingHighKFoods.length + ", low=" + remainingLowKFoods.length + ", challenges available:" + availableChallenges.length);
 
 		$scope.activeChallenge = _.shuffle(availableChallenges)[0];
+
+		var challengeInstructions = '';
+		if ($scope.activeChallenge.highK > 0 && $scope.activeChallenge.lowK) {
+			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high and ' + $scope.activeChallenge.lowK + ' low Vitamin K foods on the plate.';
+		} else if ($scope.activeChallenge.highK === 0 && $scope.activeChallenge.lowK > 0) {
+			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.lowK + ' low Vitamin K foods on the plate.';
+		} else {
+			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high Vitamin K foods on the plate.';
+		}
+		console.log('instructions: ' + challengeInstructions);
+
+		// Display instruction banner
+		$rootScope.showMessage({
+			type: 'info',
+			text: challengeInstructions
+		});
 	}
 
 	function clearSelectedFoods() {
@@ -212,13 +228,15 @@ angular.module('CoumadinApp').controller('DietController', function($rootScope, 
 
 	function onPlateDrop(event) {
 		if (!canSelectMoreFoods()) {
-			console.log('no more');
 			$scope.$apply(function() {
-				$rootScope.showAlert('You cannot put more than ' + NUM_SELECTED_FOODS + ' items on the plate');
+				$rootScope.showMessage({
+					type: 'warning',
+					text: 'You cannot put more than ' + NUM_SELECTED_FOODS + ' items on the plate'
+				});
 			});
 		} else if (!_.contains($scope.selectedFoods, draggedFood)) {
 			$scope.$apply(function() {
-				// alert("ondrop");
+				$rootScope.hideMessage('warning');
 				var targetIndex = _.findIndex($scope.selectedFoods, function(selectedFood) {
 					return !selectedFood;
 				});

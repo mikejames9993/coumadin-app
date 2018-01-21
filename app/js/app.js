@@ -460,7 +460,7 @@ app.run(function($rootScope, $location, $uibModal) {
             coumadinInfoModalInstance.close();
             coumadinInfoModalInstance = null;
         }
-    }
+    };
 
     $rootScope.goToLanding = function() {
         $rootScope.hideOverlay();

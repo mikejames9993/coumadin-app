@@ -64,7 +64,9 @@
 	</head>
 	<body ng-app="CoumadinApp">
 		<div ng-controller="RootController">
-			<ng-include ng-if="alertMessage" src="'components/shared/alert-banner.html'"></ng-include>
+			<div id="message-container">
+				<ng-include src="'components/shared/message-banner.html'"></ng-include>
+			</div>
 			<h5 ng-if="viewInfo !== null && viewInfo !== undefined && viewInfo.length > 0" id="view-info" class="text-center"><em>{{viewInfo}}</em></h5>
 			
 			<div class="app-body">

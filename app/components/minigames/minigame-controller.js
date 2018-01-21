@@ -81,9 +81,12 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		var submitErrorMessage = $scope.activeScenario.testSubmit();
 		console.log('submit err = ' + submitErrorMessage);
 		if (submitErrorMessage) {
-			$rootScope.showAlert(submitErrorMessage);
+			$rootScope.showMessage({
+				type: 'warning',
+				text: submitErrorMessage
+			});
 		} else {
-			$rootScope.hideAlert(submitErrorMessage);
+			$rootScope.hideMessage();
 			completeScenario();
 			$rootScope.hideOverlay();
 			if ($scope.activeScenario.status.complete) {
