@@ -167,7 +167,8 @@ app.config(function($routeProvider) {
                 text: 'Remember, you can still enjoy Vitamin K food items but not in excess.'
             }],
             trophyImage: 'images/badges/diet.png',
-            foodItems: foodItems
+            foodItems: foodItems,
+            footerResetText: 'Clear Plate'
         },
         flossing: {
             id: 'flossing',

@@ -11,7 +11,5 @@
 	<ng-include src="'/components/scenarios/' + scenario.config.id + '/' + scenario.status.outcome + '-result.html'"></ng-include>
 </div>
 <div class="modal-footer">
-	<div class="col-xs-4">
-    	<button class="btn pull-left" type="button" title="Retry this scenario" ng-click="resume()"><i class="fa fa-refresh"></i>Refresh and Replay</button>
-    </div>
+	<button class="btn text-center" type="button" title="Retry this scenario" ng-click="resume()">Save Points and Keep Playing</button>
 </div>

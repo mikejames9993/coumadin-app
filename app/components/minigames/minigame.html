@@ -4,14 +4,14 @@
 		<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/components/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 		<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
 		<div class="row footer scenario-footer">
-			<div class="col-xs-4">
-				<button class="btn pull-left" ng-click="showRules()">Back</button>
+			<div class="col-xs-3 full-height">
+				<button class="btn pull-left full-height" ng-click="showRules()"><i class="fa fa-arrow-left"></i>Back</button>
 			</div>
-			<div class="col-xs-4 text-center">
-				<button class="btn" ng-click="activeScenario.footerReset()">Clear Plate</button>
+			<div class="col-xs-3 text-center full-height">
+				<button class="btn full-height" ng-click="activeScenario.footerReset()">{{activeScenario.config.footerResetText || 'Reset'}}</button>
 			</div>
-			<div class="col-xs-4">
-				<button class="btn pull-right" ng-click="showOutro()">Submit</button>
+			<div class="col-xs-6 full-height">
+				<button class="btn pull-right full-height" ng-click="showOutro()">Tap Here to Submit When Done</button>
 			</div>
 		</div>
 	</div>
