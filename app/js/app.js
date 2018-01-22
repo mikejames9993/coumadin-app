@@ -386,9 +386,7 @@ app.config(function($routeProvider) {
             	minigameConfig: function() {
             		return {
 	            		name: 'Blood Clotting Testing',
-		            	scenarios: [
-                            scenarios.ptInrMonitoring
-                        ]
+		            	scenarios: []
 		            };
 	            }
             }
