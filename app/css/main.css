@@ -90,12 +90,15 @@ i.fa.no-padding {
 
 /*login page*/
 
-.app-header {
+#app-header {
 	background-color: white;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	height: 50px;
 	border-bottom: 1px solid #bbb;
+}
+#app-header .btn {
+    width: 100%;
 }
 
 .title-header h1{
@@ -157,6 +160,7 @@ i.fa.no-padding {
 }
 body,p,h1,h2,h3,h4,h5,h6 {
 	font-family: arial black;
+	font-weight: bold;
 }
 body {
 	font-size: 16pt;
@@ -487,9 +491,9 @@ hr.modal-separator {
 #message-container .message.information {
 }
 
-/*.blink {
+.blink {
   animation: blinker 1s linear infinite;
-}*/
+}
 
 @keyframes blinker {  
   65% { opacity: 100; }
