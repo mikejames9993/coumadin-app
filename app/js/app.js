@@ -160,11 +160,11 @@ app.config(function($routeProvider) {
                 text: 'Click More Info on any screen to learn more about Coumadin.'
             }],
             trophyText: [{
-                text: 'You made the right selection of all 10 low and high Vitamin K foods.'
+                text: 'You made the right selection of all 10 high and low Vitamin K foods.'
             }, {
-                text: 'You have earned a Proficiency Badge which will display at the right corner of the screen the next time you play the game.'
+                text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
             }, {
-                text: 'Remember, you can still enjoy Vitamin K food items but not in excess.'
+                text: 'Remember, you can still enjoy Vitamin K foods but not in excess!'
             }],
             trophyImage: 'images/badges/diet.png',
             foodItems: foodItems,

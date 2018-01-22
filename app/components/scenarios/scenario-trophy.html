@@ -1,14 +1,14 @@
 <ng-include src="'components/shared/app-header.html'"></ng-include>
 <div class="modal-header">
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
-    <h2 class="modal-title text-center" id="modal-title">Congratulations!</h2>
+	<img class="center-image img-responsive" ng-src="{{scenario.config.trophyImage}}" alt="{{scenario.config.name}} Proficiency Badge">
 </div>
 <div class="modal-body" id="modal-body">
-	<img class="scenario-badge img-responsive" ng-src="{{scenario.config.trophyImage}}" alt="{{scenario.config.name}} Proficiency Badge">
-	<hr class="modal-separator">
+	<p class="modal-title text-center" id="modal-title">Congratulations!</p>
+	</br>
 	<div ng-repeat="info in scenario.config.trophyText">
-		<h3 ng-if="info.title">{{info.title}}</h3>
-		<p>{{info.text}}</p>
+		<h3 class="text-center" ng-if="info.title">{{info.title}}</h3>
+		<p class="text-center">{{info.text}}</p>
 		</br>
 	</div>
 </div>
