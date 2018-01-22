@@ -158,7 +158,7 @@ app.config(function($routeProvider) {
                 text: 'A proficiency badge will be awarded once all 10 foods are correctly placed.'
             }],
             trophyText: [{
-                text: 'You made the right selection of all 10 high and low Vitamin K foods.'
+                text: 'You\'ve earned enough points to earn a proficiency badge!'
             }, {
                 text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
             }, {
