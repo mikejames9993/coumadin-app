@@ -1,13 +1,16 @@
 <div id="app-header" class="container-fluid">
 	<div class="row vertical-align">
-		<div class="col-xs-3 button-wrapper">
-			<button class="btn" ng-click="goToLanding()">Home</button>
+		<div class="header-item-wrapper" style="width: 20%;">
+			<button class="btn header-item" ng-click="goToLanding()">Home</button>
 		</div>
-		<div class="col-xs-6 button-wrapper text-center">
-			<button class="btn" ng-click="showCoumadinInfoOverlay()">More Info</button>
+		<div class="header-item-wrapper text-center" style="width: 25%">
+			<button class="btn header-item" ng-click="showCoumadinInfoOverlay()">More Info</button>
 		</div>
-		<div class="col-xs-3 button-wrapper">
-			<button class="btn pull-right" ng-click="logout()">Exit</button>
+		<div class="header-item-wrapper text-center" style="width: 35%">
+			<div class="header-item">Points: {{userData.score}}</div>
+		</div>
+		<div class="header-item-wrapper" style="width: 20%">
+			<button class="btn header-item" ng-click="logout()">Exit</button>
 		</div>
 	</div>
 </div>

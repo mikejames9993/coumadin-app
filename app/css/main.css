@@ -97,15 +97,16 @@ i.fa.no-padding {
 	height: 50px;
 	border-bottom: 1px solid #bbb;
 }
-#app-header .btn {
+#app-header .header-item {
     width: 100%;
     padding: 5px 0px;
 	font-family: arial black;
 	font-weight: bold;
+	font-size: 15px;
 }
-#app-header .button-wrapper {
-	padding-left: 5px;
-	padding-right: 5px;
+#app-header .header-item-wrapper {
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 .title-header h1{
@@ -440,11 +441,11 @@ h3.mini-game-title {
 	list-style: none;
 }
 
-.btn {
+.btn, .header-item, .score-label {
 	white-space: normal;
 	background-color: white;
 	color: blue;
-	border-color: #589;
+	border: 1px solid #589;
 }
 .btn-large {
     padding: 10px 50px;
