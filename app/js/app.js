@@ -200,13 +200,13 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Remember, you must always check with your doctor or pharmacist before you take any new medications'
             }],
-            trophyImage: 'images/badges/diet.png',
+            trophyImage: 'images/badges/drug.png',
         },
         blood: {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
             altName: 'PT/INR Monitoring',
-            motto: '',
+            motto: 'Clot or Not?',
             icon: 'images/scenarios/ptinr.png',
             coumadinInfo: [
                 {
@@ -242,7 +242,7 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Remember, you must always check with your doctor or pharmacist when your INR numbers are too high or too low.'
             }],
-            trophyImage: 'images/badges/diet.png',
+            trophyImage: 'images/badges/blood.png',
         }
     };
 
