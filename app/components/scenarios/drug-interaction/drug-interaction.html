@@ -1,0 +1,76 @@
+<div class="container-fluid eating-wrapper" ng-controller="DietController">
+	<!-- top row of foods -->
+	<div class="row quarter-height">
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card food="buffetFoods[0]" location-id="0"></food-card>
+		</div>
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card food="buffetFoods[1]" location-id="1"></food-card>
+		</div>
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card food="buffetFoods[2]" location-id="2"></food-card>
+		</div>
+	</div>
+	<!-- middle two rows of foods -->
+	<div class="row half-height">
+		<!-- left two foods -->
+		<div class="col-xs-4 full-height">
+			<div class="row half-height">
+				<div class="col-xs-12 buffet-drop-zone full-height">
+					<food-card food="buffetFoods[3]" location-id="3"></food-card>
+				</div>
+			</div>
+			<div class="row half-height">
+				<div class="col-xs-12 buffet-drop-zone full-height">
+					<food-card food="buffetFoods[5]" location-id="5"></food-card>
+				</div>
+			</div>
+		</div>
+		<!-- center plate section -->
+		<div class="col-xs-4 full-height">
+			<div class="container-fluid full-height">
+				<div class="diet-center-plate full-height plate-drop-zone">
+					<div class="row first-row half-height">
+						<div class="col-xs-8 col-xs-offset-2 full-height">
+							<div ng-if="selectedFoods[0]" class="food-card full-height" draggable="true" data-id="{{selectedFoods[0].id}}" ng-click="expandFood(selectedFoods[0])" >
+								<img ng-src="{{selectedFoods[0].src}}" alt="{{selectedFoods[0].name}}" class="food-icon img-responsive" data-id="{{selectedFoods[0].id}}">
+							</div>
+						</div>
+					</div>
+					<div class="row half-height">
+						<div class="col-xs-8 col-xs-offset-2 full-height">
+							<div ng-if="selectedFoods[1]" class="food-card full-height" draggable="true" data-id="{{selectedFoods[1].id}}" ng-click="expandFood(selectedFoods[1])" >
+								<img ng-src="{{selectedFoods[1].src}}" alt="{{selectedFoods[1].name}}" class="food-icon img-responsive" data-id="{{selectedFoods[1].id}}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- right two foods -->
+		<div class="col-xs-4 full-height">
+			<div class="row half-height">
+				<div class="col-xs-12 buffet-drop-zone full-height">
+					<food-card class="full-height" food="buffetFoods[4]" location-id="4"></food-card>
+				</div>
+			</div>
+			<div class="row half-height">
+				<div class="col-xs-12 buffet-drop-zone full-height">
+					<food-card class="full-height" food="buffetFoods[6]" location-id="6"></food-card>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- bottom row of foods -->
+	<div class="row quarter-height">
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card class="full-height" food="buffetFoods[7]" location-id="7"></food-card>
+		</div>
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card class="full-height" food="buffetFoods[8]" location-id="8"></food-card>
+		</div>
+		<div class="col-xs-4 buffet-drop-zone full-height">
+			<food-card class="full-height" food="buffetFoods[9]" location-id="9"></food-card>
+		</div>
+	</div>
+</div>

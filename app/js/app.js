@@ -168,110 +168,81 @@ app.config(function($routeProvider) {
             foodItems: foodItems,
             footerResetText: 'Clear Plate'
         },
-        flossing: {
-            id: 'flossing',
-            name: 'Flossing',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
+        drugs: {
+            id: 'drug-interaction',
+            name: 'Drug Interaction',
+            altName: 'Drug Interactions',
+            motto: 'Safely Medicate',
+            icon: 'images/scenarios/drugs.png',
+             coumadinInfo: [
                 {
-                    title: "Game Instructions", 
-                    text: "Choose a type of floss to use. But be careful not to pick one that could cause bleeding!"
+                    text: "Many drugs that reduce pain, decrease fever, or decrease swelling due to cuts or injuries can make you bleed."
+                }, {
+                    text: "Always check with your doctor or pharmacist before taking any medications you buy for yourself."
                 }
             ],
-            trophyText: [],
-            trophyImage: ''
-        },
-        toothbrushing: {
-            id: 'toothbrushing',
-            name: 'Toothbushing',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
+            rules: [{
+                text: "You will be given a medication cabinet filled with other medications available from the store. Follow the instructions and place these medications in the pill bottle."
+                }, 
                 {
-                    title: "Game Instructions", 
-                    text: "Choose a type of toothbrush to use. But be careful not to pick one that could cause bleeding!"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
-        },
-        bloodyStools: {
-            id: 'bloody-stools',
-            name: 'Bloody Stools',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
+                    text: "You earn 100 points for each correct choice and lose 100 points for each wrong choice."
+                },
                 {
-                    title: "Game Instructions", 
-                    text: "N/A"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
-        },
-        nodeBleeds: {
-            id: 'node-bleeds',
-            name: 'Nose Bleeds',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
+                    text: "Redo the selection until all medications are placed correctly."
+                },
                 {
-                    title: "Game Instructions", 
-                    text: "N/A"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
+                    text: "You will earn a Porficiency Badge for being a hero caring for yourself."
+            }],
+            trophyText: [{
+                text: 'You\'ve earned enough points to earn a proficiency badge!'
+            }, {
+                text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
+            }, {
+                text: 'Remember, you must always check with your doctor or pharmacist before you take any new medications'
+            }],
+            trophyImage: 'images/badges/diet.png',
         },
-        cuts: {
-            id: 'cuts',
-            name: 'Cuts',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
-                {
-                    title: "Game Instructions", 
-                    text: "N/A"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
-        },
-        falls: {
-            id: 'falls',
-            name: 'Falls',
-            motto: '',
-            icon: 'images/placeholder-example.gif',
-            coumadinInfo: [],
-            rules: [
-                {
-                    title: "Game Instructions", 
-                    text: "N/A"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
-        },
-        ptInrMonitoring: {
+        blood: {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
+            altName: 'PT/INR Monitoring',
             motto: '',
             icon: 'images/scenarios/ptinr.png',
-            coumadinInfo: [],
+            coumadinInfo: [
+                {
+                    text: "Your INR number depends on your diagnosis."
+                },{
+                    text: "Select the reason why you are taking Coumadin (you can select more than one reason):"   
+                },{
+                    text: "Your doctor uses your blood clotting number to set your Coumadin dose."
+                }                
+            ],
             rules: [
                 {
-                    title: "Game Instructions", 
-                    text: "N/A"
-                }
-            ],
-            trophyText: [],
-            trophyImage: ''
+                    text: "The target INR number for your diagnosis will appear."
+                }, 
+                {
+                    text: "Then do the blood test and explain what the INR number means to you."
+                },
+                {
+                    text: "You earn 100 points for each correct explanation and lose 100 points for each wrong explanation."
+                },
+                {
+                    text: "Redo the Testing until all values are explained correctly."
+                },
+                {
+                    text: "You will earn a Porficiency Badge for being a hero caring for yourself."
+            }],
+            trophyText: [{
+                text: "You selected the right responses about all your INR numbers"
+            },{
+                text: 'You\'ve earned enough points to earn a proficiency badge!'
+            },{
+                text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
+            }, {
+                text: 'Remember, you must always check with your doctor or pharmacist when your INR numbers are too high or too low.'
+            }],
+            trophyImage: 'images/badges/diet.png',
         }
     };
 
@@ -333,40 +304,6 @@ app.config(function($routeProvider) {
 	            }
             }
         })
-        // .when('/oral-hygiene', {
-        // 	controller: 'MinigameController',
-        //     templateUrl: '/components/minigames/minigame.html',
-        //     resolve: {
-        //     	minigameConfig: function() {
-        //     		return {
-	       //      		name: 'Oral Hygiene',
-		      //       	scenarios: [
-        //                     scenarios.flossing,
-        //                     scenarios.toothbrushing
-        //                 ]
-		      //       };
-	       //      }
-        //     }
-        // })
-        // .when('/safety', {
-        // 	controller: 'MinigameController',
-        //     templateUrl: '/components/minigames/minigame.html',
-        //     resolve: {
-        //     	minigameConfig: function() {
-        //     		return {
-	       //      		name: 'Safety',
-		      //       	scenarios: [
-        //                     scenarios.bloodyStools,
-        //                     scenarios.nodeBleeds,
-        //                     scenarios.cuts,
-        //                     scenarios.falls,
-        //                     scenarios.flossing,
-        //                     scenarios.toothbrushing
-        //                 ]
-		      //       };
-	       //      }
-        //     }
-        // })
         .when('/drug-interaction', {
         	controller: 'MinigameController',
             templateUrl: '/components/minigames/minigame.html',
@@ -374,7 +311,9 @@ app.config(function($routeProvider) {
             	minigameConfig: function() {
             		return {
 	            		name: 'Drug Interaction',
-		            	scenarios: []
+		            	scenarios: [
+                            scenarios.drugs
+                            ]
 		            };
 	            }
             }
@@ -386,7 +325,9 @@ app.config(function($routeProvider) {
             	minigameConfig: function() {
             		return {
 	            		name: 'Blood Clotting Testing',
-		            	scenarios: []
+		            	scenarios: [
+                        scenarios.blood
+                        ]
 		            };
 	            }
             }
