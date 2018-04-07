@@ -1,15 +1,93 @@
 'use strict';
 
-var NUM_GAME_FOODS = 10;
-var NUM_SELECTED_FOODS = 2;
+var NUM_GAME_DRUGS = 12;
+var NUM_SELECTED_DRUGS = 2;
 var POINTS_PER_RIGHT_CHOICE = 100;
 var POINTS_PER_WRONG_CHOICE = -100;
+
+var ALL_DRUGS = [{
+	id: 'motrin',
+	name: 'Motrin',
+	riskLevel: 1  // 1=high, 2=low
+}, {
+	id: 'advil',
+	name: 'Advil',
+	riskLevel: 1
+}, {
+	id: 'aspirin1',
+	name: 'Aspirin',
+	riskLevel: 1
+}, {
+	id: 'aspirin2',
+	name: 'Aspirin',
+	riskLevel: 1
+}, {
+	id: 'tylenol',
+	name: 'Tylenol',
+	riskLevel: 1
+}, {
+	id: 'ibuprofen',
+	name: 'Ibuprofen',
+	riskLevel: 1
+}, {
+	id: 'flonase',
+	name: 'Flonase',
+	riskLevel: 2
+}, {
+	id: 'claritin',
+	name: 'Claritin',
+	riskLevel: 2
+}, {
+	id: 'pepto',
+	name: 'Pepto-Bismol',
+	riskLevel: 2
+}, {
+	id: 'aleve',
+	name: 'Aleve Naproxen',
+	riskLevel: 2
+}, {
+	id: 'imodium1',
+	name: 'Imodium',
+	riskLevel: 2
+}, {
+	id: 'imodium2',
+	name: 'Imodium',
+	riskLevel: 2
+}];
 
 angular.module('CoumadinApp').controller('DrugInteractionController', function($rootScope, $scope, $timeout, _) {
 	console.log('drug interaction controller loading');
 
+	$scope.cabinetDrugs = [];
+	$scope.selectedDrugs = [];
 	$scope.activeChallenge = null;
 
+	for (var i = 0; i < NUM_GAME_DRUGS; i++) {
+		$scope.cabinetDrugs.push(null);
+	}
+	for (var i = 0; i < NUM_SELECTED_DRUGS; i++) {
+		$scope.selectedDrugs.push(null);
+	}
+
+	var challenges = [{
+		highRisk: 1,
+		lowRisk: 1
+	}, {
+		highRisk: 2,
+		lowRisk: 0
+	}, {
+		highRisk: 0,
+		lowRisk: 2
+	}];
+	var singleItemChallenges = [{
+		highRisk: 1,
+		lowRisk: 0
+	}, {
+		highRisk: 0,
+		lowRisk: 1
+	}];
+
+	var singleItemRules = false;
 
 	$rootScope.$on('minigame:scenario:restart', initScenario);
 	$rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
@@ -21,55 +99,46 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 	function initScenario() {
 		// override testSubmit with a custom condition check
 		$scope.activeScenario.testSubmit = function() {
-			var numSelectedFoods = countSelectedFoods();
-			var targetSelectedFoods = singleItemRules ? 1 : NUM_SELECTED_FOODS;
-			if (numSelectedFoods < targetSelectedFoods) {
-				if (numSelectedFoods === 0) {
-					return 'Please drag and drop ' + targetSelectedFoods + ' Vitamin K foods on the plate before you can submit.';
+			var numSelectedDrugs = countSelectedDrugs();
+			var targetSelectedDrugs = singleItemRules ? 1 : NUM_SELECTED_DRUGS;
+			if (numSelectedDrugs < targetSelectedDrugs) {
+				if (numSelectedDrugs === 0) {
+					return 'Please place ' + targetSelectedDrugs + ' drugs on the tray before you can submit.';
 				} else {
-					return 'Please add 1 more item to the plate before you can submit.';
+					return 'Please add 1 more drug to the tray before you can submit.';
 				}
 			}
 			return null;
 		};
-		// override footerReset to perform custom reset when footer reset button is clicked
-		$scope.activeScenario.footerReset = function() {
-			for (var i = 0; i < $scope.selectedFoods.length; i++) {
-				var selectedFood = $scope.selectedFoods[i];
-				if (selectedFood) {
-					for (var k = 0; k < $scope.buffetFoods.length; k++) {
-						var buffetFood = $scope.buffetFoods[k];
-						if (!buffetFood) {
-							$scope.buffetFoods[k] = selectedFood;
-							$scope.selectedFoods[i] = null;
-							transferFood(selectedFood, onDragStartBuffet);
-							break;
-						}
-					}
-				}
-			}
-		};
+		// // override footerReset to perform custom reset when footer reset button is clicked
+		// $scope.activeScenario.footerReset = function() {
+		// 	for (var i = 0; i < $scope.selectedFoods.length; i++) {
+		// 		var selectedFood = $scope.selectedFoods[i];
+		// 		if (selectedFood) {
+		// 			for (var k = 0; k < $scope.buffetFoods.length; k++) {
+		// 				var buffetFood = $scope.buffetFoods[k];
+		// 				if (!buffetFood) {
+		// 					$scope.buffetFoods[k] = selectedFood;
+		// 					$scope.selectedFoods[i] = null;
+		// 					transferFood(selectedFood, onDragStartBuffet);
+		// 					break;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// };
 	
-		// Select foods at random
-		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), NUM_GAME_FOODS);
-		for (var i = 0; i < gameFoods.length; i++) {
-			$scope.buffetFoods[i] = _.extend({}, gameFoods[i], { expanded: false });
+		// Select drugs at random
+		var gameDrugs = _.first(_.shuffle(ALL_DRUGS), NUM_GAME_DRUGS);
+		for (var i = 0; i < gameDrugs.length; i++) {
+			$scope.cabinetDrugs[i] = gameDrugs[i];
 		}
 
 		// Select a random challenge scenario
 		singleItemRules = false;
-		clearSelectedFoods();
+		clearSelectedDrugs();
 		selectChallenge();
 		displayInstructions();
-
-		$timeout(function() {
-			console.log('foods: ' + angular.element('.food-card').length);
-			angular.element('.buffet-drop-zone .food-card').on('dragstart', onDragStartBuffet);
-			angular.element('.plate-drop-zone .food-card').on('dragstart', onDragStartPlate);
-		}, 100);
-
-		draggedFood = null;
-
 		customizeScenarioStatus();
 	}
 
@@ -77,18 +146,18 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 		console.log('resuming after ' + priorStatus.outcome + ' outcome');
 		// If player was successful, pick a new challenge and remove prior selected items from play
 		if (priorStatus.outcome === 'good') {
-			_.each($scope.selectedFoods, function(selectedFood) {
-				if (selectedFood) {
-					var index = _.findIndex($scope.buffetFoods, { id: selectedFood.id });
-					$scope.buffetFoods[index] = null;
+			_.each($scope.selectedDrugs, function(selectedDrug) {
+				if (selectedDrug) {
+					var index = _.findIndex($scope.cabinetDrugs, { id: selectedDrug.id });
+					$scope.cabinetDrugs[index] = null;
 				}
 			});
-			var remainingFoods = getRemainingFoods();
-			if (remainingFoods.length <= NUM_SELECTED_FOODS) {
+			var remainingDrugs = getRemainingDrugs();
+			if (remainingDrugs.length <= NUM_SELECTED_DRUGS) {
 				console.log('entering SINGLE ITEM RULES mode');
 				singleItemRules = true;
 			}
-			clearSelectedFoods();
+			clearSelectedDrugs();
 			selectChallenge();
 			customizeScenarioStatus(0, 0);
 		}
@@ -96,8 +165,8 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 	}
 
 	function selectChallenge() {
-		var remainingHighKFoods = _.where($scope.buffetFoods, { kLevel: 1 });
-		var remainingLowKFoods = _.where($scope.buffetFoods, { kLevel: 3 });
+		var remainingHighRiskDrugs = _.where($scope.cabinetDrugs, { riskLevel: 1 });
+		var remainingLowRiskDrugs = _.where($scope.cabinetDrugs, { riskLevel: 2 });
 
 		var challengeSet = challenges;
 		if (singleItemRules) {
@@ -105,21 +174,20 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 		}
 
 		var availableChallenges = _.filter(challengeSet, function(challenge) {
-			return challenge.highK <= remainingHighKFoods.length && challenge.lowK <= remainingLowKFoods.length;
+			return challenge.highRisk <= remainingHighRiskDrugs.length && challenge.lowRisk <= remainingLowRiskDrugs.length;
 		});
-		// console.log("remaining k foods: high=" + remainingHighKFoods.length + ", low=" + remainingLowKFoods.length + ", challenges available:" + availableChallenges.length);
-
+		
 		$scope.activeChallenge = _.shuffle(availableChallenges)[0];
 	}
 
 	function displayInstructions() {
 		var challengeInstructions = '';
-		if ($scope.activeChallenge.highK > 0 && $scope.activeChallenge.lowK > 0) {
-			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high and ' + $scope.activeChallenge.lowK + ' low Vitamin K foods on the plate.';
-		} else if ($scope.activeChallenge.highK === 0 && $scope.activeChallenge.lowK > 0) {
-			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.lowK + ' low Vitamin K food(s) on the plate.';
+		if ($scope.activeChallenge.highRisk > 0 && $scope.activeChallenge.lowRisk > 0) {
+			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high and ' + $scope.activeChallenge.lowRisk + ' low risk drugs on the tay.';
+		} else if ($scope.activeChallenge.highRisk === 0 && $scope.activeChallenge.lowRisk > 0) {
+			challengeInstructions = 'Place ' + $scope.activeChallenge.lowRisk + ' low risk drug(s) on the tray.';
 		} else {
-			challengeInstructions = 'Drag and drop ' + $scope.activeChallenge.highK + ' high Vitamin K food(s) on the plate.';
+			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high risk drug(s) on the tray.';
 		}
 		console.log('instructions: ' + challengeInstructions);
 
@@ -130,23 +198,17 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 		});
 	}
 
-	function clearSelectedFoods() {
-		for (var i = 0; i < $scope.selectedFoods.length; i++) {
-			$scope.selectedFoods[i] = null;
+	function clearSelectedDrugs() {
+		for (var i = 0; i < $scope.selectedDrugs.length; i++) {
+			$scope.selectedDrugs[i] = null;
 		}
 	}
-
-	$timeout(function() {
-		angular.element('.plate-drop-zone, .buffet-drop-zone').on('dragover', onDragOver);
-		angular.element('.plate-drop-zone').on('drop', onPlateDrop);
-		angular.element('.buffet-drop-zone').on('drop', onBuffetDrop);
-	}, 0);
 
 	function customizeScenarioStatus(numRightChoices, numWrongChoices) {
 		numRightChoices = numRightChoices || 0;
 		numWrongChoices = numWrongChoices || 0;
 		$scope.activeScenario.status.custom = {
-			selectedFoods: $scope.selectedFoods,
+			selectedDrugs: $scope.selectedDrugs,
 			numRightChoices: numRightChoices,
 			numWrongChoices: numWrongChoices,
 			pointsPerRightChoice: POINTS_PER_RIGHT_CHOICE,
@@ -155,24 +217,24 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 	}
 
 	function calculateScore() {
-		var highKSelections = [];
-		var lowKSelections = [];
-		for (var i = 0; i < $scope.selectedFoods.length; i++) {
-			var food = $scope.selectedFoods[i];
-			if (food) {
-				switch (food.kLevel) {
+		var highRiskSelections = [];
+		var lowRiskSelections = [];
+		for (var i = 0; i < $scope.selectedDrugs.length; i++) {
+			var drug = $scope.selectedDrugs[i];
+			if (drug) {
+				switch (drug.riskLevel) {
 					case 1:
-						highKSelections.push(food);
+						highRiskSelections.push(drug);
 						break;
-					case 3:
-						lowKSelections.push(food);
+					case 2:
+						lowRiskSelections.push(drug);
 						break;
 				}
 			}
 		}
 
-		var numWrongChoices = Math.abs($scope.activeChallenge.highK - highKSelections.length);// + Math.abs($scope.activeChallenge.lowK - lowKSelections.length);
-		var numRightChoices = (highKSelections.length + lowKSelections.length) - numWrongChoices;
+		var numWrongChoices = Math.abs($scope.activeChallenge.highRisk - highRiskSelections.length);
+		var numRightChoices = (highRiskSelections.length + lowRiskSelections.length) - numWrongChoices;
 
 		var scoreChange = (numWrongChoices * POINTS_PER_WRONG_CHOICE) + (numRightChoices * POINTS_PER_RIGHT_CHOICE);
 		var outcome = 'good';
@@ -180,163 +242,108 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 			outcome = 'bad';
 		}
 
-		console.log('high k choices: ' + highKSelections.length + '/' + $scope.activeChallenge.highK + ', low k choices: ' + lowKSelections.length + '/' + $scope.activeChallenge.lowK);
+		console.log('high risk choices: ' + highRiskSelections.length + '/' + $scope.activeChallenge.highRisk + ', low risk choices: ' + lowRiskSelections.length + '/' + $scope.activeChallenge.lowRisk);
 		console.log('num wrong choices: ' + numWrongChoices + ', num right choices: ' + numRightChoices);
 		console.log('outcome: ' + outcome);
-		// $scope.activeScenario.status.canSubmit = (numRightChoices + numWrongChoices >= NUM_SELECTED_FOODS);
 		$scope.activeScenario.status.scoreChange = scoreChange;
 		$scope.activeScenario.status.outcome = outcome;
 		$scope.activeScenario.status.custom = {
-			selectedFoods: $scope.selectedFoods,
+			selectedDrugs: $scope.selectedDrugs,
 			numWrongChoices: numWrongChoices,
 			numRightChoices: numRightChoices,
 			pointsPerRightChoice: POINTS_PER_RIGHT_CHOICE,
 			pointsPerWrongChoice: POINTS_PER_WRONG_CHOICE
 		};
 
-		var remainingFoods = getRemainingFoods();
-		var numRemainingFoods = remainingFoods.length;
+		var remainingDrugs = getRemainingDrugs();
+		var numRemainingDrugs = remainingDrugs.length;
 
-
-
-		/// DEBUG
-		var numLow = 0;
-		var numHigh = 0;
-		_.each($scope.buffetFoods, function(food) {
-			if (food !== null && food !== undefined) {
-				if (food.kLevel === 1) {
-					numHigh++;
-				} else {
-					numLow++;
+		var firstRiskLevel = null;
+		var multipleRiskLevels = false;
+		if ($scope.activeScenario.status.outcome === 'good' && numRemainingDrugs <= NUM_SELECTED_DRUGS) {
+			// Special rules for when there are only 1 or 2 drugs left
+			_.each(remainingDrugs, function(remainingDrug) {
+				if (firstRiskLevel === null) {
+					firstRiskLevel = remainingDrug.riskLevel;
 				}
-			}
-		});
-		console.log('remaining: low=' + numLow + ', high=' + numHigh);
-		/// END DEBUG
-
-
-
-		var firstKLevel = null;
-		var multipleKLevels = false;
-		if ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods <= NUM_SELECTED_FOODS) {
-			// Special rules for when there are only 1 or 2 foods left
-			_.each(remainingFoods, function(remainingFood) {
-				if (firstKLevel === null) {
-					firstKLevel = remainingFood.kLevel;
-				}
-				if (remainingFood.kLevel !== firstKLevel) {
-					multipleKLevels = true;
+				if (remainingDrug.riskLevel !== firstRiskLevel) {
+					multipleRiskLevels = true;
 				}
 			});
-			// If both remaining foods are the same K type, we're done
-			if (!multipleKLevels) {
-				$scope.activeScenario.status.scoreChange += (numRemainingFoods * POINTS_PER_RIGHT_CHOICE);
+			// If both remaining drugs are the same risk level, we're done
+			if (!multipleRiskLevels) {
+				$scope.activeScenario.status.scoreChange += (numRemainingDrugs * POINTS_PER_RIGHT_CHOICE);
 				$scope.activeScenario.status.complete = true;
 			} else {
 				$scope.activeScenario.status.complete = false;
 			}
 		} else {
-			$scope.activeScenario.status.complete = ($scope.activeScenario.status.outcome === 'good' && numRemainingFoods === 0);
+			$scope.activeScenario.status.complete = ($scope.activeScenario.status.outcome === 'good' && numRemainingDrugs === 0);
 		}
 	}
 
-	function onDragStartBuffet(event) {
-		// console.log('startDragFoodFromBuffet');
-		var foodId = angular.element(event.target).data('id');
-		draggedFood = _.find($scope.buffetFoods, { id: foodId });
-	}
-
-	function onDragStartPlate(event) {
-		// console.log('startDragFoodFromPlate');
-		var foodId = angular.element(event.target).data('id');
-		draggedFood = _.find($scope.selectedFoods, { id: foodId });
-	}
-
-	function onDragOver(event) {
-		// console.log('foodEnterPlate');
-		event.preventDefault();
-	}
-
-	function onPlateDrop(event) {
-		if (!canSelectMoreFoods()) {
-			$scope.$apply(function() {
-				$rootScope.showMessage({
-					type: 'warning',
-					text: 'You cannot put more than ' + (singleItemRules ? 1 : NUM_SELECTED_FOODS) + ' items on the plate.'
-				});
+	$scope.selectCabinetDrug = function(drug) {
+		if (!canSelectMoreDrugs()) {
+			$rootScope.showMessage({
+				type: 'warning',
+				text: 'You cannot put more than ' + (singleItemRules ? 1 : NUM_SELECTED_DRUGS) + ' items on the tray.'
 			});
-		} else if (!_.contains($scope.selectedFoods, draggedFood)) {
-			$scope.$apply(function() {
-				$rootScope.hideMessage('warning');
-				var targetIndex = _.findIndex($scope.selectedFoods, function(selectedFood) {
-					return !selectedFood;
-				});
-				if (targetIndex >= 0) {
-					var sourceIndex = _.findIndex($scope.buffetFoods, { id: draggedFood.id });
-					$scope.buffetFoods[sourceIndex] = null;
+		} else {
+			$rootScope.hideMessage('warning');
 
-					$scope.selectedFoods[targetIndex] = draggedFood;
+			// Remove drug from cabinet
+			var cabinetIndex = _.findIndex($scope.cabinetDrugs, { id: drug.id });
+			$scope.cabinetDrugs[cabinetIndex] = null;
 
-					transferFood(draggedFood, onDragStartPlate);
-					draggedFood = null;
+			// Add drug to tray
+			for (var i = 0; i < $scope.selectedDrugs.length; i++) {
+				if ($scope.selectedDrugs[i] === null) {
+					$scope.selectedDrugs[i] = drug;
+					break;
 				}
-				
-				// console.log('dropFoodOnPlate');
-				event.preventDefault();
-				calculateScore();
-			});
+			}
+			
+			// Recalculate score
+			calculateScore();
 		}
-	}
+	};
 
-	function onBuffetDrop(event) {
-		if (!_.contains($scope.buffetFoods, draggedFood)) {
-			$scope.$apply(function() {
-				// alert("ondrop");
-				var foodIndex = angular.element(event.target).data('location-id');
+	$scope.selectTrayDrug = function(drug) {
+		// Remove drug from tray
+		var trayIndex = _.findIndex($scope.selectedDrugs, { id: drug.id });
+		$scope.selectedDrugs[trayIndex] = null;
 
-				if (foodIndex !== null && foodIndex !== undefined) {
-
-					var sourceIndex = _.findIndex($scope.selectedFoods, { id: draggedFood.id });
-					$scope.selectedFoods[sourceIndex] = null;
-
-					$scope.buffetFoods[foodIndex] = draggedFood;
-
-					transferFood(draggedFood, onDragStartBuffet);
-					draggedFood = null;
-				}
-
-				// console.log('dropFoodOnBuffet');
-				event.preventDefault();
-				calculateScore();
-			});
+		// Add drug back to first empty slot in cabinet
+		for (var i = 0; i < $scope.cabinetDrugs.length; i++) {
+			if ($scope.cabinetDrugs[i] === null) {
+				$scope.cabinetDrugs[i] = drug;
+				break;
+			}
 		}
+
+		// Recalculate score
+		calculateScore();
+	};
+
+	function canSelectMoreDrugs() {
+		var numSelectedDrugs = countSelectedDrugs();
+		var maxSelectedDrugs = singleItemRules ? 1 : NUM_SELECTED_DRUGS;
+		return numSelectedDrugs < maxSelectedDrugs;
 	}
 
-	function transferFood(food, onDragStartCallback) {
-		$timeout(function() {
-			angular.element('.food-card[data-id="' + food.id + '"]').on('dragstart', onDragStartCallback);
-		}, 0);
-	}
-
-	function canSelectMoreFoods() {
-		var numSelectedFoods = countSelectedFoods();
-		var maxSelectedFoods = singleItemRules ? 1 : NUM_SELECTED_FOODS;
-		return numSelectedFoods < maxSelectedFoods;
-	}
-
-	function countSelectedFoods() {
-		var numSelectedFoods = 0;
-		_.each($scope.selectedFoods, function(selectedFood) {
-			if (selectedFood) {
-				numSelectedFoods++;
+	function countSelectedDrugs() {
+		var numSelectedDrugs = 0;
+		_.each($scope.selectedDrugs, function(selectedDrug) {
+			if (selectedDrug) {
+				numSelectedDrugs++;
 			}
 		});
-		return numSelectedFoods;
+		return numSelectedDrugs;
 	}
 
-	function getRemainingFoods() {
-		return _.filter($scope.buffetFoods, function(food) {
-			return food !== null && food !== undefined;
+	function getRemainingDrugs() {
+		return _.filter($scope.cabinetDrugs, function(drug) {
+			return drug !== null && drug !== undefined;
 		}) || [];
 	}
 });
