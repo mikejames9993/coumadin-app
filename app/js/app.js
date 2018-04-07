@@ -200,7 +200,7 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Remember, you must always check with your doctor or pharmacist before you take any new medications'
             }],
-            trophyImage: 'images/badges/diet.png',
+            trophyImage: 'images/badges/drug-interaction.png',
         },
         blood: {
             id: 'pt-inr-monitoring',
