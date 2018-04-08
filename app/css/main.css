@@ -557,4 +557,8 @@ hr.modal-separator {
 .medication-tray {
 	height: 140px;
 }
+.medication-wrapper {
+	height: 100%;
+	padding-right: 0px;
+}
 
