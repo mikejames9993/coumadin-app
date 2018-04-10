@@ -206,7 +206,7 @@ app.config(function($routeProvider) {
             id: 'pt-inr-monitoring',
             name: 'Blood Clotting Testing',
             altName: 'PT/INR Monitoring',
-            motto: 'Clot or Not?',
+            motto: 'Test and monitor your INR!',
             icon: 'images/scenarios/ptinr.png',
             coumadinInfo: [
                 {
@@ -242,7 +242,7 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Remember, you must always check with your doctor or pharmacist when your INR numbers are too high or too low.'
             }],
-            trophyImage: 'images/badges/blood.png',
+            trophyImage: 'images/badges/pt-inr-monitoring.png',
         }
     };
 

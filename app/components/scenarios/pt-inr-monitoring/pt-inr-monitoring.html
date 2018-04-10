@@ -1,58 +1,22 @@
-<p>PT/INR Monitoring Scenario</p>
-<!-- <div class='contentWrapper ng-cloak'>
-        <div class='content'>
-          <div class="row-fluid">
-            <ul class="thumbnails">
-              <li class="span3" style='margin-left:10px;'>
-                <div class="thumbnail" data-drop="true" ng-model='list1' data-jqyoui-options="optionsList1" jqyoui-droppable="{multiple:true}">
-                  <div class="caption">
-                    <div class="btn btn-info btn-draggable" ng-repeat="item in list1" ng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
-                  </div>
-                </div>
-              </li>
-              <li class="span3" style='margin-left:10px;'>
-                <div class="thumbnail" data-drop="true" ng-model='list2' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"  jqyoui-droppable="{multiple:true}">
-                  <div class="caption">
-                    <div class="btn btn-info btn-draggable" ng-repeat="item in list2" ng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
-                  </div>
-                </div>
-              </li>
-              <li class="span3" style='margin-left:10px;'>
-                <div class="thumbnail" data-drop="true" ng-model='list3' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"  jqyoui-droppable="{multiple:true}">
-                  <div class="caption">
-                    <div class="btn btn-info btn-draggable" ng-repeat="item in list3" ng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
-                  </div>
-                </div>
-              </li>
-              <li class="span3" style='margin-left:10px;'>
-                <div class="thumbnail" data-drop="true" ng-model='list4' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list4])'}"  jqyoui-droppable="{multiple:true}">
-                  <div class="caption">
-                    <div class="btn btn-info btn-draggable" ng-repeat="item in list4" ng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+<div class="container-fluid medication-wrapper" ng-controller="PTINRMonitoringController">
+  <div class="row quarter-height">
+    <div class="col-xs-12">
+      <img ng-src="{{activeScenario.config.icon}}" width="100" height="100" class="img-responsive mini-game-launch-img scenario-header-icon">
+      <p>Your INR should not be <u>less than {{patientMinInr}}</u> and  should not be <u>more than {{patientMaxInr}}</u>.</p>
+    </div>
+  </div>
+  <div class="row three-quarter-height">
+    <!-- INR monitor graphic region -->
+    <div class="col-xs-4 full-height">
+      <button ng-click="startInrTest()">Test INR</button>
+    </div>
+    <!-- answer list region -->
+    <div class="col-xs-8 full-height">
+      <p ng-if="inrValue !== null">Your INR is {{inrValue}}. What does this number mean to you?</p>
+      <div ng-repeat="answer in answers">
+        <input id="answer-$index" ng-disabled="inrValue === null" type="checkbox" ng-model="answer.selected" ng-change="onToggleAnswer(answer)">
+        <label for="answer-$index">{{answer.label}}</label>
       </div>
-      <div class="navbar-inner">
-        <div class="container form-inline" style="text-align: center;">
-          <div class="btn btn-droppable" ng-repeat="item in list5" data-drop="true" ng-model='list5' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list5])'}"  jqyoui-droppable="{index: {{$index}}}">
-            <div class="btn btn-info btn-draggable" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.title">{{item.title}}</div>
-          </div>
-        </div>
-      </div>
-
-
-          <div class="btn btn-droppable" ng-repeat="item in list5" data-drop="true" ng-model='list5' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list5])'}"  jqyoui-droppable="{index: {{$index}}}">
-            <div class="btn btn-info btn-draggable" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.title">{{item.title}}</div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-    </div> -->
+    </div>
+  </div>
+</div>
