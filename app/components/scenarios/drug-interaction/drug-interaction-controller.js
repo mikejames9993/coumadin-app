@@ -14,12 +14,12 @@ var ALL_DRUGS = [{
 	name: 'Advil',
 	riskLevel: 1
 }, {
-	id: 'aspirin1',
+	id: 'aspirin',
 	name: 'Aspirin',
 	riskLevel: 1
 }, {
-	id: 'aspirin2',
-	name: 'Aspirin',
+	id: 'plavix',
+	name: 'Plavix',
 	riskLevel: 1
 }, {
 	id: 'tylenol',
