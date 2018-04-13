@@ -110,23 +110,22 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 			}
 			return null;
 		};
-		// // override footerReset to perform custom reset when footer reset button is clicked
-		// $scope.activeScenario.footerReset = function() {
-		// 	for (var i = 0; i < $scope.selectedFoods.length; i++) {
-		// 		var selectedFood = $scope.selectedFoods[i];
-		// 		if (selectedFood) {
-		// 			for (var k = 0; k < $scope.buffetFoods.length; k++) {
-		// 				var buffetFood = $scope.buffetFoods[k];
-		// 				if (!buffetFood) {
-		// 					$scope.buffetFoods[k] = selectedFood;
-		// 					$scope.selectedFoods[i] = null;
-		// 					transferFood(selectedFood, onDragStartBuffet);
-		// 					break;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// };
+		// override footerReset to perform custom reset when footer reset button is clicked
+		$scope.activeScenario.footerReset = function() {
+			for (var i = 0; i < $scope.selectedDrugs.length; i++) {
+				var selectedDrug = $scope.selectedDrugs[i];
+				if (selectedDrug) {
+					for (var k = 0; k < $scope.cabinetDrugs.length; k++) {
+						var cabinetDrug = $scope.cabinetDrugs[k];
+						if (!cabinetDrug) {
+							$scope.cabinetDrugs[k] = selectedDrug;
+							$scope.selectedDrugs[i] = null;
+							break;
+						}
+					}
+				}
+			}
+		};
 	
 		// Select drugs at random
 		var gameDrugs = _.first(_.shuffle(ALL_DRUGS), NUM_GAME_DRUGS);
