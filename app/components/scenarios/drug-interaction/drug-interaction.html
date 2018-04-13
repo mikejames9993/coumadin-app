@@ -5,9 +5,9 @@
 			Select 2 medications that can cause bleeding by tapping on the medication in the cabinet. The medication will move to the tray when you tap it.
 		</div>
 	</div>
-	<div class="row three-quarter-height">
+	<div class="row half-height">
 		<!-- drug cabinet section -->
-		<div class="col-xs-8 full-height">
+		<div class="col-xs-12 full-height">
 			<!-- top row of the drug cabinet -->
 			<div class="row third-height">
 				<div class="col-xs-3 drug-wrapper" ng-click="selectCabinetDrug(cabinetDrugs[0])">
@@ -53,16 +53,13 @@
 					<drug-card drug="cabinetDrugs[11]" location-id="11"></drug-card>
 				</div>
 			</div>
-		</div>
-		<!-- Medication tray area -->
-		<div class="col-xs-4">Medication Tray
-			<div class="medication-tray">
-				<div class="col-xs-12 drug-wrapper" ng-click="selectTrayDrug(selectedDrugs[0])">
+			<!-- Medication tray area -->
+			<div class="row quarter-height">
+				<label class="text-center col-xs-12">Medication Tray</label>
+				<div class="col-xs-6 drug-wrapper no-right-border" ng-click="selectTrayDrug(selectedDrugs[0])">
 					<drug-card drug="selectedDrugs[0]" location-id="0"></drug-card>
 				</div>
-			</div>
-			<div class="medication-tray">
-				<div class="col-xs-12 drug-wrapper" ng-click="selectTrayDrug(selectedDrugs[1])">
+				<div class="col-xs-6 drug-wrapper no-left-border" ng-click="selectTrayDrug(selectedDrugs[1])">
 					<drug-card drug="selectedDrugs[1]" location-id="1"></drug-card>
 				</div>
 			</div>

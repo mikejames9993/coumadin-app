@@ -513,11 +513,7 @@ hr.modal-separator {
 #message-container .message.information {
 }
 
-.text-vertical {
-	-moz-transform: rotate(305.0deg);  /* FF3.5+ */
-	-o-transform: rotate(305.0deg);  /* Opera 10.5 */
-	-webkit-transform: rotate(90.0deg);  /* Saf3.1+, Chrome */
-}
+
 
 .blink {
   animation: blinker 1s linear infinite;
@@ -532,33 +528,36 @@ hr.modal-separator {
     border: 2px solid black;
     width: 130px;
     height: 50px;
-    /*font-size: 1em;*/
     text-align: center;
     margin: 0 auto;
     padding: 5px;
     position: relative;
     background-color: rgba(243, 156, 18, 0.8);
     border-radius: 10px;
-    /*display: inline-block;*/
     display: table-cell;
     vertical-align: middle;
     line-height: 1;
+    font-size: 12px;
 }
 
 .drug-wrapper {
 	border: 1px solid grey;
 	height: 100%;
-	padding: 30px;
 	text-align: center;
 	display: flex;
     align-items: center;
   	justify-content: center;
 }
-.medication-tray {
-	height: 140px;
-}
+
 .medication-wrapper {
 	height: 100%;
 	padding-right: 0px;
+}
+
+.no-right-border {
+	border-right: none;
+}
+.no-left-border {
+	border-left: none;
 }
 
