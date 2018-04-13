@@ -137,6 +137,7 @@ app.config(function($routeProvider) {
             icon: 'images/scenarios/diet.png',
             // instructions: 'Drag foods from the table down onto your plate to make your dinner plate. But make sure not to choose too much Vitamin K!',
             //instructions: "These food items contain varying amounts of Vitamin K. Make your dinner plate by dragging and dropping the food item on your plate. You can tap the food icon to display the name and for more information about the food.",
+            coumadinInfoSource: 'config',
             coumadinInfo: [
                 {
                     text: "Since you are on Coumadin, you should watch what you eat and drink since the diet can affect how Coumadin works in your body."
@@ -174,25 +175,25 @@ app.config(function($routeProvider) {
             altName: 'Drug Interactions',
             motto: 'Safely Medicate',
             icon: 'images/scenarios/drugs.png',
-             coumadinInfo: [
+            coumadinInfoSource: 'config',
+            coumadinInfo: [
                 {
                     text: "Many drugs that reduce pain, decrease fever, or decrease swelling due to cuts or injuries can make you bleed."
                 }, {
                     text: "Always check with your doctor or pharmacist before taking any medications you buy for yourself."
                 }
             ],
-            rules: [{
-                text: "You will be given a medication cabinet filled with other medications available from the store. Follow the instructions and place these medications in the pill bottle."
-                }, 
+            rules: [
                 {
+                    text: "You will be given a medicine cabinet filled with other medications available from the store. Follow the instructions and place these medications in the medicine tray."
+                }, {
                     text: "You earn 100 points for each correct choice and lose 100 points for each wrong choice."
-                },
-                {
+                }, {
                     text: "Redo the selection until all medications are placed correctly."
-                },
-                {
-                    text: "You will earn a Porficiency Badge for being a hero caring for yourself."
-            }],
+                }, {
+                    text: "You will earn a Proficiency Badge for being a hero caring for yourself."
+                }
+            ],
             trophyText: [{
                 text: 'You\'ve earned enough points to earn a proficiency badge!'
             }, {
@@ -200,7 +201,7 @@ app.config(function($routeProvider) {
             }, {
                 text: 'Remember, you must always check with your doctor or pharmacist before you take any new medications'
             }],
-            trophyImage: 'images/badges/drug-interaction.png',
+            trophyImage: 'images/badges/drug-interaction.png'
         },
         blood: {
             id: 'pt-inr-monitoring',
@@ -208,6 +209,7 @@ app.config(function($routeProvider) {
             altName: 'PT/INR Monitoring',
             motto: 'Test and monitor your INR!',
             icon: 'images/scenarios/ptinr.png',
+            coumadinInfoSource: 'template',
             coumadinInfo: [
                 {
                     text: "Your INR number depends on your diagnosis."
@@ -231,7 +233,7 @@ app.config(function($routeProvider) {
                     text: "Redo the Testing until all values are explained correctly."
                 },
                 {
-                    text: "You will earn a Porficiency Badge for being a hero caring for yourself."
+                    text: "You will earn a Proficiency Badge for being a hero caring for yourself."
             }],
             trophyText: [{
                 text: "You selected the right responses about all your INR numbers"

@@ -170,7 +170,7 @@ body,p,h1,h2,h3,h4,h5,h6,.btn {
 	font-family: arial black;
 	font-weight: bold;
 }
-body {
+body, label {
 	font-size: 16pt;
 }
 .info-table{

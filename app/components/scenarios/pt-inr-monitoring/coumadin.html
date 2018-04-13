@@ -1,0 +1,35 @@
+<ul>
+	<li>
+		<div>
+			<p>Your INR number depends on your diagnosis</p>
+		</div>
+		&nbsp;
+	</li>
+	<li>
+		<div>
+			<p>Select the reason why you are taking Coumadin (you can select more than one reason):</p>
+			<div>
+				<input id="reason-0" type="checkbox" ng-model="scenario.custom.coumadinReasons.heartDisease">
+				<label for="reason-0">&nbsp;I have a heart disease or pacemaker</label>
+			</div>
+			<div>
+				<input id="reason-1" type="checkbox" ng-model="scenario.custom.coumadinReasons.lungClot">
+				<label for="reason-1">&nbsp;I have clots in my lungs or embolism</label>
+			</div>
+			<div>
+				<input id="reason-2" type="checkbox" ng-model="scenario.custom.coumadinReasons.dvt">
+				<label for="reason-2">&nbsp;I have DVT or clotting in my legs or arms</label>
+			</div>
+			<div>
+				<input id="reason-3" type="checkbox" ng-model="scenario.custom.coumadinReasons.other">
+				<label for="reason-3">&nbsp;I have forgotten or I do not know the reason</label>
+			</div>
+		</div>
+		&nbsp;
+	</li>
+	<li>
+		<div>
+			<p>Your doctor uses your blood clotting number to set your Coumadin dose.</p>
+		</div>
+	</li>
+</ul>

@@ -4,7 +4,7 @@
     <h3 class="modal-title text-center" id="modal-title">Things to Note When Taking Coumadin?</h3>
 </div>
 <div class="modal-body" id="modal-body">
-	<ul>
+	<ul ng-if="scenario.config.coumadinInfoSource === 'config'">
 		<li ng-repeat="info in scenario.config.coumadinInfo">
 			<div>
 				<h3 ng-if="info.title">{{info.title}}</h3>
@@ -12,7 +12,8 @@
 			</div>
 			&nbsp;
 		</li>
-	</ul>	
+	</ul>
+	<ng-include ng-if="scenario.config.coumadinInfoSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/coumadin.html'"></ng-include>
 </div>
 <div class="modal-footer">
     <button class="btn text-center btn-large" type="button" ng-click="showRules()">Play</button>

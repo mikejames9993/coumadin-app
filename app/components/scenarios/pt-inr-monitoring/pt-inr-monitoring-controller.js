@@ -45,9 +45,6 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	console.log('ptinr controller loading');
 
 
-	$scope.patientMinInr = 2.0;
-	$scope.patientMaxInr = 3.5;
-
 	$scope.answers = [{
 		label: 'My blood is not too thick and not too thin',
 		inr: {
@@ -68,7 +65,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		label: 'My blood is too thick',
 		inr: {
 			below: true, // whether this answer is true when INR value is below patient's range
-			within: true, // whether this answer is true when INR value is within patient's range
+			within: false, // whether this answer is true when INR value is within patient's range
 			above: false  // whether this answer is true when INR value is above patient's range
 		},
 		selected: false
@@ -86,6 +83,15 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	$scope.challenges = [];
 	$scope.activeChallenge = null;
 
+    $scope.activeScenario.custom = {
+        coumadinReasons: {
+            heartDisease: false,
+            lungClot: false,
+            dvt: false,
+            other: false
+        }
+    };
+
 
 	$rootScope.$on('minigame:scenario:restart', initScenario);
 	$rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
@@ -102,9 +108,14 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			}
 			return null;
 		};
+		// override footerReset to perform custom reset when footer reset button is clicked
+		$scope.activeScenario.footerReset = function() {
+			clearSelectedAnswers();
+		};
 
 		// Select challenges that match the user's PT/INR targets
-		$scope.challenges = _.shuffle(_.where(CHALLENGES, { minTargetInr: $scope.patientMinInr, maxTargetInr: $scope.patientMaxInr }));
+		var patientInrTarget = getPatientMinMaxInr();
+		$scope.challenges = _.shuffle(_.where(CHALLENGES, { minTargetInr: patientInrTarget.min, maxTargetInr: patientInrTarget.max }));
 		$scope.inrValue = null;
 
 		// Select a random challenge scenario
@@ -225,6 +236,25 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	$scope.onToggleAnswer = function(answer) {
 		calculateScore();
 	}
+
+	function getPatientMinMaxInr() {
+		var heartDiseaseSelected = $scope.activeScenario.custom.coumadinReasons.heartDisease;
+		var lungClotSelected = $scope.activeScenario.custom.coumadinReasons.lungClot;
+		var dvtSelected = $scope.activeScenario.custom.coumadinReasons.dvt;
+		var otherSelected = $scope.activeScenario.custom.coumadinReasons.other;
+		if (heartDiseaseSelected || lungClotSelected || dvtSelected) {
+			return {
+				min: 2.0,
+				max: 3.5
+			};
+		}
+		return {
+			min: 3.0,
+			max: 4.0
+		}
+	}
+
+	$scope.getPatientMinMaxInr = getPatientMinMaxInr;
 
 	function randomInrValue(low, high) {
 		// generate a random number with 1 decimal point, between low (inclusive) and high (inclusive)
