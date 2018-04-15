@@ -1,21 +1,34 @@
-<div class="container-fluid medication-wrapper" ng-controller="PTINRMonitoringController">
-  <div class="row quarter-height">
-    <div class="col-xs-12">
-      <img ng-src="{{activeScenario.config.icon}}" width="100" height="100" class="img-responsive mini-game-launch-img scenario-header-icon">
-      <p>Your INR should not be <u>less than {{getPatientMinMaxInr().min}}</u> and  should not be <u>more than {{getPatientMinMaxInr().max}}</u>.</p>
+<div class="container-fluid medication-wrapper full-height" ng-controller="PTINRMonitoringController">
+  <div class="row third-height">
+    <div class="col-xs-12 pt-inr-header-wrapper">
+      <div class="pt-inr-cell-wrapper">
+        <img ng-src="{{activeScenario.config.icon}}" width="100" height="100" class="img-responsive mini-game-launch-img scenario-header-icon">
+        <p>Your INR should not be <u>less than {{getPatientMinMaxInr().min}}</u> and  should not be <u>more than {{getPatientMinMaxInr().max}}</u>.</p>
+      </div>
     </div>
   </div>
-  <div class="row three-quarter-height">
+  <div class="row two-thirds-height">
     <!-- INR monitor graphic region -->
     <div class="col-xs-4 full-height">
-      <button ng-click="startInrTest()">Test INR</button>
+      <div class="pt-inr-cell-wrapper">
+        <button id="pt-inr-start" ng-disabled="inrStatus !== INR_STATUSES.NOT_STARTED" ng-if="inrStatus !== INR_STATUSES.DONE" ng-click="startInrTest()">Start</button>
+        <div>
+          <img src="/images/scenarios/pt-inr-monitoring/monitor.png">
+          <img ng-if="inrStatus === INR_STATUSES.TESTING" src="/images/scenarios/pt-inr-monitoring/blood-droplet.gif">
+        </div>
+      </div>
     </div>
     <!-- answer list region -->
-    <div class="col-xs-8 full-height">
-      <p ng-if="inrValue !== null">Your INR is {{inrValue | number : 1}}. What does this number mean to you?</p>
-      <div ng-repeat="answer in answers">
-        <input id="{{'answer-' + $index}}" ng-disabled="inrValue === null" type="checkbox" ng-model="answer.selected" ng-change="onToggleAnswer(answer)">
-        <label for="{{'answer-' + $index}}">{{answer.label}}</label>
+    <div class="col-xs-8 pt-inr-answer-wrapper full-height">
+      <div class="pt-inr-cell-wrapper">
+        <p ng-if="inrStatus === INR_STATUSES.NOT_STARTED">Tap on the red button on the top of meter to begin INR testing</p>
+        <p ng-if="inrStatus === INR_STATUSES.TESTING">INR testing in progress...</p>
+        <p ng-if="inrStatus === INR_STATUSES.DONE">Your INR is {{inrValue | number : 1}}. What does this number mean to you?</p>
+        <div ng-if="inrStatus === INR_STATUSES.DONE" ng-repeat="answer in answers">
+          <label for="{{'answer-' + $index}}">
+            <input id="{{'answer-' + $index}}" ng-disabled="inrValue === null" type="checkbox" ng-model="answer.selected" ng-change="onToggleAnswer(answer)">{{answer.label}}
+          </label>
+        </div>
       </div>
     </div>
   </div>

@@ -411,6 +411,10 @@ h3.mini-game-title {
 	height: 33%;
 }
 
+.two-thirds-height {
+	height: 67%;
+}
+
 .half-height {
 	height: 50%;
 }
@@ -548,11 +552,11 @@ hr.modal-separator {
     align-items: center;
   	justify-content: center;
 }
-
+/*
 .medication-wrapper {
 	height: 100%;
 	padding-right: 0px;
-}
+}*/
 
 .no-right-border {
 	border-right: none;
@@ -561,3 +565,32 @@ hr.modal-separator {
 	border-left: none;
 }
 
+#pt-inr-start {
+    background-color: #e32;
+    border-radius: 10px;
+    border: 1px solid #888;
+    padding: 3px 15px;
+}
+
+.medication-wrapper hr {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.medication-wrapper input[type="checkbox"] {
+	margin-right: 10px;
+}
+
+.pt-inr-header-wrapper img {
+	margin-right: 10px;
+}
+
+.pt-inr-cell-wrapper {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pt-inr-answer-wrapper {
+	background-color: white;
+	overflow-y: scroll;
+}

@@ -79,7 +79,14 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		selected: false
 	}];
 
+	$scope.INR_STATUSES = {
+		NOT_STARTED: 'notstarted',
+		TESTING: 'testing',
+		DONE: 'done'
+	}
+
 	$scope.inrValue = null;
+	$scope.inrStatus = null;
 	$scope.challenges = [];
 	$scope.activeChallenge = null;
 
@@ -117,6 +124,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		var patientInrTarget = getPatientMinMaxInr();
 		$scope.challenges = _.shuffle(_.where(CHALLENGES, { minTargetInr: patientInrTarget.min, maxTargetInr: patientInrTarget.max }));
 		$scope.inrValue = null;
+		$scope.inrStatus = $scope.INR_STATUSES.NOT_STARTED;
 
 		// Select a random challenge scenario
 		clearSelectedAnswers();
@@ -130,6 +138,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		// If player was successful, pick a new challenge and remove prior selected items from play
 		if (priorStatus.outcome === 'good') {
 			$scope.inrValue = null;
+			$scope.inrStatus = $scope.INR_STATUSES.NOT_STARTED;
 			clearSelectedAnswers();
 			selectChallenge();
 			customizeScenarioStatus(0, 0);
@@ -147,20 +156,9 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	}
 
 	function displayInstructions() {
-		// var challengeInstructions = '';
-		// if ($scope.activeChallenge.highRisk > 0 && $scope.activeChallenge.lowRisk > 0) {
-		// 	challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high and ' + $scope.activeChallenge.lowRisk + ' low risk drugs on the tay.';
-		// } else if ($scope.activeChallenge.highRisk === 0 && $scope.activeChallenge.lowRisk > 0) {
-		// 	challengeInstructions = 'Place ' + $scope.activeChallenge.lowRisk + ' low risk drug(s) on the tray.';
-		// } else {
-		// 	challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high risk drug(s) on the tray.';
-		// }
-		// console.log('instructions: ' + challengeInstructions);
-
-		// // Display instruction banner
 		// $rootScope.showMessage({
 		// 	type: 'info',
-		// 	text: challengeInstructions
+		// 	text: 'Tap on the red button on top of meter to begin INR testing'
 		// });
 	}
 
@@ -230,7 +228,11 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	}
 
 	$scope.startInrTest = function() {
-		$scope.inrValue = randomInrValue($scope.activeChallenge.minRandInr, $scope.activeChallenge.maxRandInr);
+		$scope.inrStatus = $scope.INR_STATUSES.TESTING;
+		$timeout(function() {
+			$scope.inrValue = randomInrValue($scope.activeChallenge.minRandInr, $scope.activeChallenge.maxRandInr);
+			$scope.inrStatus = $scope.INR_STATUSES.DONE;
+		}, 1000);
 	};
 
 	$scope.onToggleAnswer = function(answer) {
