@@ -566,9 +566,9 @@ hr.modal-separator {
 }
 
 #pt-inr-start {
-    background-color: #e32;
+	background-color: #e32;
+	color: white;
     border-radius: 10px;
-    border: 1px solid #888;
     padding: 3px 15px;
 }
 
@@ -593,4 +593,20 @@ hr.modal-separator {
 .pt-inr-answer-wrapper {
 	background-color: white;
 	overflow-y: scroll;
+}
+
+#pt-inr-monitor {
+	position: absolute;
+	bottom: 0;
+}
+
+#pt-inr-blood-droplet {
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* float: right; */
+    display: block;
+    right: 15%;
 }
