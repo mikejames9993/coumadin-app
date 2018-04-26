@@ -505,7 +505,7 @@ hr.modal-separator {
 	padding: 3px;
 }
 #message-container .message {
-	background-color: #8d6;
+	background-color: #6692dd;
 	position: relative;
 	width: 100%;
 	z-index: 150;
@@ -513,14 +513,26 @@ hr.modal-separator {
 	font-size: 16pt;
 }
 #message-container .message.warning {
+	background-color: #dd7866;
+	position: relative;
+	width: 100%;
+	z-index: 150;
+	padding: 10px;
+	font-size: 16pt;
 }
 #message-container .message.information {
+	background-color: #8d6;
+	position: relative;
+	width: 100%;
+	z-index: 150;
+	padding: 10px;
+	font-size: 16pt;
 }
 
 
 
 .blink {
-  animation: blinker 1s linear infinite;
+  animation: blinker 2s linear infinite;
 }
 
 @keyframes blinker {  
@@ -552,16 +564,17 @@ hr.modal-separator {
     align-items: center;
   	justify-content: center;
 }
-/*
 .medication-wrapper {
 	height: 100%;
 	padding-right: 0px;
-}*/
+}
 
 .no-right-border {
+	border: 3px solid grey;
 	border-right: none;
 }
 .no-left-border {
+	border: 3px solid grey;
 	border-left: none;
 }
 

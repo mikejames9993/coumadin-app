@@ -49,10 +49,6 @@ var ALL_DRUGS = [{
 	id: 'imodium1',
 	name: 'Imodium',
 	riskLevel: 2
-}, {
-	id: 'imodium2',
-	name: 'Imodium',
-	riskLevel: 2
 }];
 
 angular.module('CoumadinApp').controller('DrugInteractionController', function($rootScope, $scope, $timeout, _) {
