@@ -90,15 +90,6 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	$scope.challenges = [];
 	$scope.activeChallenge = null;
 
-    $scope.activeScenario.custom = {
-        coumadinReasons: {
-            heartDisease: false,
-            lungClot: false,
-            dvt: false,
-            other: false
-        }
-    };
-
 
 	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
 	var resumeEventHandle = $rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
@@ -114,6 +105,15 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	initScenario();
 
 	function initScenario() {
+	    $scope.activeScenario.custom = {
+	        coumadinReasons: {
+	            heartDisease: false,
+	            lungClot: false,
+	            dvt: false,
+	            other: false
+	        }
+	    };
+	    
 		// override testSubmit with a custom condition check
 		$scope.activeScenario.testSubmit = function() {
 			if (countSelectedAnswers() === 0) {
