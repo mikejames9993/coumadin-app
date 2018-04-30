@@ -167,7 +167,8 @@ app.config(function($routeProvider) {
             }],
             trophyImage: 'images/badges/diet.png',
             foodItems: foodItems,
-            footerResetText: 'Clear Plate'
+            footerResetText: 'Clear Plate',
+            overrideMoreInfo: false
         },
         drugs: {
             id: 'drug-interaction',
@@ -202,7 +203,27 @@ app.config(function($routeProvider) {
                 text: 'Remember, you must always check with your doctor or pharmacist before you take any new medications'
             }],
             trophyImage: 'images/badges/drug-interaction.png',
-            footerResetText: 'Clear Tray'
+            footerResetText: 'Clear Tray',
+            overrideMoreInfo: true,
+            moreInfoText: {
+                coumadin: [
+                    { text: 'You are advised to ask your doctor or pharmacist before taking any medications you buy from the store. Medications you buy store without your doctor’s prescription are called over-the-counter (OTC) medications. Some OTC medications may increase your risk of bleeding by making your blood too thin.' },
+                    { text: 'You are advised to ask your doctor or pharmacist before taking any food or dietary supplements when you are on Coumadin. Some food supplements may increase your risk of bleeding by making your blood too thin while others can cause your blood to clot by making your blood too thick.'}
+                ],
+                rules: [
+                    { text: 'The game consists of lists of over-the-counter medications, food supplements, and prescription medications that have different. Some have high levels of bleeding or clotting risk and some have low levels bleeding or clotting risk.' },
+                    { text: 'Each item placed correctly is worth 100 points. You will lose 100 points for each wrong placement.' },
+                    { text: 'A proficiency badge shows your level of progress. When you earn the badge it means you have very good knowledge of the level of the game.' }
+                ],
+                game: [
+                    { text: 'Each medication placed correctly will disappear from the screen when you come back for more selection.' },
+                    { text: 'Two medications will be presented one at a time until all items are placed correctly.' },
+                    { text: 'The remaining items will appear in different order on the screen each time you come back for more selection until you place all of them correctly.' }
+                ],
+                results: [
+                    { text: '' }
+                ]
+            }
         },
         blood: {
             id: 'pt-inr-monitoring',
@@ -236,16 +257,25 @@ app.config(function($routeProvider) {
                 {
                     text: "You will earn a Proficiency Badge for being a hero caring for yourself."
             }],
-            trophyText: [{
-                text: "You selected the right responses about all your INR numbers"
-            },{
-                text: 'You\'ve earned enough points to earn a proficiency badge!'
-            },{
-                text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
-            }, {
-                text: 'Remember, you must always check with your doctor or pharmacist when your INR numbers are too high or too low.'
-            }],
+            trophyText: [
+                {
+                    text: "You selected the right responses about all your INR numbers"
+                },{
+                    text: 'You\'ve earned enough points to earn a proficiency badge!'
+                },{
+                    text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
+                }, {
+                    text: 'Remember, you must always check with your doctor or pharmacist when your INR numbers are too high or too low.'
+                }
+            ],
             trophyImage: 'images/badges/pt-inr-monitoring.png',
+            overrideMoreInfo: true,
+            moreInfoText: {
+                coumadin: [{ text: 'Your blood clotting measure is called INR. When your INR is high, your blood is too thin and you can bleed. When your INR is low, your blood is too thick and your blood can clot. Your doctor use your blood clotting values to prescribe your Coumadin dose' }],
+                rules: [{ text: 'Your doctor uses your diagnosis or the reason why you take Coumadin to set your INR number. Your INR number may not be the same as the other person.' }],
+                game: [{ text: 'Pretend the INR numbers are the ones your doctor set for you. You are using these numbers only to play the game and does not represent your real INR numbers.' }],
+                results: [{ text: 'A proficiency badge shows your level of progress. When you earn the badge it means you have very good knowledge of the level of the game.' }]
+            }
         }
     };
 
@@ -351,6 +381,7 @@ app.run(function($rootScope, $location, $uibModal) {
         name: 'Jimbo',
         score: 0
     };
+    $rootScope.suppressDefaultMoreInfo = false;
 
     function doShowOverlay(templateUrl, controller, scopeData, navigation) {
         // $rootScope.overlay.template = template;
@@ -385,7 +416,16 @@ app.run(function($rootScope, $location, $uibModal) {
 
     $rootScope.showCoumadinInfoOverlay = function() {
         console.log('showing coumadin info overlay');
-        coumadinInfoModalInstance = doShowOverlay('/components/shared/coumadin-info.html', 'CoumadinInfoController', {}, {});
+        if (!$rootScope.suppressDefaultMoreInfo) {
+            coumadinInfoModalInstance = doShowOverlay('/components/shared/coumadin-info.html', 'CoumadinInfoController', {}, {});
+        } else {
+            $rootScope.$broadcast('minigame:scenario:moreInfo');
+        }
+    }
+
+    $rootScope.showCoumadinInfoOverrideOverlay = function(templateUrl, controller, scopeData) {
+        console.log('showing coumadin info override overlay');
+        coumadinInfoModalInstance = doShowOverlay(templateUrl, controller, scopeData || {}, {});
     }
 
     $rootScope.hideOverlay = function() {
@@ -406,5 +446,6 @@ app.run(function($rootScope, $location, $uibModal) {
         $rootScope.hideMessage();
         $rootScope.hideOverlay();
         $location.url('/landing');
+        $rootScope.suppressDefaultMoreInfo = false;
     };
 });

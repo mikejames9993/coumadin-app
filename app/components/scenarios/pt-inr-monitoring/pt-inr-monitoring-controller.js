@@ -100,10 +100,16 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
     };
 
 
-	$rootScope.$on('minigame:scenario:restart', initScenario);
-	$rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
+	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
+	var resumeEventHandle = $rootScope.$on('minigame:scenario:resume', function(event, priorStatus) {
 		resumeScenario(priorStatus);
 	});
+
+	// deregister event listeners when this controller is destroyed
+	$scope.$on("$destroy", function() {
+        restartEventHandle();
+        resumeEventHandle();
+    });
 
 	initScenario();
 

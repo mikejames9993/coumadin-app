@@ -1,5 +1,12 @@
 'use strict';
 
+var SCREENS = {
+	COUMADIN: 'coumadin',
+	RULES: 'rules',
+	GAME: 'game',
+	RESULTS: 'results'
+};
+
 angular.module('CoumadinApp').controller('MinigameController', function($scope, $rootScope, $location, minigameConfig, _) {
 	console.log('minigame controller loading');
 	$scope.minigame = minigameConfig.name;
@@ -9,8 +16,19 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	$rootScope.viewInfo = null;
 
 	var activeScenarioIndex = -1;
+	$scope.activeScreen = null;
 
-	// console.log("user data: " + JSON.stringify($rootScope.user));
+	var moreInfoEventHandle = $rootScope.$on('minigame:scenario:moreInfo', function(event, priorStatus) {
+		if ($scope.activeScenario.config.overrideMoreInfo) {
+			//$rootScope.showOverlay('/components/scenarios/' + $scope.activeScenario.config.id + '/more-info-' + $scope.activeScreen.toLowerCase() + '.html', 'CoumadinInfoOverrideController', {}, {});
+			$rootScope.showCoumadinInfoOverrideOverlay('/components/scenarios/more-info-override.html', 'CoumadinInfoOverrideController', { infos: $scope.activeScenario.config.moreInfoText[$scope.activeScreen.toLowerCase()] }, {});
+		}
+	});
+
+	$scope.$on("$destroy", function() {
+        moreInfoEventHandle(); // deregister moreInfo listener when this controller is destroyed
+    });
+
 
 	$scope.hasNextScenario = function() {
 		return activeScenarioIndex < ($scope.scenarios.length - 1);
@@ -22,6 +40,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			// transition to the next scenario
 			activeScenarioIndex++;
 			refreshScenario();
+			$scope.activeScreen = SCREENS.COUMADIN;
 			showCoumadinOverlay();
 		} else {
 			// go back to landing page
@@ -50,13 +69,16 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 				// do nothing by default
 			}
 		};
+		if ($scope.activeScenario.config.overrideMoreInfo) {
+			$rootScope.suppressDefaultMoreInfo = true;
+		}
 	}
 
 	function resumeScenario() {
 		console.log('triggering scenario resume');
 		var priorStatus = $scope.activeScenario.status;
+		$scope.activeScreen = SCREENS.GAME;
 		$scope.hideOverlay();
-		// refreshScenario();
 		$rootScope.$broadcast('minigame:scenario:resume', priorStatus);
 	}
 
@@ -65,14 +87,17 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		$scope.hideOverlay();
 		refreshScenario();
 		$rootScope.$broadcast('minigame:scenario:restart');
+		$scope.activeScreen = SCREENS.GAME;
 	}
 
 	function showRulesOverlay() {
+		$scope.activeScreen = SCREENS.RULES;
 		$rootScope.hideOverlay();
 		$rootScope.showOverlay('/components/scenarios/scenario-rules.html', 'ScenarioRulesController', $scope.activeScenario, navigation);
 	}
 
 	function showCoumadinOverlay() {
+		$scope.activeScreen = SCREENS.COUMADIN;
 		$rootScope.hideOverlay();
 		$rootScope.showOverlay('/components/scenarios/scenario-coumadin.html', 'ScenarioCoumadinController', $scope.activeScenario, navigation);
 	}
@@ -90,21 +115,24 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			completeScenario();
 			$rootScope.hideOverlay();
 			if ($scope.activeScenario.status.complete) {
+				$scope.activeScreen = SCREENS.RESULTS;
 				$rootScope.showOverlay('/components/scenarios/scenario-trophy.html', 'ScenarioTrophyController', $scope.activeScenario, navigation);
 			} else {
+				$scope.activeScreen = SCREENS.RESULTS;
 				$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
 			}
 		}
 	}
 
 	function hideOverlay() {
+		$scope.activeScreen = SCREENS.GAME;
 		$rootScope.hideOverlay();
 	}
 
 	var navigation = {
 		showCoumadinInfo: showCoumadinOverlay, // show coumadin info
 		showRules: showRulesOverlay, // show rules
-		start: $scope.hideOverlay, // show game
+		start: hideOverlay, // show game
 		resume: resumeScenario, // show game and pick up at previous point
 		retry: restartScenario, // show game and start over
 		next: $scope.goToNextScenario // go to landing page
@@ -119,5 +147,4 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	} else {
 		$scope.errorMessage = 'No Scenarios Found';
 	}
-
 });
