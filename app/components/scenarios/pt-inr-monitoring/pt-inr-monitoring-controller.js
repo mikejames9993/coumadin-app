@@ -238,7 +238,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		$timeout(function() {
 			$scope.inrValue = randomInrValue($scope.activeChallenge.minRandInr, $scope.activeChallenge.maxRandInr);
 			$scope.inrStatus = $scope.INR_STATUSES.DONE;
-		}, 1000);
+		}, 4000);
 	};
 
 	$scope.onToggleAnswer = function(answer) {
