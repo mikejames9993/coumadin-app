@@ -30,6 +30,14 @@ var ALL_DRUGS = [{
 	name: 'Ibuprofen',
 	riskLevel: 1
 }, {
+	id: 'fish',
+	name: 'Fish Oil',
+	riskLevel: 1
+}, {
+	id: 'ginseng',
+	name: 'Ginseng',
+	riskLevel: 1
+}, {
 	id: 'flonase',
 	name: 'Flonase',
 	riskLevel: 2
@@ -46,7 +54,7 @@ var ALL_DRUGS = [{
 	name: 'Aleve Naproxen',
 	riskLevel: 2
 }, {
-	id: 'imodium1',
+	id: 'imodium',
 	name: 'Imodium',
 	riskLevel: 2
 }];
