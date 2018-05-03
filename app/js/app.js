@@ -7,10 +7,16 @@ var app = angular.module('CoumadinApp', [
     'ui.bootstrap',
     'underscore',
     'matchMedia',
-    'ngSanitize'
+    'ngSanitize',
+    'ngIdle'
 ]);
+// config(['KeepaliveProvider', 'IdleProvider', function(
+// app.config(function($routeProvider) {
+app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
 
-app.config(function($routeProvider) {
+
+    IdleProvider.idle(840); //14 minutes before the 1 minute warning
+    IdleProvider.timeout(60); //warning will show for 1 minute before returning user to home screen
 
     var foodItems = [
     // {
@@ -372,7 +378,9 @@ app.config(function($routeProvider) {
         .otherwise({ redirectTo: '/' });
 });
 
-app.run(function($rootScope, $location, $uibModal) {
+app.run(function($rootScope, $location, $uibModal, Idle) {
+
+    Idle.watch(); //being timeout watch as soon as application loads
 
     var standardModalInstance = null;
     var coumadinInfoModalInstance = null;
@@ -447,5 +455,6 @@ app.run(function($rootScope, $location, $uibModal) {
         $rootScope.hideOverlay();
         $location.url('/landing');
         $rootScope.suppressDefaultMoreInfo = false;
+        Idle.unwatch();
     };
 });

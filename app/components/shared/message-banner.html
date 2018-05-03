@@ -4,6 +4,11 @@
 			<strong>{{message.text}} Tap to Cancel.</strong>
 		</div>
 	</div>
+	<div ng-if="message.type === 'timeout'" class="message-wrapper">
+		<div class="message warning blink" ng-click="hideMessage(message.type)">
+			<strong>Your Session Will Timeout in {{counter}} Seconds. Tap to Cancel.</strong>
+		</div>
+	</div>
 	<div ng-if="message.type === 'info'" class="message-wrapper">
 		<div class="message information blink" ng-click="hideMessage(message.type)">
 			<strong>{{message.text}} Tap to Cancel.</strong>

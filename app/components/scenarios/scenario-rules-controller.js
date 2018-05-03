@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('ScenarioRulesController', function($scope, data, navigation) {
+angular.module('CoumadinApp').controller('ScenarioRulesController', function($rootScope, $scope, data, navigation) {
 	$scope.scenario = data;
 
 	$scope.back = function() {
@@ -8,6 +8,7 @@ angular.module('CoumadinApp').controller('ScenarioRulesController', function($sc
 	};
 
 	$scope.start = function() {
-		navigation.start();
+			navigation.start();
 	};
+	
 });

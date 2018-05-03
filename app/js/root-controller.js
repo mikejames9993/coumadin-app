@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('RootController', function($rootScope, $scope, $location, screenSize, _) {
+angular.module('CoumadinApp').controller('RootController', function($rootScope, $scope, $location, $timeout, screenSize, _, Idle, Keepalive) {
 	console.log('root controller loading');
 
 	$rootScope.viewInfo = "";
@@ -19,6 +19,52 @@ angular.module('CoumadinApp').controller('RootController', function($rootScope, 
 			password: ""
 		};
 	};
+
+	$rootScope.counter = 60;
+	$rootScope.stopped;
+
+	$scope.startCountdown = function() {
+	    $rootScope.stopped = $timeout(function() {
+	       console.log($scope.counter);
+	     $rootScope.counter--;   
+	     $scope.startCountdown();   
+	    }, 1000);
+	};
+
+    $scope.endTimeOut = function(){
+    	$rootScope.hideMessage('warning');
+        $rootScope.bannerMessages = [];
+        $timeout.cancel($rootScope.stopped);
+        $rootScope.counter = 60;
+    }
+	
+	
+	$rootScope.$on('IdleStart', function() {
+        console.log('IdleStart');
+		
+		if ($location.path()!='/'){
+			$scope.startCountdown();
+
+        	$rootScope.showMessage({
+				type: 'timeout',
+			});
+        }
+      });
+
+    $rootScope.$on('IdleEnd', function() {
+      console.log('IdleEnd');
+      $scope.endTimeOut();
+    });
+
+
+    $rootScope.$on('IdleTimeout', function() {
+      console.log('IdleTimeout');
+      $rootScope.goToLanding();
+      $scope.endTimeOut();
+    });
+
+
+
 
 	$rootScope.showInfo = function() {
 		$rootScope.showOverlay('/components/shared/app-info.html', 'AppInfoController', $rootScope.information, null);

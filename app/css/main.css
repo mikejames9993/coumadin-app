@@ -400,7 +400,6 @@ h3.mini-game-title {
 
 .quarter-height {
 	height: 25%;
-	/*border: 1px solid red;*/
 }
 
 .three-quarter-height {
@@ -516,7 +515,7 @@ hr.modal-separator {
 	background-color: #dd7866;
 	position: relative;
 	width: 100%;
-	z-index: 150;
+	z-index: 1050;
 	padding: 10px;
 	font-size: 16pt;
 }
@@ -566,16 +565,22 @@ hr.modal-separator {
 }
 .medication-wrapper {
 	height: 100%;
-	padding-right: 0px;
 }
 
-.no-right-border {
+.medication-tray-border {
 	border: 3px solid grey;
-	border-right: none;
+	height: 60px;
 }
-.no-left-border {
-	border: 3px solid grey;
-	border-left: none;
+
+.med-tray {
+	margin: 0 auto;
+}
+.medication-tray-label {
+	margin: 0px;
+}
+
+.medication-tray {
+	height: 89px; /* the 80px plus the border sizes. Not sure where the other 3 come from, but it just works, don't ask questions*/
 }
 
 .tray-gradient-bg {
