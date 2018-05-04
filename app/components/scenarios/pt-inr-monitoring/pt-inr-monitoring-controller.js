@@ -43,6 +43,7 @@ var CHALLENGES = [{
 
 angular.module('CoumadinApp').controller('PTINRMonitoringController', function($rootScope, $scope, $timeout, _) {
 	console.log('ptinr controller loading');
+	var answerToDisplay; //set to either in-range or out-of-range
 
 
 	$scope.answers = [{
@@ -52,6 +53,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			within: true, // whether this answer is true when INR value is within patient's range
 			above: false  // whether this answer is true when INR value is above patient's range
 		},
+		display: true,
 		selected: false
 	}, {
 		label: 'My blood is too thin and can bleed easily',
@@ -60,6 +62,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			within: false, // whether this answer is true when INR value is within patient's range
 			above: true  // whether this answer is true when INR value is above patient's range
 		},
+		display: true,
 		selected: false
 	}, {
 		label: 'My blood is too thick',
@@ -68,14 +71,25 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			within: false, // whether this answer is true when INR value is within patient's range
 			above: false  // whether this answer is true when INR value is above patient's range
 		},
+		display: true,
 		selected: false
 	}, {
 		label: 'I will take my Coumadin dose and call my doctor',
 		inr: {
 			below: true, // whether this answer is true when INR value is below patient's range
+			within: false, // whether this answer is true when INR value is within patient's range
+			above: true  // whether this answer is true when INR value is above patient's range
+		},
+		display: 'out-of-range',
+		selected: false
+	},  {
+		label: 'I will take my Coumadin as normal',
+		inr: {
+			below: false, // whether this answer is true when INR value is below patient's range
 			within: true, // whether this answer is true when INR value is within patient's range
 			above: false  // whether this answer is true when INR value is above patient's range
 		},
+		display: 'in-range',
 		selected: false
 	}];
 
@@ -185,11 +199,12 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			var correctValue = null;
 			var selectedValue = answer.selected;
 
+			var patientInrTarget = getPatientMinMaxInr();
 			// Determine whether the answer should have been checked
-			if ($scope.inrValue > $scope.activeChallenge.maxTargetInr) {
+			if ($scope.inrValue > patientInrTarget.max) {
 				// patient's INR value is above the target range
 				correctValue = answer.inr.above;
-			} else if ($scope.inrValue >= $scope.activeChallenge.minTargetInr) {
+			} else if ($scope.inrValue >= patientInrTarget.min) {
 				// patient's INR value is within the target range
 				correctValue = answer.inr.within;
 			} else {
@@ -238,7 +253,9 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		$timeout(function() {
 			$scope.inrValue = randomInrValue($scope.activeChallenge.minRandInr, $scope.activeChallenge.maxRandInr);
 			$scope.inrStatus = $scope.INR_STATUSES.DONE;
-		}, 4000);
+			determineAnswersToDisplay();
+		}, 1000);
+		
 	};
 
 	$scope.onToggleAnswer = function(answer) {
@@ -265,6 +282,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	$scope.getPatientMinMaxInr = getPatientMinMaxInr;
 
 	function randomInrValue(low, high) {
+		
 		// generate a random number with 1 decimal point, between low (inclusive) and high (inclusive)
 		// return (Math.Floor(Math.random() * ((high - low) * 10 + 1)) + low) / 10;
 		return randomInt(low * 10, high * 10 + 1) / 10;
@@ -278,4 +296,32 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 	function countSelectedAnswers() {
 		return _.reduce($scope.answers, function(memo, answer) { return memo + answer.selected ? 1 : 0; }, 0);
 	}
+
+	function determineAnswersToDisplay() {
+		var patientInrTarget = getPatientMinMaxInr();
+			
+		console.log($scope.inrValue);
+		console.log(patientInrTarget);
+			
+		if ($scope.inrValue > patientInrTarget.max) {
+			// patient's INR value is above the target range
+			answerToDisplay = 'out-of-range';
+		} else if ($scope.inrValue >= patientInrTarget.min) {
+			// patient's INR value is within the target range
+			answerToDisplay = 'in-range';
+		} else {
+			// patient's INR value is below the target range
+			answerToDisplay = 'out-of-range';
+		}
+		console.log(answerToDisplay);
+
+		$scope.displayFilter = $scope.answers.filter(function (input) {
+			return (input.display === true || input.display === answerToDisplay);
+		});
+
+	}
+
+
+
+
 });

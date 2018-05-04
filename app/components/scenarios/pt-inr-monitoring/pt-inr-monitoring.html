@@ -24,7 +24,7 @@
         <p ng-if="inrStatus === INR_STATUSES.NOT_STARTED">Tap on the red button on the top of meter to begin INR testing</p>
         <p ng-if="inrStatus === INR_STATUSES.TESTING">INR testing in progress...</p>
         <p ng-if="inrStatus === INR_STATUSES.DONE">Your INR is {{inrValue | number : 1}}. What does this number mean to you?</p>
-        <div ng-if="inrStatus === INR_STATUSES.DONE" ng-repeat="answer in answers">
+        <div ng-if="inrStatus === INR_STATUSES.DONE" ng-repeat="answer in displayFilter">
           <label for="{{'answer-' + $index}}">
             <input id="{{'answer-' + $index}}" ng-disabled="inrValue === null" type="checkbox" ng-model="answer.selected" ng-change="onToggleAnswer(answer)">{{answer.label}}
           </label>
