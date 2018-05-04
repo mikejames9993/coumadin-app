@@ -254,7 +254,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 			$scope.inrValue = randomInrValue($scope.activeChallenge.minRandInr, $scope.activeChallenge.maxRandInr);
 			$scope.inrStatus = $scope.INR_STATUSES.DONE;
 			determineAnswersToDisplay();
-		}, 1000);
+		}, 4000);
 		
 	};
 
