@@ -79,6 +79,10 @@ i.fa.no-padding {
 .modal-footer {
 	text-align: center;
 }
+
+.no-border {
+	border: none!important;
+}
 /*.ca-btn-success {
 	color: #f2f2f2;
     background-color: #405c70;
@@ -529,7 +533,6 @@ hr.modal-separator {
 }
 
 
-
 .blink {
   animation: blinker 2s linear infinite;
 }
@@ -567,29 +570,26 @@ hr.modal-separator {
 	height: 100%;
 }
 
-.medication-tray-border {
-	border: 3px solid grey;
-	height: 60px;
-}
-
 .med-tray {
 	margin: 0 auto;
+	padding: 0px;
 }
 .medication-tray-label {
 	margin: 0px;
+	border: none;
 }
 
-.medication-tray {
-	height: 89px; /* the 80px plus the border sizes. Not sure where the other 3 come from, but it just works, don't ask questions*/
-}
-
-.tray-gradient-bg {
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+27,e1e1e1+81,f6f6f6+100 */
-background: #ffffff; /* Old browsers */
-background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 27%, #e1e1e1 81%, #f6f6f6 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 27%,#e1e1e1 81%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 27%,#e1e1e1 81%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+.medication-tray-wrapper {
+	border: 3px solid grey;
+	padding: 0px;
+	margin: 15px;
+	height: 90px; 
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+27,e1e1e1+81,f6f6f6+100 */
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 27%, #e1e1e1 81%, #f6f6f6 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f1f1f1 27%,#e1e1e1 81%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 27%,#e1e1e1 81%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
 }
 
 #pt-inr-start {
@@ -606,6 +606,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     border: 3px solid rgb(105,105,105);   
     box-shadow: inset -5px -4px 7px 1px rgb(105,105,105); 
 
+}
+
+.drug-card-selected {
+	margin-bottom: 10px;
 }
 
 .medication-wrapper hr {

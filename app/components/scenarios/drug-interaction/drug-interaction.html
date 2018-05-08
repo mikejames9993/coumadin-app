@@ -54,14 +54,14 @@
 				</div>
 			</div>
 			<!-- Medication tray area -->
-			<div class="row quarter-height medication-tray tray-gradient-bg">
+			<div class="row quarter-height medication-tray-wrapper">
 				<label class="text-center col-xs-12  medication-tray-label">Medication Tray</label>
 				<div class="med-tray col-xs-12">
-				<div class="col-xs-6 drug-wrapper medication-tray-border">
-					<drug-card drug="selectedDrugs[0]" location-id="0" ng-click="selectTrayDrug(selectedDrugs[0])"></drug-card>
+				<div class="col-xs-6 drug-wrapper no-border">
+					<drug-card drug="selectedDrugs[0]" location-id="0" ng-click="selectTrayDrug(selectedDrugs[0])" class="drug-card-selected"></drug-card>
 				</div>
-				<div class="col-xs-6 drug-wrapper medication-tray-border">
-					<drug-card drug="selectedDrugs[1]" location-id="1" ng-click="selectTrayDrug(selectedDrugs[1])"></drug-card>
+				<div class="col-xs-6 drug-wrapper no-border">
+					<drug-card drug="selectedDrugs[1]" location-id="1" ng-click="selectTrayDrug(selectedDrugs[1])" class="drug-card-selected"></drug-card>
 				</div>
 				</div>
 			</div>
