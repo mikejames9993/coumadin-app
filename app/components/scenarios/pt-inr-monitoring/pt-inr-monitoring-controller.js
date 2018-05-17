@@ -196,30 +196,32 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		var numWrongChoices = 0;
 
 		_.each($scope.answers, function(answer) {
-			var correctValue = null;
-			var selectedValue = answer.selected;
+			if (answer.display === true || answer.display === answerToDisplay) {
+				var correctValue = null;
+				var selectedValue = answer.selected;
 
-			var patientInrTarget = getPatientMinMaxInr();
-			// Determine whether the answer should have been checked
-			if ($scope.inrValue > patientInrTarget.max) {
-				// patient's INR value is above the target range
-				correctValue = answer.inr.above;
-			} else if ($scope.inrValue >= patientInrTarget.min) {
-				// patient's INR value is within the target range
-				correctValue = answer.inr.within;
-			} else {
-				// patient's INR value is below the target range
-				correctValue = answer.inr.below;
-			}
+				var patientInrTarget = getPatientMinMaxInr();
+				// Determine whether the answer should have been checked
+				if ($scope.inrValue > patientInrTarget.max) {
+					// patient's INR value is above the target range
+					correctValue = answer.inr.above;
+				} else if ($scope.inrValue >= patientInrTarget.min) {
+					// patient's INR value is within the target range
+					correctValue = answer.inr.within;
+				} else {
+					// patient's INR value is below the target range
+					correctValue = answer.inr.below;
+				}
 
-			// Determine whether the user's choice was right or wrong for this answer
-			if (correctValue === selectedValue && selectedValue) {
-				// user selected a right value
-				numRightChoices++;
-			}
-			if (correctValue !== selectedValue && selectedValue) {
-				// user selected a wrong value
-				numWrongChoices++;
+				// Determine whether the user's choice was right or wrong for this answer
+				if (correctValue === selectedValue && selectedValue) {
+					// user selected a right value
+					numRightChoices++;
+				}
+				if (correctValue !== selectedValue && selectedValue) {
+					// user selected a wrong value
+					numWrongChoices++;
+				}
 			}
 		});
 
