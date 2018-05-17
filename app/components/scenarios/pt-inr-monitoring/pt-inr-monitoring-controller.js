@@ -78,7 +78,7 @@ angular.module('CoumadinApp').controller('PTINRMonitoringController', function($
 		inr: {
 			below: true, // whether this answer is true when INR value is below patient's range
 			within: false, // whether this answer is true when INR value is within patient's range
-			above: true  // whether this answer is true when INR value is above patient's range
+			above: false  // whether this answer is true when INR value is above patient's range
 		},
 		display: 'out-of-range',
 		selected: false
