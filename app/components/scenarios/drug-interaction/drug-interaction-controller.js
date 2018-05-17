@@ -135,6 +135,7 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 					}
 				}
 			}
+			$rootScope.hideMessage('warning');
 		};
 	
 		// Select drugs at random
