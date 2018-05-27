@@ -65,6 +65,7 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 	$scope.cabinetDrugs = [];
 	$scope.selectedDrugs = [];
 	$scope.activeChallenge = null;
+	$scope.instructions = '';
 
 	for (var i = 0; i < NUM_GAME_DRUGS; i++) {
 		$scope.cabinetDrugs.push(null);
@@ -193,19 +194,16 @@ angular.module('CoumadinApp').controller('DrugInteractionController', function($
 	function displayInstructions() {
 		var challengeInstructions = '';
 		if ($scope.activeChallenge.highRisk > 0 && $scope.activeChallenge.lowRisk > 0) {
-			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high and ' + $scope.activeChallenge.lowRisk + ' low risk drugs on the tay.';
+			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high and ' + $scope.activeChallenge.lowRisk + ' low risk drugs on the tay';
 		} else if ($scope.activeChallenge.highRisk === 0 && $scope.activeChallenge.lowRisk > 0) {
-			challengeInstructions = 'Place ' + $scope.activeChallenge.lowRisk + ' low risk drug(s) on the tray.';
+			challengeInstructions = 'Place ' + $scope.activeChallenge.lowRisk + ' low risk drug(s) on the tray';
 		} else {
-			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high risk drug(s) on the tray.';
+			challengeInstructions = 'Place ' + $scope.activeChallenge.highRisk + ' high risk drug(s) on the tray';
 		}
 		console.log('instructions: ' + challengeInstructions);
 
-		// Display instruction banner
-		$rootScope.showMessage({
-			type: 'info',
-			text: challengeInstructions
-		});
+		// Display instructions
+		$scope.instructions = challengeInstructions;
 	}
 
 	function clearSelectedDrugs() {
