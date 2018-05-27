@@ -429,6 +429,10 @@ h3.mini-game-title {
 	height: 100%;
 }
 
+.percent-height-40 {
+	height: 40%;
+}
+
 .diet-scenario-instructions {
 	padding: 5px;
 	text-align: center;
