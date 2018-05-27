@@ -112,6 +112,9 @@ i.fa.no-padding {
 	padding-left: 3px;
 	padding-right: 3px;
 }
+#app-header .negative-score {
+	color: red;
+}
 
 .title-header h1{
 	font-weight: bold;
