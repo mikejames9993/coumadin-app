@@ -455,6 +455,7 @@ app.run(function($rootScope, $location, $uibModal, Idle) {
         $rootScope.hideOverlay();
         $location.url('/landing');
         $rootScope.suppressDefaultMoreInfo = false;
+        $rootScope.userData.score = 0;
         Idle.unwatch();
     };
 });
