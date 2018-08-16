@@ -150,7 +150,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
                 }, {
                     text: "Vitamin K is essential to the clotting process in your body."
                 }, {
-                    text: "Some vegetables can contain high levels of Vitamin K."
+                    text: "Some food items can contain high levels of Vitamin K."
                 }, {
                     text: "You are advised to eat a normal, balanced diet."
                 }

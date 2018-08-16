@@ -173,13 +173,26 @@ i.fa.no-padding {
 .blue-info-text {
 	color: blue;
 }
-body,p,h1,h2,h3,h4,h5,h6,.btn {
+p,body {
+
+}
+h1,h2,h3,h4,h5,h6,.btn {
 	font-family: arial black;
 	font-weight: bold;
 }
 body, label {
 	font-size: 16pt;
 }
+
+#info-modal-body,#modal-body{
+	padding-bottom: 0px;
+	padding-top:5px;
+}
+#info-modal-header {
+	padding-bottom: 5px;
+	padding-top:5px;
+}
+
 .info-table{
 	border: none;
 }
@@ -240,8 +253,8 @@ body, label {
 .modal-dialog.modal-fs .modal-content {
 	border-radius: 0;
 	border: 0;
-	/*background-color: rgba(50, 50, 50, .9);*/
-	/*color: black;*/
+	background-color: #AFE7F9;
+	color: #363636;
 	box-shadow: none;
 	min-height: 100%;
 }
