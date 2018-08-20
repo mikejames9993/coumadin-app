@@ -522,6 +522,7 @@ hr.modal-separator {
 	position: absolute;
     left: 0;
     right: 0;
+    top: 50px;
 }
 #message-container .message-wrapper {
 	width: 100%;
