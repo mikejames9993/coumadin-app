@@ -1,0 +1,43 @@
+<div class="container-fluid eating-wrapper" ng-controller="VitaminKController">
+	<!-- top row of foods -->
+	<div class="col-xs-12">
+		<div class="row vit-k-banner">Does the food below contain high or low amounts of Vitamin K?</div>
+
+		{{vitKCounterTracker | secondsToDateTime | date:'HH:mm:ss'}}
+		
+	</div>
+	<!-- Main Div -->
+	<div class="half-height">
+		<div class="col-xs-6 text-center">
+			<h3>{{selectionMsg}}</h3>
+			<img ng-src={{leftPanelBGImage}} class="img-responsive">
+		</div>
+		<div class="col-xs-6 challenge-food">
+			
+				<food-card food="currentFoodItem" location-id="0"></food-card>
+			
+
+		</div>
+	</div>
+	
+	<!-- Button Div -->
+	<div class="col-xs-12">
+
+		<div class="row col-xs-12">
+			Tap on High or Low to Select
+		</div>
+		
+		<div class="col-xs-12">
+			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
+				High<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div class="col-xs-12 ">
+			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
+				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+	
+	
+</div>

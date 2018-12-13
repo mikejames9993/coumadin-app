@@ -1,0 +1,9 @@
+<div ng-if="food" class="food-card" draggable="true" data-id="{{food.id}}" data-location-id="{{locationId}}" ng-click="expandFood(food)" >
+	<img ng-src="{{food.src}}" alt="{{food.name}}" class="food-icon img-responsive" data-id="{{food.id}}">
+	<div class="food-label">
+		<span class="food-label-inner">{{food.name}}</span>
+	</div>
+</div>
+<div ng-if="!food" class="food-card" data-location-id="0">
+	<img class="food-icon img-responsive" src="images/food-graphics/nothing.png" data-location-id="{{locationId}}">
+</div>

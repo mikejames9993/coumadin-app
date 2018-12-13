@@ -8,7 +8,8 @@ var app = angular.module('CoumadinApp', [
     'underscore',
     'matchMedia',
     'ngSanitize',
-    'ngIdle'
+    'ngIdle',
+    'timer'
 ]);
 // config(['KeepaliveProvider', 'IdleProvider', function(
 // app.config(function($routeProvider) {
@@ -17,6 +18,8 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
 
     IdleProvider.idle(840); //14 minutes before the 1 minute warning
     IdleProvider.timeout(60); //warning will show for 1 minute before returning user to home screen
+    //1 - high
+    //3 - low
 
     var foodItems = [
     // {
@@ -135,7 +138,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
     }];
 
     var scenarios = {
-        diet: {
+        /*diet: {
             id: 'diet',
             name: 'Diet',
             altName: 'Food Choices',
@@ -174,6 +177,47 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
             trophyImage: 'images/badges/diet.png',
             foodItems: foodItems,
             footerResetText: 'Clear Plate',
+            overrideMoreInfo: false
+        },
+        */
+        vitaminkfood: {
+            id: 'vitamin-k-foods',
+            name: 'Vitamin K Foods',
+            altName: 'Vitamin K Foods',
+            motto: 'Eat Right, Eat Safely',
+            icon: 'images/scenarios/diet.png',
+            coumadinInfoSource: 'config',
+            coumadinInfo: [
+                {
+                    text: "The focus of this app is to teach you about diet and Coumadin."
+                }, {
+                    text: "You are on Coumadin to treat or prevent blood clots."
+                }, {
+                    text: "Vitamin K alters your clotting."
+                }, {
+                    text: "Food can affect vitamin K levels in your body."
+                },{
+                    text: "So it is vital to understand what foods to avoid."
+                }
+            ],
+            rules: [{
+                text: "The words High and Low appear next to the food. It shows the amount of Vitamin K in the food."
+            }, {
+                text: "1. Tap HIGH or LOW to indicate the level of Vitamin K in the food item."
+            }, {
+                text: "2. You earn one point for each correct choice."
+            }, {
+                text: "3. You have 10 minutes to earn 10 points."
+            }],
+            trophyText: [{
+                text: 'You\'ve earned enough points to earn a proficiency badge!'
+            }, {
+                text: 'You have earned your Proficiency Badge, which will display at the right corner of the Home screen the next time you play the game.'
+            }, {
+                text: 'Remember, you can still enjoy Vitamin K foods but not in excess!'
+            }],
+            trophyImage: 'images/badges/diet.png',
+            foodItems: foodItems,
             overrideMoreInfo: false
         },
         drugs: {
@@ -312,35 +356,35 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
                     }
                 }
             }
-            // data: {
-            //     permissions: {
-            //         except: ['AUTHENTICATED'],
-            //         redirectTo: '/'
-            //     }
-            // }
         })
-        .when('/register', {
-            templateUrl: '/components/user/register.html'
-            // data: {
-            //     permissions: {
-            //         except: ['AUTHENTICATED'],
-            //         redirectTo: '/'
-            //     }
-            // }
-        })
-        .when('/diet', {
-        	controller: 'MinigameController',
+        /*.when('/diet',{
+            controller: 'MinigameController',
             templateUrl: '/components/minigames/minigame.html',
             resolve: {
-            	minigameConfig: function() {
-            		return {
-	            		name: 'Diet',
-                        helpText: 'Drag food item to plate.',
-		            	scenarios: [
-                            scenarios.diet
+                minigameConfig: function() {
+                    return {
+                        name: 'Diet',
+                        helpText: 'Drag food items on the plate.',
+                        scenarios: [
+                            scenarios.foods
                         ]
-	            	}
-	            }
+                    }
+                }
+            }
+        })*/
+        .when('/vitamin-k-foods', {
+            controller: 'MinigameController',
+            templateUrl: '/components/minigames/minigame.html',
+            resolve: {
+                minigameConfig: function() {
+                    return {
+                        name: 'Vitamin K Foods',
+                        helpText: 'Drag food item to plate.',
+                        scenarios: [
+                            scenarios.vitaminkfood
+                        ]
+                    }
+                }
             }
         })
         .when('/drug-interaction', {

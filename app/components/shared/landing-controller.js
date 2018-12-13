@@ -2,7 +2,6 @@
 
 angular.module('CoumadinApp').controller('LandingController', function($rootScope, $scope, $routeParams, $location, Idle) {
 	console.log('landing page controller loading');
-	console.log('another test');
 
 	// $rootScope.viewInfo = "Select a mini game";
 	$scope.minigame = function(game){

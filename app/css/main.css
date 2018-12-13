@@ -1,3 +1,18 @@
+/*guy images*/
+.thinking-guy {
+	background-image: url('../images/weird-guy/thinking-idea-guy.jpg');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+}
+
+
+/* vitamin-k-foods */
+.challenge-food {
+	padding: 0px;
+}
 /* game colors */
 .diet {
 	color: #1b8c76;

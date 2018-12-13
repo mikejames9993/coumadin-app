@@ -1,0 +1,9 @@
+<p class="score-change-bad text-center">Reward Points: {{scenario.status.scoreChange}}</p>
+<!-- text for some right and some wrong choices -->
+<p ng-if="scenario.status.custom.numRightChoices > 0" class="text-center">Your Reward Point(s) is <span class="score-change-bad">{{scenario.status.scoreChange}}</span> because you made {{scenario.status.custom.numRightChoices}} correct choice (<span class="score-change-good">+{{scenario.status.custom.pointsPerRightChoice}}</span>) but also made {{scenario.status.custom.numWrongChoices}} wrong choice (<span class="score-change-bad">{{scenario.status.custom.pointsPerWrongChoice}}</span>).</p>
+<!-- text for all wrong choices -->
+<p ng-if="scenario.status.custom.numRightChoices === 0" class="text-center">Your Reward Point(s) is <span class="score-change-bad">{{scenario.status.scoreChange}}</span> because you made  {{scenario.status.custom.numWrongChoices}} wrong choices (<span class="score-change-bad">{{scenario.status.custom.pointsPerWrongChoice}}</span> each).</p>
+<img ng-if="scenario.status.custom.numWrongChoices > 1" class="center-image img-responsive" ng-src="images/outro-plate-double-bad.png" alt="{{scenario.config.name}} Proficiency Badge">
+<img ng-if="scenario.status.custom.numWrongChoices === 1" class="center-image img-responsive" ng-src="images/outro-plate-bad.png" alt="{{scenario.config.name}} Proficiency Badge">
+<hr>
+<p class="text-center">Good try! You selected some wrong choices for high or low Vitamin K food items.</p>
