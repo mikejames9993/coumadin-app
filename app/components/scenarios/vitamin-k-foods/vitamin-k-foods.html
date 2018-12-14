@@ -23,17 +23,17 @@
 	<!-- Button Div -->
 	<div class="col-xs-12">
 
-		<div class="row col-xs-12">
-			Tap on High or Low to Select
+		<div class="row col-xs-12 ">
+			<h3>Select Vitamin K Level for {{currentFoodItem.name}}</h3>
 		</div>
 		
 		<div class="col-xs-12">
-			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
+			<button type="button" class="btn btn-default btn-lg btn-block selection-items" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
 				High<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 			</button>
 		</div>
 		<div class="col-xs-12 ">
-			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
+			<button type="button" class="btn btn-default btn-lg btn-block selection-items" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
 				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 			</button>
 		</div>

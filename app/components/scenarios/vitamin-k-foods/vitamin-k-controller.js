@@ -81,9 +81,11 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		
 		console.log('Correct');
 		$rootScope.userData.score++;
-		if ($rootScope.userData.score === 10) {
+		if ($rootScope.userData.score === 1) {
 			console.log('YOU WIN');
-			$scope.leftPanelBGImage = "../../images/weird-guy/champion-guy.jpg";
+			$rootScope.completeVitaminKGame();
+
+			//$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
 		}
 
 		//show info modal with CORRECT bg image for 1.5 sec
@@ -95,6 +97,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     		$scope.selectionMsg = "";
     		$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
     		$scope.selectionBtnDisabled = false;
+    		//need to clear the class that makes button look like shit
 		}, 1000);
 		
 		
@@ -102,7 +105,6 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	};
 
 	var inCorrectSelectionMade = function(){
-		console.log('You suck, ya jackass');
 		
 		//show info modal with wrong bg image for 1.5 sec
         $scope.leftPanelBGImage = WRONG_BG_IMAGE;

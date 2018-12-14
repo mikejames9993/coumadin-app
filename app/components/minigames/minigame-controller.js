@@ -139,6 +139,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	};
 
 	$scope.showOutro = showOutroOverlay;
+	$rootScope.completeVitaminKGame = showOutroOverlay;
 	$scope.showRules = showRulesOverlay;
 
 	// Initialize the first scenario

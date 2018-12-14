@@ -8,6 +8,38 @@
     width: 100%;
 }
 
+.vit-k-scenario-coumadin {
+	background-image: url('../images/weird-guy/text-board-guy-1.jpg');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 450px;
+    width: 100%;
+}
+
+.vit-k-scenario-rules {
+	background-image: url('../images/weird-guy/text-board-guy-2.jpg');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 450px;
+    width: 100%;
+
+}
+.vit-k-scenario-champion {
+	background-image: url('../images/weird-guy/champion-guy.jpg');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 450px;
+    width: 100%;
+
+}
+
+.selection-items {
+	margin: 5px;
+}
+
 
 /* vitamin-k-foods */
 .challenge-food {

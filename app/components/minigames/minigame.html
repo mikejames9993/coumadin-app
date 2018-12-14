@@ -3,7 +3,8 @@
 	<div class="minigame-inner-wrapper">
 		<ng-include class="scenario-outer-wrapper" ng-if="activeScenario" src="'/components/scenarios/' + activeScenario.config.id + '/' + activeScenario.config.id + '.html'"></ng-include>
 		<div ng-if="errorMessage" class="label-danger">{{errorMessage}}</div>
-		<div class="row footer scenario-footer">
+		
+		<div class="row footer scenario-footer" ng-if="activeScenario.config.id !== 'vitamin-k-foods'">
 			<div class="col-xs-3 full-height">
 				<button class="btn pull-left full-height" ng-click="showRules()"><i class="fa fa-arrow-left"></i>Back</button>
 			</div>
@@ -12,6 +13,11 @@
 			</div>
 			<div class="col-xs-6 full-height">
 				<button class="btn pull-right full-height" ng-click="showOutro()">Tap Here to Submit When Done</button>
+			</div>
+		</div>
+		<div class="row footer scenario-footer" ng-if="activeScenario.config.id === 'vitamin-k-foods'">
+			<div class="col-xs-4 full-height">
+				<button class="btn pull-left full-height" type="button" ng-click="showRules()"><i class="fa fa-arrow-left"></i>Back</button>
 			</div>
 		</div>
 	</div>
