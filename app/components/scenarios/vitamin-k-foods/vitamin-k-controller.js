@@ -81,12 +81,14 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		
 		console.log('Correct');
 		$rootScope.userData.score++;
-		if ($rootScope.userData.score === 1) {
+		if ($rootScope.userData.score === 10) {
 			console.log('YOU WIN');
+			//$rootScope.userData.score = 0; - used if we wanna reset
 			$rootScope.completeVitaminKGame();
 
-			//$rootScope.showOverlay('/components/scenarios/scenario-outro.html', 'ScenarioOutroController', $scope.activeScenario, navigation);
 		}
+
+		//Could hide / show div's with success screen
 
 		//show info modal with CORRECT bg image for 1.5 sec
     	$scope.leftPanelBGImage = CORRECT_BG_IMAGE;
@@ -109,6 +111,8 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		//show info modal with wrong bg image for 1.5 sec
         $scope.leftPanelBGImage = WRONG_BG_IMAGE;
         $scope.selectionMsg = "Wrong!";
+
+        //Could hide / show div's with incorrect screen
 
         setTimeout(function() {
 			$scope.leftPanelBGImage = STANDARD_BG_IMAGE;

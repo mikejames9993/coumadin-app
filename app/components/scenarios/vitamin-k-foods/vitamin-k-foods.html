@@ -7,7 +7,7 @@
 		
 	</div>
 	<!-- Main Div -->
-	<div class="half-height">
+	<div class="third-height">
 		<div class="col-xs-6 text-center">
 			<h3>{{selectionMsg}}</h3>
 			<img ng-src={{leftPanelBGImage}} class="img-responsive">
@@ -21,23 +21,28 @@
 	</div>
 	
 	<!-- Button Div -->
-	<div class="col-xs-12">
+	<!--div class="col-xs-12">
 
 		<div class="row col-xs-12 ">
 			<h3>Select Vitamin K Level for {{currentFoodItem.name}}</h3>
-		</div>
+		</div-->
 		
-		<div class="col-xs-12">
-			<button type="button" class="btn btn-default btn-lg btn-block selection-items" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
+		<div class="col-xs-12 third-height">
+			<h5>Vitamin K Level: {{currentFoodItem.name}}</h5>
+			
+			<button type="button" class="btn btn-default col-xs-6" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
+				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-default col-xs-6" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
 				High<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 			</button>
 		</div>
-		<div class="col-xs-12 ">
+		<!--div class="col-xs-12 ">
 			<button type="button" class="btn btn-default btn-lg btn-block selection-items" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
 				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 			</button>
-		</div>
-	</div>
+		</div-->
+<!-- 	</div>
 	
 	
-</div>
+</div> -->
