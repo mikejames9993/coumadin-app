@@ -1,22 +1,58 @@
 <div class="container-fluid eating-wrapper" ng-controller="VitaminKController">
 	<!-- top row of foods -->
-	<div class="col-xs-12">
-		<div class="row vit-k-banner">Does the food below contain high or low amounts of Vitamin K?</div>
-
-		{{vitKCounterTracker | secondsToDateTime | date:'HH:mm:ss'}}
-		
+	<div class="row">
+		<div class="col-xs-12 vit-k-banner">
+			<img ng-src="images/scenarios/diet.png" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon" src="images/scenarios/diet.png">
+			Does the food below contain high or low amounts of Vitamin K?
+		</div>
 	</div>
 	<!-- Main Div -->
-	<div class="third-height">
+	<div>
 		<div class="col-xs-6 text-center">
-			<h3>{{selectionMsg}}</h3>
-			<img ng-src={{leftPanelBGImage}} class="img-responsive">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>{{selectionMsg}}</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<img ng-src={{leftPanelBGImage}} class="img-responsive guy-image">
+				</div>
+			</div>
 		</div>
 		<div class="col-xs-6 challenge-food">
-			
-				<food-card food="currentFoodItem" location-id="0"></food-card>
-			
-
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="vit-k-timer">
+						<span ng-class="{'final-countdown vit-k-blink': secondsRemaining < 10}">{{secondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<img ng-src="{{currentFoodItem.src}}" alt="{{currentFoodItem.name}}" class="food-icon-vit-k img-responsive" data-id="{{currentFoodItem.id}}">
+					<!-- <food-card food="currentFoodItem" location-id="0"></food-card> -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="vitamin-k-food-label">
+						<span class="food-label-inner">{{currentFoodItem.name}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">Low&nbsp;
+						<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="col-xs-6">
+					<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">High&nbsp;
+						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -27,16 +63,7 @@
 			<h3>Select Vitamin K Level for {{currentFoodItem.name}}</h3>
 		</div-->
 		
-		<div class="col-xs-12 third-height">
-			<h5>Vitamin K Level: {{currentFoodItem.name}}</h5>
-			
-			<button type="button" class="btn btn-default col-xs-6" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
-				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-			</button>
-			<button type="button" class="btn btn-default col-xs-6" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">
-				High<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-			</button>
-		</div>
+		
 		<!--div class="col-xs-12 ">
 			<button type="button" class="btn btn-default btn-lg btn-block selection-items" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">
 				Low<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>

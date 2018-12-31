@@ -8,36 +8,31 @@ var STANDARD_BG_IMAGE = "../../images/weird-guy/thinking-idea-guy.jpg";
 var CORRECT_BG_IMAGE = "../../images/weird-guy/happy-guy.jpg";
 var WRONG_BG_IMAGE = "../../images/weird-guy/bored-guy.jpg"
 var CHAMPION_BG_IMAGE = "../../images/weird-guy/champion-guy.jpg";
+var SECONDS_PER_GAME = 13; // 10 minutes
 
-angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $filter, _) {
+angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $interval, $filter, _) {
 	console.log('vitamin K controller loading');
 	$scope.counter = 100; 
-
 	$scope.buffetFoods = [];
-
-	$scope.vitKCounterTracker = 600000;
-	$scope.vitKStopped;
+	$scope.secondsRemaining = SECONDS_PER_GAME;
 
 	$scope.startVitKCountdown = function() {
-	    $scope.vitKCounter = $timeout(function() {
-	      // console.log($scope.vitKCounterTracker);
-	     $scope.vitKCounterTracker--;   
-	     $scope.startVitKCountdown();   
+	    $scope.vitKCounter = $interval(function() {
+	    	$scope.secondsRemaining--;
+	    	if ($scope.secondsRemaining === 0) {
+	    		$interval.cancel($scope.vitKCounter);
+	    	}
 	    }, 1000);
 	};
-
-    $scope.endTimeOut = function(){
-        $timeout.cancel($scope.vitKStopped);
-        $scope.vitKCounter = 600000;
-    };
+    // $scope.endTimeOut = function(){
+    //     $timeout.cancel($scope.vitKCounter);
+    //     $scope.secondsRemaining = SECONDS_PER_GAME;
+    // };
     $scope.startVitKCountdown();
-
-
 
     $scope.indexTracker = 0;
     $scope.leftPanelBGImage = STANDARD_BG_IMAGE;
     $scope.selectionMsg = "";
-
 	$rootScope.userData.score = 0;
 	//$scope.selectionBtnDisabled = true;
 
@@ -59,7 +54,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
 		if ($scope.currentFoodItem.kLevel === 1 && selection === 'high' || $scope.currentFoodItem.kLevel === 3 && selection === 'low') {
 			correctSelectionMade();
-		} else if ($scope.currentFoodItem.kLevel === 3 && selection === 'high' || $scope.currentFoodItem.kLevel === 1 && selection === 'low') {
+		} else {
 			inCorrectSelectionMade();
 		}
 
@@ -77,7 +72,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		
 	}
 
-	var correctSelectionMade = function(){
+	var correctSelectionMade = function() {
 		
 		console.log('Correct');
 		$rootScope.userData.score++;
@@ -94,16 +89,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	$scope.leftPanelBGImage = CORRECT_BG_IMAGE;
     	$scope.selectionMsg = "Correct!";
 
-		setTimeout(function() {
-			$scope.leftPanelBGImage = STANDARD_BG_IMAGE;
-    		$scope.selectionMsg = "";
-    		$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
-    		$scope.selectionBtnDisabled = false;
-    		//need to clear the class that makes button look like shit
-		}, 1000);
-		
-		
-    	
+		$timeout(resetForNextFood, 1000);
 	};
 
 	var inCorrectSelectionMade = function(){
@@ -114,14 +100,16 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
         //Could hide / show div's with incorrect screen
 
-        setTimeout(function() {
-			$scope.leftPanelBGImage = STANDARD_BG_IMAGE;
-    		$scope.selectionMsg = "";
-    		$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
-    		$scope.selectionBtnDisabled = false;
-		}, 1000);
+        $timeout(resetForNextFood, 1000);
     	
 	};
+
+	function resetForNextFood() {
+    	$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
+		$scope.leftPanelBGImage = STANDARD_BG_IMAGE;
+    	$scope.selectionMsg = "";
+    	$scope.selectionBtnDisabled = false;
+	}
 
 
 

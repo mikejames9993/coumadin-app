@@ -6,6 +6,6 @@ angular.module('CoumadinApp').directive('foodCard', function() {
 			food: '=food',
 			locationId: '@locationId'
 		},
-		templateUrl: 'components/scenarios/diet/food-card.html'
+		templateUrl: 'components/scenarios/vitamin-k-foods/food-card.html'
 	};
 });

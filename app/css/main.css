@@ -397,6 +397,10 @@ h3.mini-game-title {
     margin-left: auto;
     margin-right: auto;
 }
+.food-icon-vit-k {
+    margin-left: auto;
+    margin-right: auto;
+}
 .food-card-expand {
     position: absolute;
     left: 0;
@@ -425,6 +429,13 @@ h3.mini-game-title {
     right: -5px;
     width: auto;
     z-index: 100;
+}
+.vitamin-k-food-label {
+    color: #405c70;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px;
+    font-size: 16pt;
 }
 /*.food-label .food-label-inner {
     box-shadow: 0 0 10px 10px #f7f4ed;
@@ -717,4 +728,37 @@ hr.modal-separator {
     /* float: right; */
     display: block;
     right: 15%;
+}
+
+.guy-image {
+	margin: auto;
+}
+
+.k-selection-btn {
+    width: 100%; 
+    margin-top: 20px;
+    color: black;
+}
+
+.vit-k-banner {
+    background-color: #9bd;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.vit-k-timer {
+    background-color: #ddd;
+    border: 1px solid #999;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 3px 15px;
+}
+
+.final-countdown {
+	color: red;
+}
+
+.vit-k-blink {
+	animation: blinker 0.5s linear infinite;
 }
