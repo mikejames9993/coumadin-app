@@ -1,7 +1,7 @@
 <ng-include src="'components/shared/app-header.html'"></ng-include>
 <div class="modal-header">
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
-    <h3 class="modal-title text-center" id="modal-title">Rules of the {{scenario.config.altName}} Game</h3>
+    <h3 class="modal-title text-center" id="modal-title">Game Instructions</h3>
 </div>
 <div class="modal-body" id="modal-body">
     <ul ng-if="scenario.config.id !== 'vitamin-k-foods'" >
@@ -17,14 +17,11 @@
 </div>
 <div class="modal-footer">
     <div class="row">
-        <div class="col-xs-12">
-            <button class="btn btn-xl" type="button" ng-click="start()">Play</button>
+        <div class="col-xs-6">
+           <button class="btn btn-xl pull-left" type="button" ng-click="back()"><i class="fa fa-arrow-left"></i>Back</button>
         </div>
-    </div>
-    &nbsp;
-    <div class="row">
-    	<div class="col-xs-12">
-    	   <button class="btn pull-left" type="button" ng-click="back()"><i class="fa fa-arrow-left"></i>Back</button>
+        <div class="col-xs-6">
+            <button class="btn btn-xl" type="button" ng-click="start()">Play</button>
         </div>
     </div>
 </div>
