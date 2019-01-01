@@ -738,6 +738,8 @@ hr.modal-separator {
     width: 100%; 
     margin-top: 20px;
     color: black;
+    background-color: white !important;
+    border-color: #666 !important;
 }
 
 .vit-k-banner {
@@ -751,7 +753,7 @@ hr.modal-separator {
     background-color: #ddd;
     border: 1px solid #999;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 5px;
     padding: 3px 15px;
 }
 

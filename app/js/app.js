@@ -184,7 +184,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
             id: 'vitamin-k-foods',
             name: 'Vitamin K Foods',
             altName: 'Vitamin K Foods',
-            motto: 'Eat Right, Eat Safely',
+            motto: '',
             icon: 'images/scenarios/diet.png',
             coumadinInfoSource: 'config',
             coumadinInfo: [

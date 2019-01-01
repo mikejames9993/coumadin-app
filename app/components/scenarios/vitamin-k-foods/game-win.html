@@ -1,0 +1,14 @@
+<ng-include src="'components/shared/app-header.html'"></ng-include>
+<div class="modal-header">
+	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
+    <h3>You are a winner!</h3>
+    <h3>You are a Coumadin Hero!</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<h4 class="text-center">Congratulations! You just became a Coumadin Hero! This is for you!</h4>
+	<img class="center-image img-responsive" ng-src="images/weird-guy/champion-guy.jpg" alt="{{scenario.config.name}} Proficiency Badge">
+</div>
+<div class="modal-footer">
+	<button class="btn text-center" type="button" title="Exit" ng-click="home()">Exit</button>
+	<button class="btn text-center" type="button" title="Home" ng-click="replay()">Replay</button>
+</div>

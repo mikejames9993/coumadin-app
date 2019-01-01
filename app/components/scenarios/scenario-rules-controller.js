@@ -8,7 +8,7 @@ angular.module('CoumadinApp').controller('ScenarioRulesController', function($ro
 	};
 
 	$scope.start = function() {
-			navigation.start();
+		navigation.start();
 	};
 	
 });

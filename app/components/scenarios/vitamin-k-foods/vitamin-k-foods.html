@@ -24,9 +24,19 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="vit-k-timer">
-						<span ng-class="{'final-countdown vit-k-blink': secondsRemaining < 10}">{{secondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
+						<span ng-class="{'final-countdown vit-k-blink': gameSecondsRemaining < 10}">{{gameSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
 					</div>
 				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="vit-k-timer">
+						<span ng-class="{'final-countdown vit-k-blink': selectionSecondsRemaining < 10}">{{selectionSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">Tap on High or Low to select</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
@@ -48,7 +58,7 @@
 					</button>
 				</div>
 				<div class="col-xs-6">
-					<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled" aria-pressed="false">High&nbsp;
+					<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled">High&nbsp;
 						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 					</button>
 				</div>

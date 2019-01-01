@@ -8,45 +8,130 @@ var STANDARD_BG_IMAGE = "../../images/weird-guy/thinking-idea-guy.jpg";
 var CORRECT_BG_IMAGE = "../../images/weird-guy/happy-guy.jpg";
 var WRONG_BG_IMAGE = "../../images/weird-guy/bored-guy.jpg"
 var CHAMPION_BG_IMAGE = "../../images/weird-guy/champion-guy.jpg";
-var SECONDS_PER_GAME = 13; // 10 minutes
+var SECONDS_PER_GAME = 600; // 10 minutes
+var SECONDS_PER_SELECTION = 60; // 1 minute
+var FEEDBACK_DISPLAY_INTERVAL = 10000; // 10 seconds
 
-angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $interval, $filter, _) {
+angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $interval, $filter, $uibModal, _) {
 	console.log('vitamin K controller loading');
 	$scope.counter = 100; 
 	$scope.buffetFoods = [];
-	$scope.secondsRemaining = SECONDS_PER_GAME;
+	$scope.gameSecondsRemaining = SECONDS_PER_GAME;
+	$scope.selectionSecondsRemaining = SECONDS_PER_SELECTION;
+	$scope.consecutiveSkips = 0;
 
-	$scope.startVitKCountdown = function() {
-	    $scope.vitKCounter = $interval(function() {
-	    	$scope.secondsRemaining--;
-	    	if ($scope.secondsRemaining === 0) {
-	    		$interval.cancel($scope.vitKCounter);
-	    	}
-	    }, 1000);
-	};
-    // $scope.endTimeOut = function(){
-    //     $timeout.cancel($scope.vitKCounter);
-    //     $scope.secondsRemaining = SECONDS_PER_GAME;
-    // };
-    $scope.startVitKCountdown();
+	var startEventHandle = $rootScope.$on('minigame:scenario:start', initScenario);
+	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
+	var retryEventHandle = $rootScope.$on('minigame:scenario:vitk:retry', retrySelection);
+	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', skipSelection);
+	$scope.$on("$destroy", function() {
+		hideTimeExpiredModal();
+		stopTicker();
+		startEventHandle();
+		restartEventHandle();
+		retryEventHandle();
+		skipEventHandle();
+	});
+
+	var gameCountdownActive = false;
+	var selectionCountdownActive = false;
+	var ticker = null;
+	var ctr = 0;
+	function startTicker() {
+		if (ticker) {
+			stopTicker();
+		}
+		ticker = $interval(function() {
+			if (ctr++ % 10 === 0) {
+				console.log('tick');
+			}
+			if (gameCountdownActive) {
+				$scope.gameSecondsRemaining--;
+				if ($scope.gameSecondsRemaining === 0) {
+					stopGameCountdown();
+					stopSelectionCountdown();
+					endGame();
+				}
+			}
+			if (selectionCountdownActive) {
+				$scope.selectionSecondsRemaining--;
+				if ($scope.selectionSecondsRemaining === 0) {
+					stopSelectionCountdown();
+					showTimeExpiredModal();
+				}
+			}
+		}, 1000);
+	}
+	function stopTicker() {
+		if (ticker) {
+			$interval.cancel(ticker);
+			ticker = null;
+		}
+	}
+	function startGameCountdown() {
+		gameCountdownActive = true;
+	}
+	function stopGameCountdown() {
+		gameCountdownActive = false;
+	}
+	function startSelectionCountdown() {
+		selectionCountdownActive = true;
+	}
+	function stopSelectionCountdown() {
+		selectionCountdownActive = false;
+	}
 
     $scope.indexTracker = 0;
     $scope.leftPanelBGImage = STANDARD_BG_IMAGE;
     $scope.selectionMsg = "";
 	$rootScope.userData.score = 0;
-	//$scope.selectionBtnDisabled = true;
+	$scope.selectionBtnDisabled = false;
 
 
-
-                    
-
-	for (var i = 0; i < NUM_GAME_FOODS; i++) {
-		$scope.buffetFoods.push(null);
+	var modalInstance = null;
+	function showTimeExpiredModal() {
+		stopGameCountdown();
+		modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: '/components/scenarios/vitamin-k-foods/time-expired.html',
+            controller: 'TimeExpiredController',
+            backdrop: 'static',
+            // controllerAs: '$ctrl',
+            // size: 'fs',
+            // appendTo: parentElem,
+            // resolve: {
+            //     data: function () {
+            //         return scopeData;
+            //     },
+            //     navigation: function() {
+            //         return navigation;
+            //     }
+            // }
+        });
 	}
+    function hideTimeExpiredModal() {
+    	if (modalInstance) {
+    		modalInstance.close();
+    	}
+    }
 
+    function retrySelection() {
+    	hideTimeExpiredModal();
+    	resetForCurrentFood();
+    	startGameCountdown();
+    }
 
-
-	$scope.selectionMade = function(selection){
+    function skipSelection() {
+    	$scope.consecutiveSkips++;
+    	hideTimeExpiredModal();
+    	resetForNextFood();
+    	startGameCountdown();
+    }
+	
+	$scope.selectionMade = function(selection) {
+		stopSelectionCountdown();
 		$scope.selectionBtnDisabled = true;
 
 		console.log($scope.currentFoodItem);
@@ -55,44 +140,32 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		if ($scope.currentFoodItem.kLevel === 1 && selection === 'high' || $scope.currentFoodItem.kLevel === 3 && selection === 'low') {
 			correctSelectionMade();
 		} else {
-			inCorrectSelectionMade();
+			incorrectSelectionMade();
 		}
-
-
-		
-
-
-
-		if ($scope.indexTracker === (NUM_GAME_FOODS - 1)){
-			$scope.indexTracker = 0;
-		} else {
-			$scope.indexTracker++;
-		}
-		
-		
 	}
 
 	var correctSelectionMade = function() {
 		
 		console.log('Correct');
 		$rootScope.userData.score++;
-		if ($rootScope.userData.score === 10) {
+		$scope.activeScenario.scoreChange++;
+
+		$scope.leftPanelBGImage = CORRECT_BG_IMAGE;
+    	$scope.selectionMsg = "Correct!";
+
+		if ($scope.activeScenario.scoreChange === 10) {
 			console.log('YOU WIN');
+			endGame();
 			//$rootScope.userData.score = 0; - used if we wanna reset
-			$rootScope.completeVitaminKGame();
-
+		} else {
+			$timeout(resetForNextFood, FEEDBACK_DISPLAY_INTERVAL);
 		}
-
 		//Could hide / show div's with success screen
 
 		//show info modal with CORRECT bg image for 1.5 sec
-    	$scope.leftPanelBGImage = CORRECT_BG_IMAGE;
-    	$scope.selectionMsg = "Correct!";
-
-		$timeout(resetForNextFood, 1000);
 	};
 
-	var inCorrectSelectionMade = function(){
+	var incorrectSelectionMade = function(){
 		
 		//show info modal with wrong bg image for 1.5 sec
         $scope.leftPanelBGImage = WRONG_BG_IMAGE;
@@ -100,43 +173,52 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
         //Could hide / show div's with incorrect screen
 
-        $timeout(resetForNextFood, 1000);
-    	
+        $timeout(resetForNextFood, FEEDBACK_DISPLAY_INTERVAL);
 	};
 
-	function resetForNextFood() {
-    	$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
+	function resetForCurrentFood() {
 		$scope.leftPanelBGImage = STANDARD_BG_IMAGE;
     	$scope.selectionMsg = "";
     	$scope.selectionBtnDisabled = false;
+		$scope.selectionSecondsRemaining = SECONDS_PER_SELECTION;
+		startSelectionCountdown();
 	}
 
+	function resetForNextFood() {
+		if ($scope.indexTracker === (NUM_GAME_FOODS - 1)) {
+			$scope.indexTracker = 0;
+		} else {
+			$scope.indexTracker++;
+		}
+    	$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
+		resetForCurrentFood();
+	}
 
-
-	initScenario();
-
+	for (var i = 0; i < NUM_GAME_FOODS; i++) {
+		$scope.buffetFoods.push(null);
+	}
 	function initScenario() {
-		
+		$scope.activeScenario.scoreChange = 0;
 
-
-	
 		// Select foods at random
+		$scope.consecutiveSkips = 0;
 		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), NUM_GAME_FOODS);
 		for (var i = 0; i < gameFoods.length; i++) {
 			$scope.buffetFoods[i] = _.extend({}, gameFoods[i], { expanded: false });
 		}
-		
-		
-
 		$scope.currentFoodItem = $scope.buffetFoods[$scope.indexTracker];
+		startTicker();
+		startGameCountdown();
+    	startSelectionCountdown();
 	}
 
-	
-
-
-
-
-
-		
-	
+	function endGame() {
+		if ($scope.activeScenario.scoreChange >= 10) {
+			// $scope.activeScenario.status.outcome = 'good';
+			$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
+		} else {
+			// $scope.activeScenario.status.outcome = 'bad';
+			$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/game-lose.html', 'VitaminKLoseController', $scope.activeScenario, null);
+		}
+	}
 });

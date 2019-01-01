@@ -124,22 +124,23 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		}
 	}
 
-	function hideOverlay() {
+	function startGame() {
 		$scope.activeScreen = SCREENS.GAME;
 		$rootScope.hideOverlay();
+		$rootScope.$broadcast('minigame:scenario:start');
 	}
 
 	var navigation = {
 		showCoumadinInfo: showCoumadinOverlay, // show coumadin info
 		showRules: showRulesOverlay, // show rules
-		start: hideOverlay, // show game
+		start: startGame, // show game
 		resume: resumeScenario, // show game and pick up at previous point
 		retry: restartScenario, // show game and start over
 		next: $scope.goToNextScenario // go to landing page
 	};
 
 	$scope.showOutro = showOutroOverlay;
-	$rootScope.completeVitaminKGame = showOutroOverlay;
+	// $scope.completeVitaminKGame = showOutroOverlay;
 	$scope.showRules = showRulesOverlay;
 
 	// Initialize the first scenario
