@@ -186,20 +186,8 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
             altName: 'Vitamin K Foods',
             motto: '',
             icon: 'images/scenarios/diet.png',
-            coumadinInfoSource: 'config',
-            coumadinInfo: [
-                {
-                    text: "The focus of this app is to teach you about diet and Coumadin."
-                }, {
-                    text: "You are on Coumadin to treat or prevent blood clots."
-                }, {
-                    text: "Vitamin K alters your clotting."
-                }, {
-                    text: "Food can affect vitamin K levels in your body."
-                },{
-                    text: "So it is vital to understand what foods to avoid."
-                }
-            ],
+            coumadinInfoSource: 'template',
+            rulesSource: 'template',
             rules: [{
                 text: "The words High and Low appear next to the food. It shows the amount of Vitamin K in the food."
             }, {
@@ -234,6 +222,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
                     text: "Always check with your doctor or pharmacist before taking any medications you buy for yourself."
                 }
             ],
+            rulesSource: 'config',
             rules: [
                 {
                     text: "You will be given a medicine cabinet filled with other medications available from the store. Follow the instructions and place these medications in the medicine tray."
@@ -291,6 +280,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
                     text: "Your doctor uses your blood clotting number to set your Coumadin dose."
                 }                
             ],
+            rulesSource: 'config',
             rules: [
                 {
                     text: "The target INR number for your diagnosis will appear."

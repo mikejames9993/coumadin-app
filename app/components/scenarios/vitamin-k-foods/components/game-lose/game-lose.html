@@ -1,14 +1,14 @@
 <ng-include src="'components/shared/app-header.html'"></ng-include>
-<div class="modal-header">
+<div class="modal-header text-center vit-k-modal-header">
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h3>Play to become a Coumadin Hero</h3>
 </div>
 <div class="modal-body" id="modal-body">
 	<p>You do not have 10 points to win the game.</p>
 	<p>Tap the Replay button to try again.</p>
-	<button class="btn btn-xl text-center" type="button" title="Replay" ng-click="replay()">Replay</button>
 </div>
 <div class="modal-footer">
-	<button class="btn text-center" type="button" title="Home" ng-click="home()">Home</button>
-	<button class="btn text-center" type="button" title="Exit" ng-click="home()">Exit</button>
+	<button class="btn btn-lg text-center" type="button" title="Home" ng-click="home()">Home</button>
+	<button class="btn btn-lg text-center" type="button" title="Replay" ng-click="replay()">Replay</button>
+	<button class="btn btn-lg text-center" type="button" title="Exit" ng-click="home()">Exit</button>
 </div>

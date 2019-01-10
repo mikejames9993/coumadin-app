@@ -4,7 +4,7 @@
     <h3 class="modal-title text-center" id="modal-title">Game Instructions</h3>
 </div>
 <div class="modal-body" id="modal-body">
-    <ul ng-if="scenario.config.id !== 'vitamin-k-foods'" >
+    <ul ng-if="scenario.config.rulesSource === 'config'" >
         <li ng-repeat="info in scenario.config.rules">
             <div>
                 <h3 ng-if="info.title">{{info.title}}</h3>
@@ -13,7 +13,7 @@
             &nbsp;
         </li>
     </ul>
-    <div ng-if="scenario.config.id === 'vitamin-k-foods'" class="vit-k-scenario-rules"></div>
+    <ng-include ng-if="scenario.config.rulesSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/rules.html'"></ng-include>
 </div>
 <div class="modal-footer">
     <div class="row">

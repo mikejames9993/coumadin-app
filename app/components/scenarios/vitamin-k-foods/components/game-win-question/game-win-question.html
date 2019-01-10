@@ -1,0 +1,21 @@
+<ng-include src="'components/shared/app-header.html'"></ng-include>
+<div class="modal-header text-center vit-k-modal-header">
+	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
+    <h3>You are a Coumadin Hero!</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<h4 class="text-center">Yee! You earned 10 points to win the game. You have some time left to earn more points. What do you want to do?</h4>
+	<div class="vit-k-img-wrapper">
+		<img class="center-image img-responsive" ng-src="images/weird-guy/power-guy.jpg" alt="You win">
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="row">
+		<div class="col-xs-6">
+			<button class="btn btn-lg k-modal-btn text-center" type="button" title="Exit" ng-click="home()">Quit</button>
+		</div>
+		<div class="col-xs-6">
+			<button class="btn btn-lg k-modal-btn text-center" type="button" title="Home" ng-click="continue()">Continue</button>
+		</div>
+	</div>
+</div>

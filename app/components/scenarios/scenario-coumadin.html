@@ -4,7 +4,7 @@
     <h3 class="modal-title text-center" id="modal-title">Things to Note When Taking Coumadin?</h3>
 </div>
 <div class="modal-body" id="modal-body">
-	<ul ng-if="scenario.config.coumadinInfoSource === 'config' && scenario.config.id !=='vitamin-k-foods'">
+	<ul ng-if="scenario.config.coumadinInfoSource === 'config'">
 		<li ng-repeat="info in scenario.config.coumadinInfo">
 			<div>
 				<h3 ng-if="info.title">{{info.title}}</h3>
@@ -13,7 +13,6 @@
 			&nbsp;
 		</li>
 	</ul>
-	<div ng-if="scenario.config.id =='vitamin-k-foods'" class="vit-k-scenario-coumadin"></div>
 	<ng-include ng-if="scenario.config.coumadinInfoSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/coumadin.html'"></ng-include>
 </div>
 <div class="modal-footer">
