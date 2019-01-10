@@ -4,7 +4,7 @@
         <div class="col-xs-6">
            <button class="btn btn-xl pull-left" type="button" ng-click="retry()">Retry</button>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-6" ng-if="enableSkip">
             <button class="btn btn-xl" type="button" ng-click="skip()">Skip</button>
         </div>
     </div>

@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-xs-12 vit-k-banner">
 			<img ng-src="images/scenarios/diet.png" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon" src="images/scenarios/diet.png">
-			Does the food below contain high or low amounts of Vitamin K?
+			Does the food below have high or low Vitamin K?
 		</div>
 	</div>
 	<!-- Main Div -->
@@ -24,6 +24,8 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="vit-k-timer">
+						<span>Game Clock</span>
+						<hr>
 						<span ng-class="{'final-countdown vit-k-blink': gameSecondsRemaining < 10}">{{gameSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
 					</div>
 				</div>
@@ -31,12 +33,11 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="vit-k-timer">
+						<span>Item Clock</span>
+						<hr>
 						<span ng-class="{'final-countdown vit-k-blink': selectionSecondsRemaining < 10}">{{selectionSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">Tap on High or Low to select</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
@@ -50,6 +51,9 @@
 						<span class="food-label-inner">{{currentFoodItem.name}}</span>
 					</div>
 				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">Tap on High or Low to select</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6">

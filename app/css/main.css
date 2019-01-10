@@ -300,7 +300,8 @@ body, label {
 .modal-dialog.modal-fs .modal-content {
 	border-radius: 0;
 	border: 0;
-	background-color: #AFE7F9;
+	/*background-color: #AFE7F9;*/
+	background-color: #8DC5D7;
 	color: #363636;
 	box-shadow: none;
 	min-height: 100%;
@@ -436,6 +437,7 @@ h3.mini-game-title {
     text-align: center;
     padding: 0px;
     font-size: 16pt;
+    margin-bottom: 20px;
 }
 /*.food-label .food-label-inner {
     box-shadow: 0 0 10px 10px #f7f4ed;
@@ -740,6 +742,8 @@ hr.modal-separator {
     color: black;
     background-color: white !important;
     border-color: #666 !important;
+    z-index: 1000;
+    position: relative;
 }
 
 .vit-k-banner {
@@ -755,6 +759,12 @@ hr.modal-separator {
     border-radius: 8px;
     margin-top: 5px;
     padding: 3px 15px;
+    font-weight: bold;
+}
+.vit-k-timer hr {
+	margin-top: 0;
+	margin-bottom: 0;
+	border-color: #888;
 }
 
 .final-countdown {

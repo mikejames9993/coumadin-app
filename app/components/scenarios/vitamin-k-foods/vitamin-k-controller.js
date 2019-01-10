@@ -10,7 +10,9 @@ var WRONG_BG_IMAGE = "../../images/weird-guy/bored-guy.jpg"
 var CHAMPION_BG_IMAGE = "../../images/weird-guy/champion-guy.jpg";
 var SECONDS_PER_GAME = 600; // 10 minutes
 var SECONDS_PER_SELECTION = 60; // 1 minute
-var FEEDBACK_DISPLAY_INTERVAL = 10000; // 10 seconds
+var FEEDBACK_DISPLAY_INTERVAL = 4000; // 4 seconds
+var FEEDBACK_MESSAGE_RIGHT = "You did it! You earned 1 point!";
+var FEEDBACK_MESSAGE_WRONG = "That's not right. Let's try another one";
 
 angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $interval, $filter, $uibModal, _) {
 	console.log('vitamin K controller loading');
@@ -23,9 +25,10 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	var startEventHandle = $rootScope.$on('minigame:scenario:start', initScenario);
 	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
 	var retryEventHandle = $rootScope.$on('minigame:scenario:vitk:retry', retrySelection);
-	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', skipSelection);
+	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', evalSkipSelection);
+	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:finalskip', skipSelection);
 	$scope.$on("$destroy", function() {
-		hideTimeExpiredModal();
+		hideModal();
 		stopTicker();
 		startEventHandle();
 		restartEventHandle();
@@ -91,6 +94,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	var modalInstance = null;
 	function showTimeExpiredModal() {
 		stopGameCountdown();
+		hideModal();
 		modalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: 'modal-title',
@@ -98,34 +102,51 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
             templateUrl: '/components/scenarios/vitamin-k-foods/time-expired.html',
             controller: 'TimeExpiredController',
             backdrop: 'static',
-            // controllerAs: '$ctrl',
-            // size: 'fs',
-            // appendTo: parentElem,
-            // resolve: {
-            //     data: function () {
-            //         return scopeData;
-            //     },
-            //     navigation: function() {
-            //         return navigation;
-            //     }
-            // }
+            resolve: {
+                data: function () {
+                    return {
+                    	enableSkip: $scope.consecutiveSkips < 3
+                    }
+                }
+            }
         });
 	}
-    function hideTimeExpiredModal() {
+	function showExcessiveSkipsModal() {
+		stopGameCountdown();
+		hideModal();
+		modalInstance = $uibModal.open({
+			animation: true,
+			ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: '/components/scenarios/vitamin-k-foods/excessive-skips.html',
+            controller: 'ExcessiveSkipsController',
+            backdrop: 'static'
+		});
+	}
+    function hideModal() {
     	if (modalInstance) {
     		modalInstance.close();
     	}
     }
 
     function retrySelection() {
-    	hideTimeExpiredModal();
+    	hideModal();
     	resetForCurrentFood();
     	startGameCountdown();
     }
 
+    function evalSkipSelection() {
+    	if ($scope.consecutiveSkips === 2) {
+    		// on the 3rd consecutive skip, display another modal
+    		showExcessiveSkipsModal();
+    	} else {
+    		// otherwise proceed with skipping the selection
+    		skipSelection();
+    	}
+    }
     function skipSelection() {
     	$scope.consecutiveSkips++;
-    	hideTimeExpiredModal();
+    	hideModal();
     	resetForNextFood();
     	startGameCountdown();
     }
@@ -133,6 +154,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	$scope.selectionMade = function(selection) {
 		stopSelectionCountdown();
 		$scope.selectionBtnDisabled = true;
+		$scope.consecutiveSkips = 0;
 
 		console.log($scope.currentFoodItem);
 		console.log(selection);
@@ -151,7 +173,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		$scope.activeScenario.scoreChange++;
 
 		$scope.leftPanelBGImage = CORRECT_BG_IMAGE;
-    	$scope.selectionMsg = "Correct!";
+    	$scope.selectionMsg = FEEDBACK_MESSAGE_RIGHT;
 
 		if ($scope.activeScenario.scoreChange === 10) {
 			console.log('YOU WIN');
@@ -169,7 +191,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		
 		//show info modal with wrong bg image for 1.5 sec
         $scope.leftPanelBGImage = WRONG_BG_IMAGE;
-        $scope.selectionMsg = "Wrong!";
+        $scope.selectionMsg = FEEDBACK_MESSAGE_WRONG;
 
         //Could hide / show div's with incorrect screen
 

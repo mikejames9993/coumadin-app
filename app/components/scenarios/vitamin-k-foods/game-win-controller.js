@@ -8,6 +8,6 @@ angular.module('CoumadinApp').controller('VitaminKWinController', function($root
 	};
 
 	$scope.replay = function() {
-		// $rootScope.$broadcast('minigame:scenario:vitk:retry');
+		$rootScope.$broadcast('minigame:scenario:vitk:restart');
 	};
 });
