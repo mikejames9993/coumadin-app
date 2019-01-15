@@ -2,8 +2,22 @@
 	<!-- top row of foods -->
 	<div class="row">
 		<div class="col-xs-12 vit-k-banner">
-			<img ng-src="images/scenarios/diet.png" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon" src="images/scenarios/diet.png">
-			Does the food below have high or low Vitamin K?
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="vit-k-timer">
+						<span>Game Clock</span>
+						<hr>
+						<span ng-class="{'final-countdown vit-k-blink': gameSecondsRemaining < 10}">{{gameSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="vit-k-timer">
+						<span>Item Clock</span>
+						<hr>
+						<span ng-class="{'final-countdown vit-k-blink': selectionSecondsRemaining < 10}">{{selectionSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Main Div -->
@@ -22,22 +36,8 @@
 		</div>
 		<div class="col-xs-6 challenge-food">
 			<div class="row">
-				<div class="col-xs-12">
-					<div class="vit-k-timer">
-						<span>Game Clock</span>
-						<hr>
-						<span ng-class="{'final-countdown vit-k-blink': gameSecondsRemaining < 10}">{{gameSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="vit-k-timer">
-						<span>Item Clock</span>
-						<hr>
-						<span ng-class="{'final-countdown vit-k-blink': selectionSecondsRemaining < 10}">{{selectionSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
-					</div>
-				</div>
+				<img ng-src="images/scenarios/diet.png" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon" src="images/scenarios/diet.png">
+			Does the food below have high or low Vitamin K?
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
