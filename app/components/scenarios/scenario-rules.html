@@ -15,7 +15,7 @@
     </ul>
     <ng-include ng-if="scenario.config.rulesSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/rules.html'"></ng-include>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" ng-class="{'vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" >
     <div class="row">
         <div class="col-xs-6">
            <button class="btn btn-xl pull-left" type="button" ng-click="back()">Back</button>

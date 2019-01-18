@@ -1,9 +1,9 @@
 <ng-include src="'components/shared/app-header.html'"></ng-include>
-<div class="modal-header">
+<div class="modal-header" ng-class="{'vitamin-k-foods-header': scenario.config.id === 'vitamin-k-foods'}" >
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h3 class="modal-title text-center" id="modal-title">Things to Note When Taking Coumadin?</h3>
 </div>
-<div class="modal-body" id="modal-body">
+<div class="modal-body" id="modal-body" ng-class="{'vitamin-k-foods-body': scenario.config.id === 'vitamin-k-foods'}">
 	<ul ng-if="scenario.config.coumadinInfoSource === 'config'">
 		<li ng-repeat="info in scenario.config.coumadinInfo">
 			<div>
@@ -15,6 +15,9 @@
 	</ul>
 	<ng-include ng-if="scenario.config.coumadinInfoSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/coumadin.html'"></ng-include>
 </div>
-<div class="modal-footer">
-    <button class="btn text-center btn-xl" type="button" ng-click="showRules()">Next</button>
+<!--div ng-class="{'modal-footer vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" -->
+<div class="modal-footer" ng-class="{'vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" >
+    <button class="btn text-center btn-xl " type="button" ng-click="showRules()">Next</button>
 </div>
+
+

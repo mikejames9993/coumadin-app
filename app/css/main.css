@@ -40,6 +40,28 @@
     width: 100%;
 
 }
+.vit-k-game-banner {
+	padding-left: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.vitamin-k-foods-footer {
+	padding: 0px 10px;
+	position: fixed;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	height: 70px;
+	z-index: 200;
+}
+.vitamin-k-foods-header {
+	padding-bottom: 0px;
+	padding-right: 0px
+}
+.vitamin-k-foods-body {
+	padding-top:0px;
+}
 
 .selection-items {
 	margin: 5px;
@@ -760,12 +782,14 @@ hr.modal-separator {
 }
 
 .vit-k-timer {
-    background-color: #ddd;
+    background-color: #fff;
     border: 1px solid #999;
     border-radius: 8px;
     margin-top: 5px;
     padding: 3px 15px;
     font-weight: bold;
+    text-align: center;
+    font-size: 18px;
 }
 .vit-k-timer hr {
 	margin-top: 0;
@@ -784,6 +808,9 @@ hr.modal-separator {
 .k-modal-btn {
 	min-width: 100%;
 }
+.vit-k-modal-header {
+	padding: 10px
+}
 
 .vit-k-modal-header img {
 	margin: -5px;
@@ -791,6 +818,12 @@ hr.modal-separator {
 .vit-k-modal-header h3 {
 	margin-top: 0;
 	margin-bottom: 0;
+
+}
+.vit-k-modal-header h4 {
+	margin-top: 2;
+	margin-bottom: 2;
+
 }
 
 .vit-k-img-wrapper {

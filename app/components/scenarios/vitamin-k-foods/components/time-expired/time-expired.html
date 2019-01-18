@@ -1,10 +1,10 @@
 <div class="modal-body" id="modal-body">Time to select this item has expired. What do you want to do?</div>
 <div class="modal-footer">
     <div class="row">
-        <div ng-class="{'col-xs-6': enableSkip === true, 'col-xs-12': enableSkip === false}">
+        <div ng-if="enableRetry" ng-class="{'col-xs-6': enableSkip === true, 'col-xs-12': enableSkip === false}">
            <button class="btn k-modal-btn btn-lg" type="button" ng-click="retry()">Retry</button>
         </div>
-        <div class="col-xs-6" ng-if="enableSkip">
+        <div ng-if="enableSkip" ng-class="{'col-xs-6': enableRetry === true, 'col-xs-12': enableRetry === false}">
             <button class="btn k-modal-btn btn-lg" type="button" ng-click="skip()">Skip</button>
         </div>
     </div>

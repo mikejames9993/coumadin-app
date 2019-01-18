@@ -21,10 +21,12 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	$scope.gameSecondsRemaining = SECONDS_PER_GAME;
 	$scope.selectionSecondsRemaining = SECONDS_PER_SELECTION;
 	$scope.consecutiveSkips = 0;
+	$scope.consecutiveRetries = 0;
 
 	var startEventHandle = $rootScope.$on('minigame:scenario:start', initScenario);
 	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
-	var retryEventHandle = $rootScope.$on('minigame:scenario:vitk:retry', retrySelection);
+	var evalRetryEventHandle = $rootScope.$on('minigame:scenario:vitk:finalretry', retrySelection);
+	var retryEventHandle = $rootScope.$on('minigame:scenario:vitk:retry', evalRetrySelection );
 	var evalSkipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', evalSkipSelection);
 	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:finalskip', skipSelection);
 	var dismissFeedbackHandle = $rootScope.$on('minigame:scenario:vitk:dismissfeedback', resetForNextFood);
@@ -34,6 +36,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		startEventHandle();
 		restartEventHandle();
 		retryEventHandle();
+		evalRetrySelection();
 		evalSkipEventHandle();
 		skipEventHandle();
 		dismissFeedbackHandle();
@@ -109,7 +112,8 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
             resolve: {
                 data: function () {
                     return {
-                    	enableSkip: $scope.consecutiveSkips < 3
+                    	enableSkip: $scope.consecutiveSkips < 3,
+                    	enableRetry: $scope.consecutiveRetries < 3
                     }
                 }
             }
@@ -124,6 +128,18 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
             ariaDescribedBy: 'modal-body',
             templateUrl: '/components/scenarios/vitamin-k-foods/components/excessive-skips/excessive-skips.html',
             controller: 'ExcessiveSkipsController',
+            backdrop: 'static'
+		});
+	}
+	function showExcessiveRetriesModal() {
+		stopGameCountdown();
+		hideModal();
+		modalInstance = $uibModal.open({
+			animation: true,
+			ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: '/components/scenarios/vitamin-k-foods/components/excessive-retries/excessive-retries.html',
+            controller: 'ExcessiveRetriesController',
             backdrop: 'static'
 		});
 	}
@@ -152,13 +168,26 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	}
     }
 
+    function evalRetrySelection() {
+    	$scope.consecutiveSkips = 0; //reset
+    	if ($scope.consecutiveRetries === 2) {
+    		// on the 3rd consecutive retry, display another modal
+    		showExcessiveRetriesModal();
+    	} else {
+    		// otherwise proceed with retry-ing? retring? retrying? the selection
+    		retrySelection();
+    	}
+    }
+
     function retrySelection() {
+    	$scope.consecutiveRetries++;
     	hideModal();
     	resetForCurrentFood();
     	startGameCountdown();
     }
 
     function evalSkipSelection() {
+    	$scope.consecutiveRetries = 0; //reset
     	if ($scope.consecutiveSkips === 2) {
     		// on the 3rd consecutive skip, display another modal
     		showExcessiveSkipsModal();
@@ -178,6 +207,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		stopSelectionCountdown();
 		$scope.selectionBtnDisabled = true;
 		$scope.consecutiveSkips = 0;
+		$scope.consecutiveRetries = 0;
 
 		console.log($scope.currentFoodItem);
 		console.log(selection);
@@ -255,6 +285,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
 		// Select foods at random
 		$scope.consecutiveSkips = 0;
+		$scope.consecutiveRetries = 0;
 		var gameFoods = _.first(_.shuffle($scope.activeScenario.config.foodItems), NUM_GAME_FOODS);
 		for (var i = 0; i < gameFoods.length; i++) {
 			$scope.buffetFoods[i] = _.extend({}, gameFoods[i], { expanded: false });
@@ -265,6 +296,8 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	startSelectionCountdown();
 	}
 
+
+
 	function endGame() {
 		hideModal();
 		$rootScope.hideOverlay();
@@ -272,6 +305,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 			// $scope.activeScenario.status.outcome = 'good';
 			if ($scope.gameSecondsRemaining > 0) {
 				// still some time left - let the user decide if they want to keep playing
+				//$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
 				$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win-question/game-win-question.html', 'VitaminKWinQuestionController', $scope.activeScenario, null);
 			} else {
 				// time is up - show the trophy screen

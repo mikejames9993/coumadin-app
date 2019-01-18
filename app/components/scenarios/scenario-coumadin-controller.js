@@ -2,6 +2,8 @@
 
 angular.module('CoumadinApp').controller('ScenarioCoumadinController', function($rootScope, $scope, data, navigation) {
 	$scope.scenario = data;
+	console.log($scope.scenario.config.id);
+	//console.log($scope.scenario.data.config.id);
 
 	$scope.skip = function() {
 		navigation.start();

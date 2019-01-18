@@ -4,6 +4,7 @@ angular.module('CoumadinApp').controller('TimeExpiredController', function($root
 	console.log('time expired controller loading');
 
 	$scope.enableSkip = data.enableSkip;
+	$scope.enableRetry = data.enableRetry;
 
 	$scope.retry = function() {
 		$rootScope.$broadcast('minigame:scenario:vitk:retry');
