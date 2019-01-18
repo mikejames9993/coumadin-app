@@ -22,6 +22,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	$scope.selectionSecondsRemaining = SECONDS_PER_SELECTION;
 	$scope.consecutiveSkips = 0;
 	$scope.consecutiveRetries = 0;
+	$rootScope.activeScenario = "vitamin-k-foods";
 
 	var startEventHandle = $rootScope.$on('minigame:scenario:start', initScenario);
 	var restartEventHandle = $rootScope.$on('minigame:scenario:restart', initScenario);
@@ -30,6 +31,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	var evalSkipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', evalSkipSelection);
 	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:finalskip', skipSelection);
 	var dismissFeedbackHandle = $rootScope.$on('minigame:scenario:vitk:dismissfeedback', resetForNextFood);
+	var showTrophyScreenHandle = $rootScope.$on('end-vit-k-with-more-than-10', showTrophyScreen);
 	$scope.$on("$destroy", function() {
 		hideModal();
 		stopTicker();
@@ -40,6 +42,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		evalSkipEventHandle();
 		skipEventHandle();
 		dismissFeedbackHandle();
+		showTrophyScreenHandle();
 	});
 
 	var gameCountdownActive = false;
@@ -199,7 +202,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     function skipSelection() {
     	$scope.consecutiveSkips++;
     	hideModal();
-    	resetForNextFood();
+    	resetForNextFood('doNotReset');
     	startGameCountdown();
     }
 	
@@ -231,6 +234,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		if ($scope.activeScenario.scoreChange === 10) {
 			console.log('YOU WIN');
 			endGame();
+			//showTrophyScreen()
 			//$rootScope.userData.score = 0; - used if we wanna reset
 		} else {
 			// $timeout(resetForNextFood, FEEDBACK_DISPLAY_INTERVAL_SECONDS * 1000);
@@ -261,7 +265,11 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		startSelectionCountdown();
 	}
 
-	function resetForNextFood() {
+	function resetForNextFood(shouldreset) {
+		if (shouldreset !== "doNotReset"){
+			//$scope.scoreChange = 0;
+			//$rootScope.userData.score = 0;
+		}
 		$rootScope.hideOverlay();
 		hideModal();
 		if ($scope.indexTracker === (NUM_GAME_FOODS - 1)) {
@@ -296,7 +304,19 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	startSelectionCountdown();
 	}
 
-
+	function showTrophyScreen() {
+		$rootScope.activeScenario = "";
+		if ($scope.activeScenario.scoreChange >= 10) {
+			//$rootScope.activeScenario = "";
+			hideModal();
+			$rootScope.hideOverlay();
+			$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
+		} else {
+			//$rootScope.activeScenario = "";
+			$rootScope.goToLanding();
+		}
+	}
+		
 
 	function endGame() {
 		hideModal();

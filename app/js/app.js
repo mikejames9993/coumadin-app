@@ -419,6 +419,8 @@ app.run(function($rootScope, $location, $uibModal, Idle) {
     var standardModalInstance = null;
     var coumadinInfoModalInstance = null;
 
+    $rootScope.activeScenario = "";
+
     $rootScope.userData = {
         name: 'Jimbo',
         score: 0
@@ -484,12 +486,26 @@ app.run(function($rootScope, $location, $uibModal, Idle) {
         }
     };
 
-    $rootScope.goToLanding = function() {
-        $rootScope.hideMessage();
-        $rootScope.hideOverlay();
-        $location.url('/landing');
-        $rootScope.suppressDefaultMoreInfo = false;
-        $rootScope.userData.score = 0;
-        Idle.unwatch();
+    $rootScope.goToLanding = function(action) {
+        if ($rootScope.activeScenario !== 'vitamin-k-foods' ){
+
+            if (action === 'gohome'){
+                console.log('gohome');
+                $rootScope.$broadcast('minigame:scenario:vitk:dismissfeedback');
+            }
+            $rootScope.hideMessage();
+            $rootScope.hideOverlay();
+            $location.url('/landing');
+            $rootScope.suppressDefaultMoreInfo = false;
+            $rootScope.userData.score = 0;
+            Idle.unwatch();
+
+            
+        }  else {
+            console.log('else');
+            $rootScope.$broadcast('end-vit-k-with-more-than-10');
+        }      
+
+        
     };
 });
