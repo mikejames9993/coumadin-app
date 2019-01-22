@@ -1,3 +1,6 @@
+.trophy-img-body {
+	max-height: 335px;
+}
 /*guy images*/
 .thinking-guy {
 	background-image: url('../images/weird-guy/thinking-idea-guy.jpg');

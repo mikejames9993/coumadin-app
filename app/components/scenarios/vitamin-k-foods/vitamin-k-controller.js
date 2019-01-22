@@ -230,10 +230,11 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
 		// $scope.leftPanelBGImage = CORRECT_BG_IMAGE;
     	// $scope.selectionMsg = FEEDBACK_MESSAGE_RIGHT;
+    	var currentScore = $scope.activeScenario.scoreChange;
 
-		if ($scope.activeScenario.scoreChange === 10) {
+		if (currentScore === 10 || currentScore === 15 || currentScore === 20) {
 			console.log('YOU WIN');
-			endGame();
+			endGame(currentScore);
 			//showTrophyScreen()
 			//$rootScope.userData.score = 0; - used if we wanna reset
 		} else {
@@ -285,8 +286,10 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		$scope.buffetFoods.push(null);
 	}
 	function initScenario() {
+		$rootScope.showReplayOptions = true;
 		$rootScope.hideOverlay();
 		$scope.activeScenario.scoreChange = 0;
+		$rootScope.userData.score = 0;
 		$scope.gameSecondsRemaining = SECONDS_PER_GAME;
 		$scope.selectionSecondsRemaining = SECONDS_PER_SELECTION;
     	$scope.selectionBtnDisabled = false;
@@ -306,7 +309,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
 	function showTrophyScreen() {
 		$rootScope.activeScenario = "";
-		if ($scope.activeScenario.scoreChange >= 10) {
+		if ($scope.activeScenario.scoreChange >= 10 && $scope.activeScenario.scoreChange <=19) {
 			//$rootScope.activeScenario = "";
 			hideModal();
 			$rootScope.hideOverlay();
@@ -318,22 +321,28 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	}
 		
 
-	function endGame() {
+	function endGame(currentScore) {
 		hideModal();
 		$rootScope.hideOverlay();
-		if ($scope.activeScenario.scoreChange >= 10) {
+
+
+		if ($scope.activeScenario.scoreChange >= 10 && $scope.activeScenario.scoreChange <= 20 ) {
 			// $scope.activeScenario.status.outcome = 'good';
-			if ($scope.gameSecondsRemaining > 0) {
+			if ($scope.gameSecondsRemaining > 0 && currentScore !== 20) {
 				// still some time left - let the user decide if they want to keep playing
 				//$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
 				$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win-question/game-win-question.html', 'VitaminKWinQuestionController', $scope.activeScenario, null);
-			} else {
+			} else if (currentScore < 20) {
 				// time is up - show the trophy screen
+				$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
+			} else if (currentScore === 20) {
+				$rootScope.showReplayOptions = false;
 				$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
 			}
 		} else {
 			// $scope.activeScenario.status.outcome = 'bad';
 			$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-lose/game-lose.html', 'VitaminKLoseController', $scope.activeScenario, null);
 		}
+		
 	}
 });

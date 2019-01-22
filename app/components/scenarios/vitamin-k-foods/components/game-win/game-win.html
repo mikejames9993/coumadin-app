@@ -3,18 +3,18 @@
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h3>You are a winner!</h3>
 </div>
-<div class="modal-body vitamin-k-foods-body " id="modal-body">
+<div class="modal-body trophy-img-body" id="modal-body">
 	<h4 class="text-center" >Congratulations! You just became a Coumadin Hero! This is for you!</h4>
-	<div class="vit-k-img-wrapper">
+	<div class="vit-k-img-wrapper col-xs-10 col-xs-offset-1">
 		<img class="center-image img-responsive" ng-src="images/weird-guy/champion-guy.jpg" alt="Guy with trophy">
 	</div>
 </div>
 <div class="modal-footer vitamin-k-foods-body " ng-class="{'vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" >
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-6" >
 			<button class="btn btn-lg k-modal-btn text-center" type="button" title="Exit" ng-click="home()">Exit</button>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-6" ng-if="showRetryOptions">
 			<button class="btn btn-lg k-modal-btn text-center" type="button" title="Home" ng-click="replay()">Replay</button>
 		</div>
 	</div>

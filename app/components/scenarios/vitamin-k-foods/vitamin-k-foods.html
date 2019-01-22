@@ -6,14 +6,14 @@
 				<div class="col-xs-6">
 					<div class="vit-k-timer">
 						<span>Game Clock</span>
-						<!--<hr>-->
+						<hr>
 						<span ng-class="{'final-countdown vit-k-blink': gameSecondsRemaining < 10}">{{gameSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<div class="vit-k-timer">
 						<span>Item Clock</span>
-						<!--<hr>-->
+						<hr>
 						<span ng-class="{'final-countdown vit-k-blink': selectionSecondsRemaining < 10}">{{selectionSecondsRemaining | secondsToDateTime | date:'m:ss'}}</span>
 					</div>
 				</div>
@@ -51,13 +51,32 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">Low&nbsp;
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('high')" ng-disabled="selectionBtnDisabled">High&nbsp;
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-		<div class="col-xs-12">
+	<div class="row col-xs-offset-5 col-sm-12">
+				<div class="col-xs-12 text-center" style="padding:0px; font-size:.9em;">
+				Tap on High or Low to select
+				</div>
+			</div>
+		<!-- <div class="col-xs-12">
 			<div class="row vit-k-game-banner">
 				<div class="col-xs-12 text-center" style="padding:0px; font-size:.9em;">Tap on High or Low to select</div>
-			</div>
-			<div class="row col-xs-offset-5 vitamin-k-footer">
+			</div> -->
+			<!-- <div class="row col-xs-offset-5 vitamin-k-footer">
 				<div class="col-xs-6">
 					<button type="button" class="btn btn-default k-selection-btn" ng-click="selectionMade('low')" ng-disabled="selectionBtnDisabled">Low&nbsp;
 						<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
@@ -68,8 +87,8 @@
 						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 					</button>
 				</div>
-			</div>
-		</div>
+			</div> 
+		</div> -->
 
 <!--			<hr>
 			<div class="row vit-k-game-banner">
