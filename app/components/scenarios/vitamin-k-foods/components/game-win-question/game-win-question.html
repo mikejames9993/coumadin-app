@@ -4,7 +4,8 @@
     <h3>You are a Coumadin Hero!</h3>
 </div>
 <div class="modal-body" id="modal-body">
-	<h4 class="text-center">Yee! You earned 10 points to win the game. You have some time left to earn more points.</h4>
+	<h4 ng-if="userData.score != 20" class="text-center">Yee! You earned {{userData.score}} points to win the game. You have some time left to earn more points.</h4>
+	<h4 ng-if="userData.score == 20" class="text-center">Yee! You have earned the MAX points per turn, {{userData.score}} points to win the game.</h4>
 	<div class="vit-k-img-wrapper">
 		<img class="center-image img-responsive" ng-src="images/weird-guy/power-guy.jpg" alt="You win">
 	</div>
