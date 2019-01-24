@@ -1,6 +1,11 @@
 .trophy-img-body {
 	max-height: 335px;
 }
+#high-low-blue {
+	color: blue;
+	padding:0px; 
+	font-size:.9em;
+}
 /*guy images*/
 .thinking-guy {
 	background-image: url('../images/weird-guy/thinking-idea-guy.jpg');
