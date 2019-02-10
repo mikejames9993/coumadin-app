@@ -134,7 +134,7 @@
 	color: rgba(221, 47, 134, 0.62);
 }
 .info-bg {
-	background-color: rgba(221, 47, 134, 0.62);
+	background-color: white;/*rgba(221, 47, 134, 0.62);*/
 	color: #f2f2f2 ;
 }
 
@@ -273,6 +273,11 @@ body, label {
 #info-modal-header {
 	padding-bottom: 5px;
 	padding-top:5px;
+}
+
+#info-modal-body {
+	background-color: white;
+	color: blue;
 }
 
 .info-table{
@@ -610,6 +615,7 @@ hr.modal-separator {
     padding: 5px 0;
     cursor: pointer;
     color: blue;
+    font-weight: bold;
 }
 
 #message-container {
