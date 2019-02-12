@@ -15,7 +15,8 @@
     "font-awesome": "^4.7.0",
     "angular-media-queries": "^0.6.1",
     "angular-sanitize": "~1.6.4",
-    "ng-idle": "1.3.x"
+    "ng-idle": "1.3.x",
+    "moment": "2.24.x"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

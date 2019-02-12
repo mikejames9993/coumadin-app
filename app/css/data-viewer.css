@@ -1,0 +1,16 @@
+.table-wrapper {
+	padding: 10px;
+	margin: 10px 10px 20px 10px;
+	/*background-color: #ddd;*/
+	/*border: 1px solid #888;*/
+}
+
+.table-header {
+	background-color: #888;
+	color: white;
+	padding: 10px;
+}
+
+.table-header h3 {
+	margin-top: 0;
+}

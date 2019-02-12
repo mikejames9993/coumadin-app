@@ -1,0 +1,41 @@
+<div class="table-wrapper">
+	<div class="container-fluid table-header">
+		<div class="row">
+			<div class="col-xs-12">
+				<div><h3 class="pull-left">{{gameName}} Games Played</h3></div>
+				<button class="btn btn-default pull-right">
+					<span><i class="fa fa-arrow-down"></i></span>
+					<a ng-href="data:application/octet-stream,{{gameData.csvData}}" download="{{gameData.fileName}}">Download CSV</a>
+				</button>
+			</div>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<!-- <th scope="col">#</th> -->
+				<!-- <th scope="col">Game</th> -->
+				<th scope="col">Game ID</th>
+				<th scope="col">User Name</th>
+				<th scope="col">Start Time</th>
+				<th scope="col">End Time</th>
+				<th scope="col">Elapsed Time (s)</th>
+				<th scope="col">Outcome</th>
+				<th ng-repeat="customLabel in gameData.labels">{{customLabel}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(gameId, game) in gameData.games">
+				<!-- <td>{{$index + 1}}</td> -->
+				<!-- <td>{{game.gameName}}</td> -->
+				<td>{{game.gameId}}</td>
+				<td>{{game.username}}</td>
+				<td>{{game.timeStarted | date : 'M/d/yyyy H:mm:ss'}}</td>
+				<td>{{game.timeFinished | date : 'M/d/yyyy H:mm:ss'}}</td>
+				<td>{{game.elapsedTimeSeconds}}</td>
+				<td>{{game.outcome}}</td>
+				<td ng-repeat="customField in game.customFields">{{customField.value}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

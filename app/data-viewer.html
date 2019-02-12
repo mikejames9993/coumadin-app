@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <title>Coumadin Hero - Data</title>
+	    <!-- <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script> -->
+	    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
+		<script type="text/javascript" src="bower_components/angular-permission/dist/angular-permission.min.js"></script>
+		<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+	    <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+	    <!-- <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script> -->
+
+	    <script type="text/javascript" src="js/data-viewer.js"></script>
+	    <script type="text/javascript" src="components/data-viewer/game-table/data-table-controller.js"></script>
+	    <script type="text/javascript" src="components/data-viewer/game-table/game-table-directive.js"></script>
+
+	    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    	<link rel="stylesheet" href="css/yeti.bootswatch.min.css">
+    	<link rel="stylesheet" href="css/data-viewer.css">
+
+	    <script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyDm4KGOWGrvLD8JDV5rxP37u_tr5bTkEvk",
+			authDomain: "coumadin-hero.firebaseapp.com",
+			databaseURL: "https://coumadin-hero.firebaseio.com",
+			projectId: "coumadin-hero",
+			storageBucket: "",
+			messagingSenderId: "277490267683"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+	</head>
+	<body ng-app="CoumadinHeroDataViewerApp">
+		<div class="container-fluid">
+			<h1>Coumadin Hero Data Viewer</h1>
+			<div ng-if="gamesByType === null">
+				<div class="fa fa-spinner fa-spin" role="status"></div>&nbsp;Loading...
+			</div>
+			<div ng-if="gamesByType !== null && foundData === false">
+				<span>No data found</span>
+			</div>
+			<div ng-if="gamesByType !== null && foundData === true" ng-repeat="(gameName, gameData) in gamesByType">
+				<!-- <ng-include src="components/data-viewer/game-table/data-table.html"></ng-include> -->
+				<game-table name="gameName" games="gameData"></game-table>
+			</div>
+		</div>
+	</body>
+</html>
