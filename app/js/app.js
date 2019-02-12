@@ -508,4 +508,23 @@ app.run(function($rootScope, $location, $uibModal, Idle) {
 
         
     };
+
+    // Ask user to input their name
+    $rootScope.username = null;
+    var nameModalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: '/components/name-entry/name-entry.html',
+        controller: 'NameEntryController',
+        backdrop: 'static',
+        keyboard: false
+    });
+    $rootScope.$on('app:username', function(event, username) {
+        $rootScope.username = username;
+        $rootScope.gamesDatabase = firebase.database().ref('/test/games');
+        if (nameModalInstance) {
+            nameModalInstance.close();
+        }
+    });    
 });

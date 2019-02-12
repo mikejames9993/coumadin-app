@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CoumadinApp').controller('VitaminKWinController', function($rootScope, $scope, data) {
+angular.module('CoumadinApp').controller('VitaminKWinController', function($rootScope, $scope, data, navigation) {
 	$scope.scenario = data;
 
 	$scope.home = function() {
@@ -9,6 +9,7 @@ angular.module('CoumadinApp').controller('VitaminKWinController', function($root
 
 	$scope.replay = function() {
 		$rootScope.activeScenario = "vitamin-k-foods";
-		$rootScope.$broadcast('minigame:scenario:restart');
+		// $rootScope.$broadcast('minigame:scenario:restart');
+		navigation.retry();
 	};
 });

@@ -14,6 +14,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	$scope.scenarios = minigameConfig.scenarios;
 	$scope.errorMessage = null;
 	$rootScope.viewInfo = null;
+	$scope.gameTrackingData = null;
 
 	var activeScenarioIndex = -1;
 	$scope.activeScreen = null;
@@ -24,11 +25,65 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			$rootScope.showCoumadinInfoOverrideOverlay('/components/scenarios/more-info-override.html', 'CoumadinInfoOverrideController', { infos: $scope.activeScenario.config.moreInfoText[$scope.activeScreen.toLowerCase()] }, {});
 		}
 	});
+	// var gameRestartEventHandle = $rootScope.$on('minigame:scenario:restart', function() {
+	// 	submitGameTrackingData();
+	// 	initGameTrackingData();
+	// });
 
 	$scope.$on("$destroy", function() {
+		submitGameTrackingData();
         moreInfoEventHandle(); // deregister moreInfo listener when this controller is destroyed
+        // gameRestartEventHandle();
     });
 
+    function initGameTrackingData() {
+    	console.log('init tracking');
+		var startTime = new Date();
+		$scope.gameTrackingData = {
+			gameId: '' + startTime.getTime() + Math.abs(generateHash('' + $rootScope.username)),
+			gameName: $scope.activeScenario.config.name,
+			username: $rootScope.username,
+			timeStarted: startTime.getTime(),
+			elapsedTimeSeconds: null,
+			outcome: null,
+			customFields: []
+		};
+		$scope.activeScenario.customTrackingFields = {};
+    }
+
+    function submitGameTrackingData() {
+    	if ($scope.gameTrackingData) {
+			//$rootScope.$broadcast('minigame:scenario:restart');
+			var endTime = new Date();
+			$scope.gameTrackingData.timeFinished = endTime.getTime();
+			$scope.gameTrackingData.elapsedTimeSeconds = Math.floor(($scope.gameTrackingData.timeFinished - $scope.gameTrackingData.timeStarted) / 1000);
+			if ($scope.activeScenario.status.complete === true) {
+				$scope.gameTrackingData.outcome = $scope.activeScenario.status.outcome === 'good' ? 'WIN' : 'LOSE';
+			} else {
+				$scope.gameTrackingData.outcome = 'INCOMPLETE';
+			}
+			_.each($scope.activeScenario.customTrackingFields, function(fieldValue, fieldLabel) {
+				$scope.gameTrackingData.customFields.push({
+					label: fieldLabel,
+					value: fieldValue
+				});
+			});
+			$rootScope.gamesDatabase.child($scope.gameTrackingData.gameId).set($scope.gameTrackingData);
+			$scope.gameTrackingData = null;
+		}
+    }
+
+    function generateHash(string) {
+		var hash = 0;
+		var i;
+		var chr;
+		for (i = 0; i < string.length; i++) {
+			chr = string.charCodeAt(i);
+			hash = ((hash << 5) - hash) + chr;
+			hash |= 0; // Convert to 32bit integer
+		}
+		return hash;
+    }
 
 	$scope.hasNextScenario = function() {
 		return activeScenarioIndex < ($scope.scenarios.length - 1);
@@ -61,6 +116,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 				message: '',
 				scoreChange: 0
 			},
+			customTrackingFields: {},
 			testSubmit: function() {
 				// return null (no error) by default
 				return null;
@@ -83,6 +139,10 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	}
 
 	function restartScenario() {
+		// track some statistical data
+		submitGameTrackingData();
+		initGameTrackingData();
+		
 		console.log('triggering scenario restart');
 		$scope.hideOverlay();
 		refreshScenario();
@@ -127,6 +187,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 	function startGame() {
 		$scope.activeScreen = SCREENS.GAME;
 		$rootScope.hideOverlay();
+		initGameTrackingData();
 		$rootScope.$broadcast('minigame:scenario:start');
 	}
 
@@ -138,6 +199,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 		retry: restartScenario, // show game and start over
 		next: $scope.goToNextScenario // go to landing page
 	};
+	$scope.navigation = navigation;
 
 	$scope.showOutro = showOutroOverlay;
 	// $scope.completeVitaminKGame = showOutroOverlay;

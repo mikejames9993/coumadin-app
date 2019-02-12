@@ -848,3 +848,11 @@ hr.modal-separator {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.name-entry-modal .modal-body {
+	margin-bottom: 20px;
+}
+
+.name-entry-modal input {
+	width: 100%;
+}

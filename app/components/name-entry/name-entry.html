@@ -1,0 +1,24 @@
+<div class="name-entry-modal">
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Enter your name</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input id="name-input" type="text" maxlength="40" ng-model="username" autofocus>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 red">{{error}}</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+               <button class="btn k-modal-btn btn-lg" type="button" ng-click="enter()">Enter</button>
+            </div>
+        </div>
+    </div>
+</div>
