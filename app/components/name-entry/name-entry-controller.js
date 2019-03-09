@@ -19,6 +19,7 @@ angular.module('CoumadinApp').controller('NameEntryController', function($rootSc
 			if (sanitizedName.length === 0) {
 				$scope.error = 'Please enter a name with no special characters';
 			} else {
+				$rootScope.username = sanitizedName;
 				$rootScope.$broadcast('app:username', sanitizedName);
 			}
 		} else {
