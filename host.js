@@ -4,7 +4,7 @@ var express = require('express');
 var path = require('path');
 
 // Read port from shell arguments
-var port = process.argv[2];
+var port = process.argv[2] || 3005;
 
 var app = express();
 
