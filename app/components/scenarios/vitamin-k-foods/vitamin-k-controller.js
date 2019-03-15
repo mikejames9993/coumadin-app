@@ -16,6 +16,9 @@ var FEEDBACK_MESSAGE_WRONG = "That's not right. Let's try another one";
 var NUM_FOODS_SELECTED_LBL = "Foods Selected";
 var NUM_RIGHT_FOODS_SELECTED_LBL = "Correct Foods Selected";
 var NUM_WRONG_FOODS_SELECTED_LBL = "Wrong Foods Selected";
+var TOTAL_SKIPS_LBL = "Total Skips";
+var TOTAL_RETRIES_LBL = "Total Retries";
+
 
 angular.module('CoumadinApp').controller('VitaminKController', function($rootScope, $scope, $timeout, $interval, $filter, $uibModal, _) {
 	console.log('vitamin K controller loading');
@@ -188,6 +191,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
     function retrySelection() {
     	$scope.consecutiveRetries++;
+    	$scope.activeScenario.customTrackingFields[TOTAL_RETRIES_LBL]++;
     	hideModal();
     	resetForCurrentFood();
     	startGameCountdown();
@@ -205,6 +209,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     }
     function skipSelection() {
     	$scope.consecutiveSkips++;
+    	$scope.activeScenario.customTrackingFields[TOTAL_SKIPS_LBL]++;
     	hideModal();
     	resetForNextFood('doNotReset');
     	startGameCountdown();
@@ -220,19 +225,21 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		console.log(selection);
 
 		if ($scope.currentFoodItem.kLevel === 1 && selection === 'high' || $scope.currentFoodItem.kLevel === 3 && selection === 'low') {
-			correctSelectionMade();
+			correctSelectionMade($scope.currentFoodItem);
 		} else {
-			incorrectSelectionMade();
+			incorrectSelectionMade($scope.currentFoodItem);
 		}
 	}
 
-	var correctSelectionMade = function() {
+	var correctSelectionMade = function(selectedFood) {
 		
 		console.log('Correct');
 		$rootScope.userData.score++;
 		$scope.activeScenario.scoreChange++;
         $scope.activeScenario.customTrackingFields[NUM_FOODS_SELECTED_LBL]++;
 		$scope.activeScenario.customTrackingFields[NUM_RIGHT_FOODS_SELECTED_LBL]++;
+        var foodTrackingLabel = getCorrectFoodCustomTrackingLabel(selectedFood);
+        $scope.activeScenario.customTrackingFields[foodTrackingLabel]++;
 
 		// $scope.leftPanelBGImage = CORRECT_BG_IMAGE;
     	// $scope.selectionMsg = FEEDBACK_MESSAGE_RIGHT;
@@ -252,7 +259,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		//show info modal with CORRECT bg image for 1.5 sec
 	};
 
-	var incorrectSelectionMade = function(){
+	var incorrectSelectionMade = function(selectedFood) {
 		
 		// //show info modal with wrong bg image for 1.5 sec
         // $scope.leftPanelBGImage = WRONG_BG_IMAGE;
@@ -262,6 +269,8 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 
         $scope.activeScenario.customTrackingFields[NUM_FOODS_SELECTED_LBL]++;
         $scope.activeScenario.customTrackingFields[NUM_WRONG_FOODS_SELECTED_LBL]++;
+        var foodTrackingLabel = getIncorrectFoodCustomTrackingLabel(selectedFood);
+        $scope.activeScenario.customTrackingFields[foodTrackingLabel]++;
         // $timeout(resetForNextFood, FEEDBACK_DISPLAY_INTERVAL_SECONDS * 1000);
         showFeedbackModal(FEEDBACK_MESSAGE_WRONG, WRONG_BG_IMAGE);
 	};
@@ -305,6 +314,14 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	$scope.activeScenario.customTrackingFields[NUM_FOODS_SELECTED_LBL] = 0;
     	$scope.activeScenario.customTrackingFields[NUM_RIGHT_FOODS_SELECTED_LBL] = 0;
     	$scope.activeScenario.customTrackingFields[NUM_WRONG_FOODS_SELECTED_LBL] = 0;
+    	$scope.activeScenario.customTrackingFields[TOTAL_SKIPS_LBL] = 0;
+    	$scope.activeScenario.customTrackingFields[TOTAL_RETRIES_LBL] = 0;
+    	_.each($scope.activeScenario.config.foodItems, function(food) {
+    		var foodCorrectTrackingLabel = getCorrectFoodCustomTrackingLabel(food);
+    		var foodIncorrectTrackingLabel = getIncorrectFoodCustomTrackingLabel(food);
+    		$scope.activeScenario.customTrackingFields[foodCorrectTrackingLabel] = 0;
+    		$scope.activeScenario.customTrackingFields[foodIncorrectTrackingLabel] = 0;
+    	});
 
 		// Select foods at random
 		$scope.consecutiveSkips = 0;
@@ -317,6 +334,14 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		startTicker();
 		startGameCountdown();
     	startSelectionCountdown();
+	}
+
+	function getCorrectFoodCustomTrackingLabel(food) {
+		return food.name + " Correct Selections";
+	}
+
+	function getIncorrectFoodCustomTrackingLabel(food) {
+		return food.name + " Incorrect Selections";
 	}
 
 	function showTrophyScreen() {
