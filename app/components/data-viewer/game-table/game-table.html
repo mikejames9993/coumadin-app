@@ -21,6 +21,7 @@
 				<th scope="col">End Time</th>
 				<th scope="col">Elapsed Time (s)</th>
 				<th scope="col">Outcome</th>
+				<th scope="col">Points</th>
 				<th ng-repeat="customLabel in gameData.labels">{{customLabel}}</th>
 			</tr>
 		</thead>
@@ -34,6 +35,7 @@
 				<td>{{game.timeFinished | date : 'M/d/yyyy H:mm:ss'}}</td>
 				<td>{{game.elapsedTimeSeconds}}</td>
 				<td>{{game.outcome}}</td>
+				<td>{{game.score}}</td>
 				<td ng-repeat="customField in game.customFields">{{customField.value}}</td>
 			</tr>
 		</tbody>

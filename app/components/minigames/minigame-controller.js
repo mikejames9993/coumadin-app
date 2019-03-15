@@ -45,6 +45,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			username: $rootScope.username,
 			timeStarted: startTime.getTime(),
 			elapsedTimeSeconds: null,
+			score: 0,
 			outcome: null,
 			customFields: []
 		};
@@ -57,6 +58,7 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			var endTime = new Date();
 			$scope.gameTrackingData.timeFinished = endTime.getTime();
 			$scope.gameTrackingData.elapsedTimeSeconds = Math.floor(($scope.gameTrackingData.timeFinished - $scope.gameTrackingData.timeStarted) / 1000);
+			$scope.gameTrackingData.score = $scope.activeScenario.scoreChange;
 			if ($scope.activeScenario.status.complete === true) {
 				$scope.gameTrackingData.outcome = $scope.activeScenario.status.outcome === 'good' ? 'WIN' : 'LOSE';
 			} else {
