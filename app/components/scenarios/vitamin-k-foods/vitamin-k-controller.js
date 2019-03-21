@@ -211,7 +211,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
     	$scope.consecutiveSkips++;
     	$scope.activeScenario.customTrackingFields[TOTAL_SKIPS_LBL]++;
     	hideModal();
-    	resetForNextFood('doNotReset');
+    	resetForNextFood();
     	startGameCountdown();
     }
 	
@@ -283,11 +283,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		startSelectionCountdown();
 	}
 
-	function resetForNextFood(shouldreset) {
-		if (shouldreset !== "doNotReset"){
-			//$scope.scoreChange = 0;
-			//$rootScope.userData.score = 0;
-		}
+	function resetForNextFood() {
 		$rootScope.hideOverlay();
 		hideModal();
 		if ($scope.indexTracker === (NUM_GAME_FOODS - 1)) {
