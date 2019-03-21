@@ -25,15 +25,16 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			$rootScope.showCoumadinInfoOverrideOverlay('/components/scenarios/more-info-override.html', 'CoumadinInfoOverrideController', { infos: $scope.activeScenario.config.moreInfoText[$scope.activeScreen.toLowerCase()] }, {});
 		}
 	});
-	// var gameRestartEventHandle = $rootScope.$on('minigame:scenario:restart', function() {
-	// 	submitGameTrackingData();
-	// 	initGameTrackingData();
-	// });
+	var endEventHandle = $rootScope.$on('minigame:scenario:end', function(event) {  // fired when game is over (some games)
+		submitGameTrackingData();
+	});
 
 	$scope.$on("$destroy", function() {
 		submitGameTrackingData();
-        moreInfoEventHandle(); // deregister moreInfo listener when this controller is destroyed
-        // gameRestartEventHandle();
+
+		// deregister event listeners when this controller is destroyed
+        moreInfoEventHandle();
+        endEventHandle();
     });
 
     function initGameTrackingData() {
