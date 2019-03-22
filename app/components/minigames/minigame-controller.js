@@ -65,6 +65,9 @@ angular.module('CoumadinApp').controller('MinigameController', function($scope, 
 			} else {
 				$scope.gameTrackingData.outcome = 'INCOMPLETE';
 			}
+			if ($scope.gameTrackingData.username === null || $scope.gameTrackingData.username === undefined) {
+				$scope.gameTrackingData.username = $rootScope.username;
+			}
 			_.each($scope.activeScenario.customTrackingFields, function(fieldValue, fieldLabel) {
 				$scope.gameTrackingData.customFields.push({
 					label: fieldLabel,
