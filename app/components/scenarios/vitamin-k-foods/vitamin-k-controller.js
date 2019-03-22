@@ -37,7 +37,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 	var evalSkipEventHandle = $rootScope.$on('minigame:scenario:vitk:skip', evalSkipSelection);
 	var skipEventHandle = $rootScope.$on('minigame:scenario:vitk:finalskip', skipSelection);
 	var dismissFeedbackHandle = $rootScope.$on('minigame:scenario:vitk:dismissfeedback', resetForNextFood);
-	var showTrophyScreenHandle = $rootScope.$on('end-vit-k-with-more-than-10', showTrophyScreen);
+	var userContinueDecisionHandle = $rootScope.$on('minigame:scenario:vitk:usercontinuedecision', handleUserContinueDecision);
 
 	$scope.$on("$destroy", function() {
 		hideModal();
@@ -49,7 +49,7 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		evalSkipEventHandle();
 		skipEventHandle();
 		dismissFeedbackHandle();
-		showTrophyScreenHandle();
+		userContinueDecisionHandle();
 	});
 
 	var gameCountdownActive = false;
@@ -275,6 +275,17 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
         showFeedbackModal(FEEDBACK_MESSAGE_WRONG, WRONG_BG_IMAGE);
 	};
 
+	function handleUserContinueDecision(event, keepPlaying) {
+		$rootScope.hideOverlay();
+		hideModal();
+
+		if (keepPlaying) {
+			resetForNextFood();
+		} else {
+			endGame(true);
+		}
+	}
+
 	function resetForCurrentFood() {
 		// $scope.leftPanelBGImage = STANDARD_BG_IMAGE;
   //   	$scope.selectionMsg = "";
@@ -340,28 +351,28 @@ angular.module('CoumadinApp').controller('VitaminKController', function($rootSco
 		return food.name + " Incorrect Selections";
 	}
 
-	function showTrophyScreen() {
-		$rootScope.activeScenario = "";
-		if ($scope.activeScenario.scoreChange >= 10 && $scope.activeScenario.scoreChange <=19) {
-			//$rootScope.activeScenario = "";
-			hideModal();
-			$rootScope.hideOverlay();
-			$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, $scope.navigation);
-		} else {
-			//$rootScope.activeScenario = "";
-			$rootScope.goToLanding();
-		}
-	}
+	// function showTrophyScreen() {
+	// 	$rootScope.activeScenario = "";
+	// 	if ($scope.activeScenario.scoreChange >= 10 && $scope.activeScenario.scoreChange <=19) {
+	// 		//$rootScope.activeScenario = "";
+	// 		hideModal();
+	// 		$rootScope.hideOverlay();
+	// 		$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, $scope.navigation);
+	// 	} else {
+	// 		//$rootScope.activeScenario = "";
+	// 		$rootScope.goToLanding();
+	// 	}
+	// }
 		
 
-	function endGame(currentScore) {
+	function endGame(forceEnd) {
 		hideModal();
 		$rootScope.hideOverlay();
 
 		$scope.activeScenario.status.complete = true;
 		if ($scope.activeScenario.scoreChange >= 10) {
 			$scope.activeScenario.status.outcome = 'good';
-			if ($scope.gameSecondsRemaining > 0 && $scope.activeScenario.scoreChange < 20) {
+			if ($scope.gameSecondsRemaining > 0 && $scope.activeScenario.scoreChange < 20 && !forceEnd) {
 				// still some time left - let the user decide if they want to keep playing
 				//$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win/game-win.html', 'VitaminKWinController', $scope.activeScenario, null);
 				$rootScope.showOverlay('/components/scenarios/vitamin-k-foods/components/game-win-question/game-win-question.html', 'VitaminKWinQuestionController', $scope.activeScenario, $scope.navigation);
