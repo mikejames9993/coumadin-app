@@ -22,12 +22,18 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
     //3 - low
 
     var foodItems = [
-    // {
-    //     id: 'asparagus',
-    //     name: 'Asparagus',
-    //     kLevel: 2,
-    //     src: "images/food-graphics/asparagus.png"
-    // },
+    {
+        id: 'asparagus',
+        name: 'Asparagus',
+        kLevel: 1,
+        src: "images/food-graphics/asparagus.png"
+    },
+    {
+        id: 'boiled-egg',
+        name: 'Boiled Egg',
+        kLevel: 3,
+        src: "images/food-graphics/boiled-egg.png"
+    },
     {
         id: 'broccoli',
         name: 'Broccoli',
@@ -77,6 +83,12 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
         src: "images/food-graphics/corn.png"
     },
     {
+        id: 'cucumber',
+        name: 'Cucumber',
+        kLevel: 3,
+        src: "images/food-graphics/cucumber.png"
+    },
+    {
         id: 'grapes',
         name: 'Grapes',
         kLevel: 3,
@@ -101,10 +113,28 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
         src: "images/food-graphics/liver.png"
     },
     {
+        id: 'milk',
+        name: 'Milk',
+        kLevel: 3,
+        src: "images/food-graphics/milk.png"
+    },
+    {
         id: 'mayo',
         name: 'Mayo',
         kLevel: 1,
         src: "images/food-graphics/mayo.png"
+    },
+    {
+        id: 'mushroom',
+        name: 'Mushroom',
+        kLevel: 3,
+        src: "images/food-graphics/mushroom.png"
+    },
+    {
+        id: 'orange',
+        name: 'Orange',
+        kLevel: 3,
+        src: "images/food-graphics/orange.png"
     },
     {
         id: 'parsley',
@@ -117,6 +147,12 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
         name: 'Peas',
         kLevel: 3,
         src: "images/food-graphics/peas.png"
+    },
+    {
+        id: 'peanuts',
+        name: 'Peanuts',
+        kLevel: 3,
+        src: "images/food-graphics/peanuts.png"
     },
     {
         id: 'potatoes',
@@ -186,16 +222,34 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
             altName: 'Vitamin K Foods',
             motto: '',
             icon: 'images/scenarios/diet.png',
-            coumadinInfoSource: 'template',
-            rulesSource: 'template',
+            coumadinInfoSource: 'config',
+            coumadinInfo: [{
+                text: "The focus of this app is to teach you about diet and Coumadin"
+            }, {
+                text: "You are on Coumadin to treat or prevent blood clots"
+            }, {
+                text: "Vitamin K alters your clotting"
+            }, {
+                text: "Foods can affect vitamin K levels in your body"
+            }, {
+                text: "It is vital to understand what foods to avoid"
+            }, {
+                text: "You can read more about foods and Coumadin by tapping on the 'More Info' button"
+            }
+            ],
+            rulesSource: 'config',
             rules: [{
-                text: "The words High and Low appear next to the food. It shows the amount of Vitamin K in the food."
+                text: "You will select the level of Vitamin K for each food shown"
             }, {
-                text: "1. Tap HIGH or LOW to indicate the level of Vitamin K in the food item."
+                text: "Tap the HIGH or LOW to indicate the level of Vitamin K"
             }, {
-                text: "2. You earn one point for each correct choice."
+                text: "You earn one (1) point per correct answer"
             }, {
-                text: "3. You have 10 minutes to earn 10 points."
+                text: "You have 10 minutes to earn 10 points. The game session ends after 10 minutes."
+            }, {
+                text: "You have sixty seconds (1 minute) to make a selection when a food is presented"
+            }, {
+                text: "When 60 seconds expires, you have 2 attempts to Skip or Retry to make a selection"
             }],
             trophyText: [{
                 text: 'You\'ve earned enough points to earn a proficiency badge!'

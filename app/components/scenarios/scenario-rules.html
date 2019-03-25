@@ -10,7 +10,6 @@
                 <h3 ng-if="info.title">{{info.title}}</h3>
                 <p>{{info.text}}</p>
             </div>
-            &nbsp;
         </li>
     </ul>
     <ng-include ng-if="scenario.config.rulesSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/rules.html'"></ng-include>

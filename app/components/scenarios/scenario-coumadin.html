@@ -3,14 +3,14 @@
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h3 class="modal-title text-center" id="modal-title">Things to Note When Taking Coumadin?</h3>
 </div>
-<div class="modal-body" id="modal-body" ng-class="{'vitamin-k-foods-body': scenario.config.id === 'vitamin-k-foods'}">
+<!--div class="modal-body" id="modal-body" ng-class="{'vitamin-k-foods-body': scenario.config.id === 'vitamin-k-foods'}"-->
+<div class="modal-body" id="modal-body">
 	<ul ng-if="scenario.config.coumadinInfoSource === 'config'">
 		<li ng-repeat="info in scenario.config.coumadinInfo">
 			<div>
 				<h3 ng-if="info.title">{{info.title}}</h3>
 				<p>{{info.text}}</p>
 			</div>
-			&nbsp;
 		</li>
 	</ul>
 	<ng-include ng-if="scenario.config.coumadinInfoSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/coumadin.html'"></ng-include>
