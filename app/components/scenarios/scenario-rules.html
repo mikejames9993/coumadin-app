@@ -1,9 +1,9 @@
 <ng-include src="'components/shared/app-header.html'"></ng-include>
-<div class="modal-header">
+<div class="modal-header-scroll">
 	<img ng-src="{{scenario.config.icon}}" width="50" height="50" class="img-responsive mini-game-launch-img scenario-header-icon">
     <h3 class="modal-title text-center" id="modal-title">Game Instructions</h3>
 </div>
-<div class="modal-body" id="modal-body">
+<div class="modal-content-scroll-rules">
     <ul ng-if="scenario.config.rulesSource === 'config'" >
         <li ng-repeat="info in scenario.config.rules">
             <div>
@@ -14,7 +14,7 @@
     </ul>
     <ng-include ng-if="scenario.config.rulesSource === 'template'" src="'/components/scenarios/' + scenario.config.id + '/rules.html'"></ng-include>
 </div>
-<div class="modal-footer" ng-class="{'vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" >
+<div class="modal-footer-scroll vitamin-k-foods-footer" ng-class="{'vitamin-k-foods-footer': scenario.config.id === 'vitamin-k-foods'}" >
     <div class="row">
         <div class="col-xs-6">
            <button class="btn btn-xl pull-left" type="button" ng-click="back()">Back</button>

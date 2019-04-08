@@ -1,3 +1,43 @@
+.modal-header-scroll {
+	height: 150px;
+	margin-bottom: 10px;
+}
+
+.modal-content-scroll {
+    bottom: 90px;
+    top: 150px;
+    overflow-y: auto;
+    background-color: white;
+    color:blue;
+    margin-top: 5px;
+    padding-bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+.modal-content-scroll-rules {
+    bottom: 90px;
+    top: 120px;
+    overflow-y: auto;
+    background-color: white;
+    color:blue;
+    margin-top: 5px;
+    padding-bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+
+.modal-footer-scroll {
+	height: 100px;
+    bottom: 0;
+
+}
+
+
+
+
+
 .trophy-img-body {
 	max-height: 335px;
 }
@@ -64,7 +104,7 @@
 	z-index: 200;
 }
 .vitamin-k-foods-header {
-	padding-bottom: 0px;
+	padding-bottom: 10px;
 	padding-right: 0px
 }
 .vitamin-k-foods-body {
@@ -266,7 +306,7 @@ body, label {
 	font-size: 16pt;
 }
 
-#info-modal-body,#modal-body{
+#info-modal-body, #modal-body{
 	padding-bottom: 0px;
 	padding-top:5px;
 }
@@ -275,7 +315,7 @@ body, label {
 	padding-top:5px;
 }
 
-#info-modal-body {
+.modal-body {
 	background-color: white;
 	color: blue;
 }
@@ -602,6 +642,8 @@ hr.modal-separator {
 .scenario-header-icon {
     float: left;
     border: 2px solid #ccc;
+    margin-top:10px;
+    margin-left: 10px;
     /*border-radius: 50px;*/
 }
 
@@ -829,7 +871,7 @@ hr.modal-separator {
 .vit-k-modal-header img {
 	margin: -5px;
 }
-.vit-k-modal-header h3 {
+.vit-k-modal-header h3, .vit-k-modal-header h4 {
 	margin-top: 0;
 	margin-bottom: 0;
 
