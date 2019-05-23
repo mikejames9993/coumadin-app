@@ -109,7 +109,7 @@ app.config(function($routeProvider, KeepaliveProvider, IdleProvider) {
     {
         id: 'liver',
         name: 'Liver',
-        kLevel: 3,
+        kLevel: 1,
         src: "images/food-graphics/liver.png"
     },
     {
