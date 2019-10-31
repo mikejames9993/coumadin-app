@@ -10,7 +10,7 @@
     "start": "node host.js 3000"
   },
   "devDependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "humanize-duration": "^3.16.0"
   }
 }
