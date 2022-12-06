@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "dependencies": {
     "angular-permission": "^4.1.2",
-    "express": "4.14.x"
+    "express": "4.17.x"
   },
   "scripts": {
     "start": "node host.js 3000"
